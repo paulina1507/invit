@@ -1,0 +1,372 @@
+/* ==========================================
+   PALETA Y BASE
+========================================== */
+:root {
+    --terracotta: #C57A57;
+    --arena: #F1ECE6;
+    --arena2: #E6DED0;
+    --oliva: #8D9B7A;
+    --gris: #5C5A57;
+    --text: #3F3C38;
+}
+
+body {
+    margin: 0;
+    background: var(--arena);
+    font-family: "Cormorant Garamond", serif;
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   HERO PRX STYLE
+========================================== */
+.hero-prx {
+    height: 100vh;
+    background: url("../img/novios.png")
+        center/cover no-repeat;
+    position: relative;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.25);
+}
+
+.hero-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.hero-names {
+    font-size: 4.2rem;
+    letter-spacing: 2px;
+}
+
+.hero-names span {
+    font-size: 3.2rem;
+}
+
+.hero-date {
+    margin-top: 8px;
+    font-size: 1.6rem;
+}
+
+.hero-small {
+    margin-top: 6px;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.scroll-icon {
+    margin-top: 40px;
+    font-size: 2rem;
+    animation: bounce 1.4s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+/* ==========================================
+   BOX SECTIONS (PRX STYLE)
+========================================== */
+.section-box {
+    background: white;
+    padding: 60px 28px;
+    margin: 40px auto;
+    border-radius: 22px;
+    max-width: 900px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+}
+
+/* --- EVENTO CON ICONOS --- */
+.event-box {
+    position: relative;
+}
+
+.event-row {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.event-icon {
+    font-size: 2.2rem;
+    color: var(--accent); /* Terracota, o Oliva, Arena, Rose Gold */
+    line-height: 1;
+    margin-top: 3px;
+}
+
+.event-info {
+    text-align: center;
+}
+
+.event-info .title {
+    font-size: 2.1rem;
+    margin-bottom: 6px;
+}
+
+.event-info .subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.event-info .btn-line {
+    margin-top: 6px;
+}
+
+
+/* --- DRESS CODE CON ÍCONO --- */
+.dress-box .dress-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.dress-icon {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+/* ==========================================
+   TITLES
+========================================== */
+.title {
+    text-align: center;
+    font-size: 2.3rem;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+}
+
+/* ==========================================
+   COUNTDOWN (HORIZONTAL PRX STYLE)
+========================================== */
+.countdown-box {
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+    font-size: 2rem;
+}
+
+.time {
+    text-align: center;
+}
+
+.time small {
+    display: block;
+    font-size: .9rem;
+    margin-top: 4px;
+}
+
+/* ==========================================
+   PALETA DE COLORES
+========================================== */
+.palette {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.palette span {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* ==========================================
+   FORMULARIO PRX STYLE
+========================================== */
+.form-prx {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 400px;
+    margin: 30px auto 0 auto;
+}
+
+.form-prx input,
+.form-prx select {
+    padding: 14px;
+    background: var(--arena2);
+    border: 1px solid #d4cec4;
+    border-radius: 14px;
+    font-size: 1.1rem;
+}
+
+.btn-full {
+    background: var(--terracotta);
+    color: white;
+    padding: 16px;
+    border-radius: 30px;
+    border: none;
+    font-size: 1.2rem;
+    margin-top: 8px;
+}
+
+/* ==========================================
+   BOTÓN LINEAL (PRX)
+========================================== */
+.btn-line {
+    display: inline-block;
+    color: var(--terracotta);
+    border-bottom: 1.5px solid var(--terracotta);
+    padding-bottom: 2px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* ==========================================
+   DIVISOR PRX
+========================================== */
+.div {
+    margin: 40px auto;
+    width: 60%;
+    border: none;
+    border-bottom: 1px solid #d8d3c8;
+}
+
+/* ================================================
+   SECCIÓN EDITORIAL ESTILO PRX CREATIONS
+================================================ */
+.section-editorial {
+    padding: 70px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.editorial-box {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 26px;
+    max-width: 800px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    position: relative;
+}
+
+/* Manchita boho difusa atrás */
+.editorial-box::before {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    background: rgba(197, 122, 87, 0.15); /* terracota suave */
+    border-radius: 50%;
+    top: -60px;
+    left: -40px;
+    filter: blur(80px);
+    z-index: -1;
+}
+
+/* Stroke decorativo */
+.editorial-stroke {
+    width: 60%;
+    height: 1.5px;
+    background: #d8d3c8;
+    margin: 25px auto;
+}
+
+/* Texto editorial */
+.editorial-text {
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 1.5;
+    color: var(--text);
+    padding: 0 10px;
+}
+
+
+/* ==========================================
+   FADE ANIMATION
+========================================== */
+.fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all .8s ease-out;
+}
+
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================================================
+   GALERÍA PRX STYLE
+================================================ */
+.section-gallery {
+    padding: 80px 30px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.section-gallery .title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.4rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+}
+
+/* Cada imagen en caja blanca PRX */
+.gallery-item {
+    background: white;
+    padding: 10px;
+    border-radius: 22px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.07);
+    overflow: hidden;
+    transition: .35s ease;
+    position: relative;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+}
+
+/* Imagen dentro */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/* Variantes estilo PRX */
+.gallery-item.tall {
+    grid-row: span 2;  /* se vuelve vertical */
+}
+
+.gallery-item.wide {
+    grid-column: span 2; /* se vuelve horizontal */
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+.footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+}
