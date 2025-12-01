@@ -1,148 +1,358 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boda – Laura & Gerardo</title>
+    <title>Nuestra Boda – Boho Terracota</title>
+
+    <!-- Tipografías similares a las del diseño original -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
+
 <body>
+<audio id="bgSong" preload="auto" loop>
+<source src="assets/audio/tu-cancion.mp3" type="audio/mp3">
+</audio>
+<div id="EnvelopeIntro" class="premium-envelope-overlay">
 
-    <!-- HERO / PORTADA ESTILO PRX -->
-    <section class="hero-prx">
-        <div class="hero-overlay"></div>
+    <!-- SOBRE PREMIUM -->
+    <div class="premium-envelope">
 
-        <div class="hero-inner fade">
-            <h1 class="hero-names">Laura <span>&</span> Gerardo</h1>
-            <p class="hero-date">12 — Enero — 2026</p>
-            <p class="hero-small">¡Nos casamos!</p>
+        <!-- PLIEGUES -->
+        <div class="pe-fold fold-top"></div>
+        <div class="pe-fold fold-bottom"></div>
+        <div class="pe-fold fold-left"></div>
+        <div class="pe-fold fold-right"></div>
 
-            <div class="scroll-icon">↓</div>
+        <!-- SELLO -->
+        <div id="sealButton" class="pe-seal">
+            <img src="assets/img/sello.svg" alt="Sello">
         </div>
-    </section>
 
-    <!-- CONTADOR -->
-    <section class="section-box fade">
-        <div class="countdown-box">
-            <div class="time"><span id="days">00</span><small>Días</small></div>
-            <div class="time"><span id="hours">00</span><small>Horas</small></div>
-            <div class="time"><span id="minutes">00</span><small>Minutos</small></div>
-            <div class="time"><span id="seconds">00</span><small>Segundos</small></div>
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- NAVBAR -->
+<!-- ========================= -->
+<header class="navbar">
+    <div class="nav-inner">
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#presentacion">Presentación</a></li>
+                <li><a href="#lugar">Lugar</a></li>
+                <li><a href="#programa">Programa</a></li>
+                <li><a href="#regalos">Regalos</a></li>
+                <li><a href="#vestimenta">Vestimenta</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#asistencia">Asistencia</a></li>
+            </ul>
+        </nav>
+        <div class="logo">Nuestra Boda</div>
+    </div>
+</header>
+
+<!-- ========================= -->
+<!-- HERO -->
+<!-- ========================= -->
+<section id="inicio" class="hero">
+    <div class="hero-bg"></div>
+
+    <div class="hero-content">
+        <p class="hero-subtitle">Aquí Comienza El Felices Para Siempre</p>
+
+        <h1 class="hero-title">
+            Alexandra <span>&</span> Cristian
+        </h1>
+
+        <div class="countdown">
+            <div class="count-box">
+                <span id="dias"></span>
+                <small>Días</small>
+            </div>
+            <div class="count-box">
+                <span id="horas"></span>
+                <small>Horas</small>
+            </div>
+            <div class="count-box">
+                <span id="minutos"></span>
+                <small>Minutos</small>
+            </div>
+            <div class="count-box">
+                <span id="segundos"></span>
+                <small>Segundos</small>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <!-- MENSAJE EDITORIAL -->
-<section class="section-editorial fade">
-    <div class="editorial-box">
-        <div class="editorial-stroke"></div>
+    <div class="scroll-indicator"></div>
+</section>
 
-        <p class="editorial-text">
-            Acompáñanos a celebrar este día tan especial,<br>
-            rodeados de amor, familia y momentos que recordaremos para siempre.
+<!-- ========================= -->
+<!-- PRESENTACIÓN -->
+<!-- ========================= -->
+
+<section id="presentacion" class="section reveal">
+    <div class="container narrow">
+        <h2 class="section-title">Nuestra Historia</h2>
+        <p class="section-text">
+            Texto romántico o presentación inspirada en el diseño original…
         </p>
-
-        <div class="editorial-stroke"></div>
+        <img src="./assets/img/novios.png" class="img-round">
     </div>
 </section>
 
 
-    <!-- INFORMACIÓN DEL EVENTO -->
-    <section class="section-box fade event-box">
+<!-- ========================= -->
+<!-- LUGAR -->
+<!-- ========================= -->
+<section id="lugar" class="section-lugar">
 
-    <div class="event-row">
-        <div class="event-icon">⛪</div>
+    <!-- ACUARELA DETRÁS -->
+    <div class="watercolor-bg lugar-bg"></div>
 
-        <div class="event-info">
-            <h2 class="title">Ceremonia</h2>
-            <p class="subtitle">Parroquia Santa María — 4:00 PM</p>
-            <a href="#" class="btn-line">Ver ubicación</a>
+    <!-- TARJETA ARCO ADELANTE -->
+    <div class="arch-card">
+        <div class="arch-inner">
+
+            <h2 class="section-title">El Lugar</h2>
+
+            <p class="section-text">
+                Aquí los esperamos para celebrar juntos.
+            </p>
+
+            <div class="map-frame">
+                <iframe
+                    src=""
+                    width="100%"
+                    height="260"
+                    style="border:0;"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
         </div>
     </div>
+</section>
 
-    <hr class="div">
 
-    <div class="event-row">
-        <div class="event-icon">🎉</div>
+<!-- ========================= -->
+<!-- PROGRAMA -->
+<!-- ========================= -->
+<section id="programa" class="section-programa">
 
-        <div class="event-info">
-            <h2 class="title">Recepción</h2>
-            <p class="subtitle">Hacienda Real del Sol — 6:00 PM</p>
-            <a href="#" class="btn-line">Abrir en Maps</a>
+    <!-- Fondo acuarela detrás -->
+    <div class="watercolor-bg programa-bg"></div>
+
+    <!-- Tarjeta tipo arco -->
+    <div class="arch-card">
+        <div class="arch-inner">
+
+            <h2 class="section-title">Programa</h2>
+
+            <div class="timeline-premium">
+
+                <div class="line"></div>
+
+                <div class="time-item">
+                    <div class="dot gold"></div>
+                    <div class="icon">⛪</div>
+                    <p class="time">13:30 hrs</p>
+                    <p class="label">Ceremonia Religiosa</p>
+                </div>
+
+                <div class="time-item">
+                    <div class="dot gray"></div>
+                    <div class="icon">🍸</div>
+                    <p class="time">15:00 hrs</p>
+                    <p class="label">Cóctel de bienvenida</p>
+                </div>
+
+                <div class="time-item">
+                    <div class="dot gold"></div>
+                    <div class="icon">🍽</div>
+                    <p class="time">15:30 hrs</p>
+                    <p class="label">Comida</p>
+                </div>
+
+                <div class="time-item">
+                    <div class="dot gold"></div>
+                    <div class="icon">🕺</div>
+                    <p class="time">17:00 hrs</p>
+                    <p class="label">Todos a la pista</p>
+                </div>
+
+                <div class="time-item">
+                    <div class="dot gold"></div>
+                    <div class="icon">🚗</div>
+                    <p class="time">05:00 hrs</p>
+                    <p class="label">Fin de la fiesta</p>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
 </section>
 
-<section class="section-box fade dress-box">
-    <h2 class="title">Dress Code</h2>
-    <p class="dress-subtitle">
-        <span class="dress-icon">👗</span>
-        Boho formal — tonos tierra / oliva / arena
-    </p>
 
-    <div class="palette">
-        <span style="background:#C57A57"></span>
-        <span style="background:#E5C7A1"></span>
-        <span style="background:#8D9B7A"></span>
-        <span style="background:#EDE7DF"></span>
+<!-- ========================= -->
+<!-- REGALOS -->
+<!-- ========================= -->
+<section id="regalos" class="section-regalos">
+
+    <!-- Fondo acuarela detrás -->
+    <div class="watercolor-bg regalos-bg"></div>
+
+    <!-- Tarjeta estilo arco -->
+    <div class="arch-card">
+        <div class="arch-inner">
+
+            <h2 class="section-title">Mesa de regalos</h2>
+
+            <p class="regalos-text">
+                Nuestro mejor regalo es tu presencia,  
+                pero si deseas hacernos un obsequio,  
+                estas son nuestras sugerencias:
+            </p>
+
+            <!-- Opción 1 -->
+            <div class="gift-box">
+                <img src="assets/img/palacio.png" class="store-logo" alt="Palacio">
+                <p class="gift-number">Núm. de evento: 384328</p>
+                <a href="#" class="gift-btn">VER</a>
+            </div>
+
+            <!-- Opción 2 -->
+            <div class="gift-box">
+                <img src="assets/img/liverpool.png" class="store-logo" alt="Liverpool">
+                <p class="gift-number">Núm. de evento: 51255238</p>
+                <a href="#" class="gift-btn">VER</a>
+            </div>
+
+        </div>
     </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- VESTIMENTA -->
+<!-- ========================= -->
+<section id="vestimenta" class="section-vestimenta">
+
+    <!-- Fondo acuarela detrás -->
+    <div class="watercolor-bg vestimenta-bg"></div>
+
+    <!-- Tarjeta estilo arco -->
+    <div class="arch-card">
+        <div class="arch-inner">
+
+            <h2 class="section-title">Código de Vestimenta</h2>
+
+            <p class="vestimenta-text">
+                Te sugerimos mantener una vestimenta formal  
+                en tonos arena, terracota y colores tierra.
+            </p>
+
+            <div class="dress-grid-premium">
+
+                <div class="dress-item">
+                    <div class="dress-icon">
+                        <img src="assets/icons/outfit1.svg" alt="Formal">
+                    </div>
+                    <p>Formal</p>
+                </div>
+
+                <div class="dress-item">
+                    <div class="dress-icon">
+                        <img src="assets/icons/colors.svg" alt="Colores sugeridos">
+                    </div>
+                    <p>Tonos arena y terracota</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
 </section>
 
 
-<!-- GALERÍA ESTILO PRX BOHO -->
-<section class="section-gallery fade">
-    <h2 class="title">Nuestra historia en imágenes</h2>
+<!-- ========================= -->
+<!-- GALERÍA -->
+<!-- ========================= -->
+<section id="galeria" class="section alt reveal">
+    <div class="container">
+        <h2 class="section-title">Galería</h2>
 
-    <div class="gallery-grid">
-
-        <div class="gallery-item">
-            <img src="./assets/img/gallery1.png" alt="">
+        <div class="masonry">
+            <img src="./assets/img/gallery1.png">
+            <img src="./assets/img/gallery2.png">
+            <img src="./assets/img/gallery3.png" class="tall">
+            <img src="./assets/img/gallery4.png">
         </div>
-
-        <div class="gallery-item tall">
-            <img src="./assets/img/gallery2.png" alt="">
-        </div>
-
-        <div class="gallery-item">
-            <img src="./assets/img/gallery3.png" alt="">
-        </div>
-
-        <div class="gallery-item wide">
-            <img src="./assets/img/gallery4.png" alt="">
-        </div>
-
-        <div class="gallery-item">
-            <img src="./assets/img/gallery5.png" alt="">
-        </div>
-
     </div>
 </section>
 
-    <!-- RSVP / CONFIRMACIÓN -->
-    <section class="section-box fade">
-        <h2 class="title">Confirmación</h2>
+<!-- ========================= -->
+<!-- ASISTENCIA -->
+<!-- ========================= -->
+<section id="asistencia" class="section-asistencia">
 
-        <form class="form-prx">
-            <input type="text" placeholder="Nombre completo" required>
-            <input type="number" placeholder="Invitados" required>
-            <input type="tel" placeholder="Teléfono">
+    <!-- Fondo acuarela detrás -->
+    <div class="watercolor-bg asistencia-bg"></div>
 
-            <select required>
-                <option value="">¿Asistirás?</option>
-                <option value="si">Sí, asistiré</option>
-                <option value="no">No podré asistir</option>
-            </select>
+    <!-- Tarjeta estilo arco -->
+    <div class="arch-card">
+        <div class="arch-inner">
 
-            <button class="btn-full">Confirmar asistencia</button>
-        </form>
-    </section>
+            <h2 class="section-title">Confirmar Asistencia</h2>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p>Gracias por ser parte de este momento.</p>
-    </footer>
+            <p class="asistencia-text">
+                Ayúdanos confirmando tu asistencia  
+                lo antes posible.
+            </p>
 
-    <script src="./assets/js/script.js"></script>
+            <form class="form-rsvp-premium">
+
+                <input type="text" placeholder="Tu nombre" required>
+
+                <input type="number" placeholder="Acompañantes" min="0" required>
+
+                <select required>
+                    <option value="">Selecciona una opción</option>
+                    <option>Asistiré</option>
+                    <option>No podré asistir</option>
+                </select>
+
+                <button type="submit" class="btn-asistencia">
+                    Enviar
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+<footer class="footer">
+    <p>Con cariño, Alexandra & Cristian</p>
+    <small>Diseñado con amor por Shiny Invites</small>
+</footer>
+
+<script src="./assets/js/countdown.js"></script>
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/envelope-open.js"></script>
 </body>
 </html>

@@ -1,0 +1,25 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+
+  <circle cx="150" cy="150" r="130" fill="#B76E79"/>
+  <circle cx="150" cy="150" r="120" fill="none" stroke="#8E505A" stroke-width="10"/>
+  <circle cx="150" cy="150" r="95" fill="none" stroke="#E8C3C8" stroke-width="4" opacity=".6"/>
+
+  <text x="50%" y="48%" text-anchor="middle"
+        fill="#F4E6E8" font-family="serif"
+        font-size="90" font-weight="600">
+      A
+  </text>
+
+  <text x="50%" y="68%" text-anchor="middle"
+        fill="#F4E6E8" font-family="serif"
+        font-size="85" font-weight="600">
+      C
+  </text>
+
+  <text x="50%" y="59%" text-anchor="middle"
+        fill="#F4E6E8" font-family="serif"
+        font-size="40" font-weight="400">
+      &amp;
+  </text>
+
+</svg>
