@@ -31,7 +31,7 @@ h1, h2, h3 {
 .navbar {
     position: fixed;
     width: 100%;
-    background: var(--blanco);
+    background: var(--oliva);
     padding: 12px 0;
     top: 0;
     z-index: 1000;
@@ -55,12 +55,12 @@ h1, h2, h3 {
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    color: var(--terracota);
+    color: var(--blanco);
 }
 
 .logo {
     font-size: 18px;
-    color: var(--rosegold);
+    color: var(--arena);
     font-weight: 600;
     font-family: 'Playfair Display', serif;
 }
@@ -68,55 +68,174 @@ h1, h2, h3 {
 /* ------------------------------ */
 /* HERO */
 /* ------------------------------ */
-.hero {
-    height: 100vh;
+
+.hero-section {
     position: relative;
-    padding-top: 60px;
+    padding-top: 130px;
+    padding-bottom: 80px;
+    min-height: 100vh;
+    overflow: hidden;
+
+    /* FLORES DE FONDO AJUSTADAS */
+    background:
+   url("../img/flores1.svg") left top / 350px no-repeat,
+   url("../img/flores1.svg") right bottom / 350px no-repeat;
+
+    background-size: contain;        /* 👈 TAMAÑO PERFECTO */
+    background-position: center 40px; /* 👈 BAJA LA FLOR DETRÁS DEL ARCO */
+    background-repeat: no-repeat;
+    background-attachment: local;
+
 }
 
-.hero-bg {
-    background-image: url("../assets/img/hero.jpg");
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.45);
+/* ARCO CON FOTO */
+.hero-arc {
+    width: 92%;
+    max-width: 350px;   
+    height: 400px;   
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 230px 230px 0 0 / 190px 190px 0 0;
+    background: #ffffffd6; /* blanco suave */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+    z-index: 2;
+}
+
+/* FOTO DENTRO DEL ARCO */
+.hero-photo {
     position: absolute;
     inset: 0;
-    animation: kenburns 20s ease-in-out infinite alternate;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    border-radius: inherit;
+    z-index: 2;
 }
 
-@keyframes kenburns {
-    from { transform: scale(1); }
-    to { transform: scale(1.1); }
-}
-
-.hero-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--blanco);
+/* NOMBRES */
+.hero-names {
+    margin-top: 30px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 46px;
+    font-weight: 400;
+    color: #3a3a3a;
     text-align: center;
+    z-index: 3;
+    position: relative;
 }
 
-.hero-title {
-    font-size: 58px;
-    margin: 0;
-}
-
-.hero-title span {
-    color: var(--rosegold);
-}
-
+/* CONTADOR */
 .countdown {
     margin-top: 25px;
     display: flex;
-    gap: 25px;
     justify-content: center;
+    gap: 35px;
+    z-index: 3;
+    position: relative;
 }
 
-.count-box span {
-    font-size: 32px;
+.count-item {
+    text-align: center;
+}
+
+.count-item span {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+}
+
+.count-item small {
     display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #777;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 992px) {
+
+    .hero-section {
+        background-size: 55%;          /* flores más pequeñas */
+        background-position: center 140px;
+    }
+
+    .hero-arc {
+        max-width: 330px;
+        height: 460px;
+    }
+
+    .hero-names {
+        font-size: 40px;
+    }
+
+    .count-item span {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .hero-section {
+        padding-top: 110px;
+
+        background-size: 75%;              /* que se vea más cerca del arco */
+        background-position: center 200px;  /* baja las flores */
+    }
+
+    .hero-arc {
+        max-width: 280px;
+        height: 400px;
+    }
+
+    .hero-names {
+        font-size: 34px;
+    }
+
+    .countdown {
+        gap: 25px;
+        margin-top: 15px;
+    }
+
+    .count-item span {
+        font-size: 16px;
+    }
+
+    .count-item small {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .hero-section {
+        padding-top: 100px;
+        background-size: 90%;                    /* flores más grandes */
+        background-position: center 220px;        /* centradas perfectamente */
+    }
+
+    .hero-arc {
+        max-width: 250px;
+        height: 360px;
+    }
+
+    .hero-names {
+        font-size: 30px;
+    }
+
+    .countdown {
+        gap: 18px;
+    }
+
+    .count-item span {
+        font-size: 15px;
+    }
+
+    .count-item small {
+        font-size: 10px;
+    }
 }
 
 /* ------------------------------ */
@@ -389,20 +508,22 @@ h1, h2, h3 {
 .section-lugar {
     position: relative;
     padding: 80px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    min-height: 600px; /* 🔥 obligatorio para que se vea */
+    overflow: visible !important;
+    z-index: 1;
 }
 
-/* FONDO ACUARELA DETRÁS */
 .watercolor-bg.lugar-bg {
     position: absolute;
     inset: 0;
-    background: url("assets/img/acuarela-verde.png") center/contain no-repeat;
-    opacity: 0.35;
-    z-index: 1;
+    background: url("/assets/img/flores.svg") top left/contain no-repeat,
+                url("/assets/img/flores.svg") bottom right/contain no-repeat;
+    opacity: 0.75;
+    z-index: -1;
     pointer-events: none;
 }
+
+
 
 /* TARJETA ARCO */
 .arch-card {
