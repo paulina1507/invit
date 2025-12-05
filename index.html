@@ -14,46 +14,43 @@
 <source src="assets/audio/tu-cancion.mp3" type="audio/mp3">
 </audio>
 <div id="EnvelopeIntro" class="premium-envelope-overlay">
-
     <!-- SOBRE PREMIUM -->
     <div class="premium-envelope">
-
         <!-- PLIEGUES -->
         <div class="pe-fold fold-top"></div>
         <div class="pe-fold fold-bottom"></div>
         <div class="pe-fold fold-left"></div>
         <div class="pe-fold fold-right"></div>
-
         <!-- SELLO -->
         <div id="sealButton" class="pe-seal">
             <img src="assets/img/sello.svg" alt="Sello">
         </div>
-
     </div>
-
 </div>
 
 
 <!-- ========================= -->
 <!-- NAVBAR -->
 <!-- ========================= -->
-<header class="navbar">
+<nav class="navbar">
     <div class="nav-inner">
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#presentacion">Presentación</a></li>
-                <li><a href="#lugar">Lugar</a></li>
-                <li><a href="#programa">Programa</a></li>
-                <li><a href="#regalos">Regalos</a></li>
-                <li><a href="#vestimenta">Vestimenta</a></li>
-                <li><a href="#galeria">Galería</a></li>
-                <li><a href="#asistencia">Asistencia</a></li>
-            </ul>
-        </nav>
         <div class="logo">Nuestra Boda</div>
+
+        <div class="nav-toggle" id="navToggle">☰</div>
+
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#presentacion">Presentación</a></li>
+            <li><a href="#lugar">Lugar</a></li>
+            <li><a href="#programa">Programa</a></li>
+            <li><a href="#regalos">Regalos</a></li>
+            <li><a href="#vestimenta">Vestimenta</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#asistencia">Asistencia</a></li>
+        </ul>
     </div>
-</header>
+</nav>
+
 
 <!-- ========================= -->
 <!-- HERO -->
@@ -336,5 +333,10 @@
 <script src="./assets/js/countdown.js"></script>
 <script src="./assets/js/reveal.js"></script>
 <script src="./assets/js/envelope-open.js"></script>
+<script>
+document.getElementById("navToggle").onclick = function () {
+    document.getElementById("navMenu").classList.toggle("open");
+};
+</script>
 </body>
 </html>
