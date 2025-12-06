@@ -1,4 +1,4 @@
-const fechaBoda = new Date("2025-12-20T00:00:00").getTime();
+const fechaBoda = new Date("2026-12-20T00:00:00").getTime();
 
 setInterval(() => {
     const hoy = new Date().getTime();

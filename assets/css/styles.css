@@ -1,13 +1,18 @@
-/* ------------------------------ */
-/* PALETA BOHO SHINY INVITES */
-/* ------------------------------ */
 :root {
     --terracota: #C66A44;
     --arena: #EDE0D4;
-    --oliva: #556B2F;
+    --oliva: #BAC095;
     --rosegold: #B76E79;
     --negro: #2E2E2E;
     --blanco: #FFFFFF;
+    --fondo-arco: #E1E1DB;      /* Beige grisáceo suave */
+    --blanco-suave: #FEFEFD;    /* Blanco cálido */
+    --verde-olivo: #6F7469;     /* Olivo suave */
+    --verde-gris: #A2AF9C;      /* Verde grisáceo claro */
+    --verde-oscuro: #202B0F;    /* Verde profundo */
+    --verde-musgo: #65674A;     /* Verde musgo apagado */
+    --acento-grisolivo: #B1B4A0;/* Gris olivo claro para iconos */
+    --texto-primario: #1F1F1F;  /* Negro suave */
 }
 
 /* ------------------------------ */
@@ -16,7 +21,7 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background: var(--arena);
+    background: var(--blanco);
     color: var(--negro);
 }
 
@@ -28,11 +33,10 @@ h1, h2, h3 {
 /* ------------------------------ */
 /* NAVBAR */
 /* ------------------------------ */
-/* NAVBAR */
 .navbar {
     position: fixed;
     width: 100%;
-    background: var(--oliva);
+    background: var(--verde-olivo);
     padding: 12px 0;
     top: 0;
     z-index: 1000;
@@ -85,7 +89,7 @@ h1, h2, h3 {
         right: 0;
         width: 100%;
         flex-direction: column;
-        background: var(--oliva);
+        background: var(--verde-olivo);
         padding: 20px 0;
         gap: 15px;
         display: none;
@@ -102,133 +106,1411 @@ h1, h2, h3 {
 }
 
 
-/* ------------------------------ */
-/* HERO */
-/* ------------------------------ */
-
+/* =============================== */
+/* HERO SECTION 
+/* =============================== */
 .hero-section {
     position: relative;
-    padding-top: 130px;
-    padding-bottom: 80px;
-    min-height: 100vh;
+    text-align: center;
+    padding-top: 185px;      
+    padding-bottom: 70px;
     overflow: hidden;
-
-    /* Dos flores en esquinas opuestas */
-    background:
-        url("../img/flores2.svg") left 40px top 120px / 260px no-repeat,
-        url("../img/flores2.svg") right 40px bottom 60px / 260px no-repeat;
 }
 
-
-/* ARCO CON FOTO */
+/* ========================== */
+/*            ARCO            */
+/* ========================== */
 .hero-arc {
-    width: 92%;
-    max-width: 350px;   
-    height: 400px;   
+    width: 450px;
+    height: 500px;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    border-radius: 230px 230px 0 0 / 190px 190px 0 0;
-    background: #ffffffd6; /* blanco suave */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-radius: 200px 200px 0 0;
 
-    z-index: 2;
+    /* Sombra tipo referencia */
+    box-shadow: 0 22px 45px rgba(0,0,0,0.20);
 }
 
-/* FOTO DENTRO DEL ARCO */
 .hero-photo {
-    position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%);
     border-radius: inherit;
-    z-index: 2;
 }
 
-/* NOMBRES */
+/* ========================== */
+/*           NOMBRES          */
+/* ========================== */
 .hero-names {
-    margin-top: 30px;
     font-family: 'Great Vibes', cursive;
-    font-size: 46px;
-    font-weight: 400;
+    font-size: 86px;
+    margin-top: 25px;
     color: #3a3a3a;
-    text-align: center;
-    z-index: 3;
-    position: relative;
 }
 
-/* CONTADOR */
-.countdown {
-    margin-top: 25px;
+/* ========================== */
+/*         CONTADOR           */
+/* ========================== */
+.hero-count {
+    margin-top: 15px;
     display: flex;
     justify-content: center;
-    gap: 35px;
-    z-index: 3;
-    position: relative;
+    gap: 20px;
 }
 
-.count-item {
+.hero-count div {
     text-align: center;
 }
 
-.count-item span {
-    font-size: 22px;
+.hero-count span {
+    font-size: 36px;
     font-weight: 600;
     color: #333;
 }
 
-.count-item small {
+.hero-count small {
     display: block;
-    margin-top: 4px;
+    margin-top: 2px;
     font-size: 12px;
     color: #777;
-    letter-spacing: 1px;
 }
 
-@media (max-width: 992px) {
-    .hero-section {
-        background-size: 220px, 220px;
-        background-position:
-            left 10px top 180px,
-            right 10px bottom 80px;
-    }
+.hero-count .sep {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ========================== */
+/*     FLORES & ACUARELAS     */
+/* ========================== */
+.hero-watercolor {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 🌿 Flor superior izquierda */
+.hero-flower.top-left {
+    width: 240px;
+    top: 100px;                
+    left: 48%;
+    transform: translateX(-260px);
+    opacity: 0.95;
+    position: absolute;
+    z-index: 3;
+}
+
+/* 🎨 Acuarelas laterales */
+.hero-watercolor.left {
+    width: 330px;
+    left: 550px;             
+    top: 280px;
+    opacity: 0.45;
+}
+
+.hero-watercolor.right {
+    width: 330px;
+    right: 550px;             
+    top: 280px;
+    opacity: 0.45;
 }
 
 @media (max-width: 768px) {
+
     .hero-section {
-        background-size: 180px, 180px;
-        background-position:
-            left -10px top 240px,
-            right -10px bottom 120px;
+        padding-top: 105px;  
+    }
+
+    .hero-arc {
+        width: 280px;
+        height: 360px;
+    }
+
+    .hero-flower.top-left {
+        width: 170px;
+        top: 105px;           
+        transform: translateX(-160px);
+    }
+
+    .hero-watercolor.left {
+        width: 240px;
+        left: -25px;
+        top: 250px;
+    }
+
+    .hero-watercolor.right {
+        width: 240px;
+        right: -25px;
+        top: 250px;
+    }
+
+    .hero-names {
+        font-size: 42px;
     }
 }
 
 @media (max-width: 480px) {
+
     .hero-section {
-        background-size: 150px, 150px;
-        background-position:
-            left -20px top 260px,
-            right -20px bottom 160px;
+        padding-top: 95px;
+    }
+
+    .hero-arc {
+        width: 250px;
+        height: 330px;
+    }
+
+    .hero-flower.top-left {
+        width: 150px;
+        top: 125px;           
+        transform: translateX(-135px);
+    }
+
+    .hero-watercolor.left,
+    .hero-watercolor.right {
+        width: 210px;
+        top: 230px;
+    }
+
+    .hero-names {
+        font-size: 34px;
     }
 }
+/* ================================== */
+/* SECCIÓN UBICACIÓN (BASE) */
+/* ================================== */
+
+.ubicacion-inner {
+    text-align: center;
+}
+
+.ubicacion-fecha {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 20px auto 25px;
+    max-width: 340px;
+    font-size: 13px;
+    color: #4a4a44;
+    gap: 8px;
+}
+
+.ubicacion-fecha .dia {
+    font-size: 42px;
+    font-family: 'Playfair Display';
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* Imagen del lugar */
+.ubicacion-img img {
+    width: 100%;
+    max-width: 280px;
+    border-radius: 6px;
+    margin: 15px auto;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.ubicacion-subtitle {
+    margin-top: 10px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #4d4d47;
+}
+
+.ubicacion-lugar {
+    font-size: 20px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display';
+    color: #3f3f3a;
+}
+
+.ubicacion-direccion {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.45;
+}
+
+/* Botón */
+.btn-ubicacion {
+    display: inline-block;
+    margin-top: 22px;
+    background: var(--oliva);
+    color: white;
+    padding: 10px 28px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: .3s ease;
+}
+
+.btn-ubicacion:hover {
+    background: var(--verde-gris);
+}
+
+/* Ajustes decorativos */
+.ubicacion-flower {
+    width: 240px;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-300px);
+}
+
+.ubicacion-watercolor-left {
+    top: 260px;
+    left: -40px;
+    width: 300px;
+}
+
+.ubicacion-watercolor-right {
+    top: 300px;
+    right: -40px;
+    width: 300px;
+}
+
+
+
+/* ================================== */
+/* 📱 RESPONSIVE – MÓVIL */
+/* ================================== */
+
+@media (max-width: 768px) {
+
+    .ubicacion-fecha {
+        max-width: 300px;
+        font-size: 12px;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .ubicacion-fecha .dia {
+        font-size: 36px;
+    }
+
+    .ubicacion-img img {
+        max-width: 250px;
+    }
+
+    .ubicacion-lugar {
+        font-size: 18px;
+    }
+
+    /* Decorativos al estilo hero */
+    .ubicacion-flower {
+        width: 180px;
+        top: 90px;
+        transform: translateX(-210px);
+    }
+
+    .ubicacion-watercolor-left,
+    .ubicacion-watercolor-right {
+        width: 240px;
+        top: 230px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Fecha más respirada */
+    .ubicacion-fecha {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 230px;
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .ubicacion-fecha .dia {
+        font-size: 32px;
+    }
+
+    /* Imagen */
+    .ubicacion-img img {
+        max-width: 210px;
+    }
+
+    /* Texto */
+    .ubicacion-lugar {
+        font-size: 17px;
+    }
+
+    .ubicacion-direccion {
+        font-size: 13px;
+    }
+
+    /* Decorativos siguiendo exactamente tu hero */
+    .ubicacion-flower {
+        width: 150px;
+        top: 115px;
+        transform: translateX(-150px);
+    }
+
+    .ubicacion-watercolor-left,
+    .ubicacion-watercolor-right {
+        width: 200px;
+        top: 210px;
+    }
+}
+
+/* ========================= */
+/* PROGRAMA  */
+/* ========================= */
+
+.programa-inner {
+    background: #efede7; /* gris cálido */
+    padding: 60px 40px 60px;
+    width: 100%;
+    max-width: 460px; /* más estrecho */
+    margin: 0 auto;
+    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
+    text-align: center;
+}
+
+/* Título centrado */
+.programa-title {
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    margin-bottom: 30px;
+    text-align: center !important;
+}
+
+/* ========================================= */
+/* DECORACIONES */
+/* ========================================= */
+
+/* flor arriba izquierda */
+.programa-flower {
+    width: 190px;              /* más pequeña */
+    top: -18px;                /* un poco más abajo */
+    left: 50%;
+    transform: translateX(-330px);
+    z-index: 3;
+}
+
+/* acuarelas */
+.programa-watercolor-left {
+    width: 260px;
+    top: 240px;
+    left: -20px;
+    opacity: 0.35;
+}
+
+.programa-watercolor-right {
+    width: 260px;
+    top: 300px;
+    right: -20px;
+    opacity: 0.35;
+}
+
+/* ========================================= */
+/* TIMELINE — AJUSTADO EXACTO AL DISEÑO */
+/* ========================================= */
+
+.timeline-programa {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 340px; /* más estrecho */
+    padding-top: 20px;
+}
+
+/* Línea vertical */
+.timeline-programa::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--acento-grisolivo);  /* gris suave */
+    transform: translateX(-50%);
+}
+
+/* ITEM */
+.timeline-programa .item {
+    position: relative;
+    padding: 28px 0;
+}
+
+/* Punto dorado */
+.timeline-programa .item::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 22px;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: #d4a663; /* dorado */
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(212,166,99,0.25);
+}
+
+/* Hora */
+.timeline-programa .hora {
+    font-weight: 600;
+    font-size: 15px;
+    color: #4a4a44;
+    margin-bottom: 3px;
+}
+
+/* Texto */
+.timeline-programa .texto {
+    font-size: 14px;
+    color: #5c5c55;
+}
+
+/* Íconos tamaño referencia */
+.timeline-programa .icon {
+    width: 55px;
+    height: auto;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+/* ========================================= */
+/* DISTRIBUCIÓN IZQUIERDA / DERECHA */
+/* ========================================= */
+
+.timeline-programa .item.left {
+    text-align: right;
+    padding-right: 60px;      /* más cerca del centro */
+}
+
+.timeline-programa .item.right {
+    text-align: left;
+    padding-left: 60px;       /* más cerca del centro */
+}
+
+.timeline-programa .item.left .icon {
+    margin-left: auto;
+}
+
+.timeline-programa .item.right .icon {
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+
+    .programa-inner {
+        padding: 50px 30px 55px;
+        max-width: 380px;
+    }
+
+    .programa-title {
+        font-size: 28px;
+    }
+
+    /* Decoraciones */
+    .programa-flower {
+        width: 150px;
+        top: -10px;
+        transform: translateX(-200px);
+    }
+
+    .programa-watercolor-left,
+    .programa-watercolor-right {
+        width: 220px;
+        opacity: 0.3;
+    }
+
+    /* Timeline contenedor */
+    .timeline-programa {
+        max-width: 300px;
+    }
+
+    /* Texto timeline */
+    .timeline-programa .hora {
+        font-size: 14px;
+    }
+
+    .timeline-programa .texto {
+        font-size: 13px;
+    }
+
+    /* Íconos */
+    .timeline-programa .icon {
+        width: 48px;
+        margin-bottom: 6px;
+    }
+
+    /* Items más cerca del centro */
+    .timeline-programa .item.left {
+        padding-right: 40px;
+    }
+
+    .timeline-programa .item.right {
+        padding-left: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .programa-inner {
+        padding: 45px 25px 50px;
+        max-width: 310px;
+    }
+
+    .programa-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    /* Flor superior */
+    .programa-flower {
+        width: 130px;
+        top: -5px;
+        transform: translateX(-130px);
+    }
+
+    /* Acuarelas */
+    .programa-watercolor-left,
+    .programa-watercolor-right {
+        width: 180px;
+        top: 220px;
+        opacity: 0.28;
+    }
+
+    /* Timeline */
+    .timeline-programa {
+        max-width: 260px;
+        padding-top: 10px;
+    }
+
+    /* Línea vertical más delgada */
+    .timeline-programa::before {
+        width: 1.5px;
+    }
+
+    /* Ítems centrados: ya no izquierda/derecha */
+    .timeline-programa .item {
+        text-align: center !important;
+        padding: 22px 0 !important;
+    }
+
+    .timeline-programa .item.left,
+    .timeline-programa .item.right {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Íconos más pequeños */
+    .timeline-programa .icon {
+        width: 42px;
+        margin: 0 auto 6px;
+    }
+
+    /* Hora y texto */
+    .timeline-programa .hora {
+        font-size: 13px;
+    }
+
+    .timeline-programa .texto {
+        font-size: 12.5px;
+    }
+
+    /* Punto dorado más pequeño */
+    .timeline-programa .item::before {
+        width: 10px;
+        height: 10px;
+        top: 16px;
+        box-shadow: 0 0 0 3px rgba(212,166,99,0.22);
+    }
+}
+
+
+/* ============================ */
+/* SECCIÓN VESTIMENTA PREMIUM   */
+/* ============================ */
+
+.vestimenta-inner {
+    padding: 60px 40px 70px;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
+    text-align: center;
+}
+
+.vestimenta-title {
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #4a4a44;
+}
+
+/* Ícono único (vestido+traje) */
+.vestimenta-icon-wrapper {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.vestimenta-icon {
+    width: 220px;  /* más grande */
+    height: auto;
+    opacity: 0.95;
+}
+
+/* FORMAL */
+.vestimenta-formal {
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    color: #4d4d47;
+}
+
+/* Texto */
+.vestimenta-text {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #5b5b55;
+}
+
+.v-label {
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    color: #4d4d47;
+}
+
+.v-content {
+    margin-bottom: 10px;
+}
+
+/* Decoraciones */
+.vestimenta-flower {
+    width: 200px;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-330px);
+    z-index: 3;
+}
+
+.vestimenta-watercolor-left {
+    width: 260px;
+    top: 240px;
+    left: -20px;
+    opacity: 0.35;
+}
+
+.vestimenta-watercolor-right {
+    width: 260px;
+    top: 300px;
+    right: -20px;
+    opacity: 0.35;
+}
+@media (max-width: 768px) {
+
+    .vestimenta-inner {
+        padding: 55px 35px 60px;
+        max-width: 380px;
+    }
+
+    .vestimenta-title {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .vestimenta-icon {
+        width: 180px;
+    }
+
+    .vestimenta-formal {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .vestimenta-text {
+        font-size: 14px;
+    }
+
+    .v-label {
+        margin-top: 18px;
+        font-size: 14.5px;
+    }
+
+    /* Decoraciones */
+    .vestimenta-flower {
+        width: 160px;
+        transform: translateX(-210px);
+        top: -5px;
+    }
+
+    .vestimenta-watercolor-left,
+    .vestimenta-watercolor-right {
+        width: 220px;
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .vestimenta-inner {
+        padding: 45px 25px 55px;
+        max-width: 300px;
+        border-radius: 220px 220px 0 0 / 180px 180px 0 0;
+    }
+
+    .vestimenta-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .vestimenta-icon {
+        width: 150px;
+        margin-bottom: 18px;
+    }
+
+    .vestimenta-formal {
+        font-size: 16px;
+        margin-bottom: 18px;
+    }
+
+    .vestimenta-text {
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    .v-label {
+        margin-top: 16px;
+        font-size: 13.5px;
+    }
+
+    .v-content {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    /* Decoraciones móviles */
+    .vestimenta-flower {
+        width: 130px;
+        top: -5px;
+        transform: translateX(-135px);
+    }
+
+    .vestimenta-watercolor-left,
+    .vestimenta-watercolor-right {
+        width: 180px;
+        top: 210px;
+        opacity: 0.28;
+    }
+}
+
+
+/* ============================ */
+/* SECCIÓN DE REGALOS PREMIUM  */
+/* ============================ */
+
+.regalos-inner {
+    background: #efede7;
+    padding: 60px 40px 70px;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
+    text-align: center;
+}
+
+.regalos-title {
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #4a4a44;
+}
+
+.regalos-text {
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 35px;
+    color: #5a5a54;
+}
+
+/* Ítems de regalos */
+.regalo-item {
+    margin-bottom: 35px;
+}
+
+.regalo-icon {
+    width: 90px;       /* icono grande tipo referencia */
+    height: auto;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.regalo-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #4b4a46;
+}
+
+/* Decoraciones */
+
+/* flor */
+.regalos-flower {
+    width: 200px;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-330px);
+    z-index: 3;
+}
+
+/* acuarelas */
+.regalos-watercolor-left {
+    width: 260px;
+    top: 250px;
+    left: -25px;
+    opacity: 0.35;
+}
+
+.regalos-watercolor-right {
+    width: 260px;
+    top: 320px;
+    right: -25px;
+    opacity: 0.35;
+}
+/* ============================ */
+/* CARRUSEL PREMIUM */
+/* ============================ */
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    height: 520px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform .6s ease;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Flechas */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.7);
+    border: none;
+    font-size: 32px;
+    padding: 6px 14px;
+    cursor: pointer;
+    border-radius: 50%;
+    color: #444;
+    z-index: 5;
+    transition: .2s;
+}
+
+.carousel-btn:hover {
+    background: rgba(255,255,255,0.95);
+}
+
+.carousel-btn.left {
+    left: -20px;
+}
+
+.carousel-btn.right {
+    right: -20px;
+}
+
+/* Decoración del arco */
+.galeria-inner {
+    background: #efede7;
+    padding: 60px 40px 80px;
+    max-width: 460px;
+    margin: 0 auto;
+    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
+    text-align: center;
+}
+
+.galeria-title {
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #4b4a46;
+}
+
+/* Flor */
+.galeria-flower {
+    width: 200px;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-330px);
+}
+
+/* Acuarelas */
+.galeria-watercolor-left {
+    width: 260px;
+    top: 230px;
+    left: -25px;
+    opacity: .35;
+}
+
+.galeria-watercolor-right {
+    width: 260px;
+    top: 300px;
+    right: -25px;
+    opacity: .35;
+}
+
+@media (max-width: 768px) {
+
+    .regalos-inner {
+        padding: 55px 35px 65px;
+        max-width: 380px;
+    }
+
+    .regalos-title {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .regalos-text {
+        font-size: 14px;
+        margin-bottom: 28px;
+    }
+
+    .regalo-item {
+        margin-bottom: 28px;
+    }
+
+    .regalo-icon {
+        width: 80px;
+    }
+
+    .regalo-label {
+        font-size: 15px;
+    }
+
+    /* Decoraciones */
+    .regalos-flower {
+        width: 160px;
+        top: -5px;
+        transform: translateX(-220px);
+    }
+
+    .regalos-watercolor-left,
+    .regalos-watercolor-right {
+        width: 220px;
+        opacity: 0.32;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .regalos-inner {
+        padding: 45px 25px 50px;
+        max-width: 300px;
+        border-radius: 220px 220px 0 0 / 180px 180px 0 0;
+    }
+
+    .regalos-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .regalos-text {
+        font-size: 13px;
+        margin-bottom: 24px;
+    }
+
+    .regalo-item {
+        margin-bottom: 24px;
+    }
+
+    .regalo-icon {
+        width: 70px;
+        margin-bottom: 6px;
+    }
+
+    .regalo-label {
+        font-size: 14px;
+    }
+
+    /* Decoraciones */
+    .regalos-flower {
+        width: 130px;
+        top: -5px;
+        transform: translateX(-135px);
+    }
+
+    .regalos-watercolor-left,
+    .regalos-watercolor-right {
+        width: 180px;
+        top: 210px;
+        opacity: 0.28;
+    }
+}
+
+/* ============================ */
+/* ASISTENCIA PREMIUM EN ARCO  */
+/* ============================ */
+
+.asistencia-inner {
+    background: #efede7;
+    padding: 60px 40px 80px;
+    max-width: 460px;
+    margin: 0 auto;
+    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
+    text-align: center;
+}
+
+.asistencia-title {
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #4b4a46;
+}
+
+.asistencia-text {
+    font-size: 15px;
+    color: #5a5a54;
+    line-height: 1.55;
+    margin-bottom: 20px;
+}
+
+.asistencia-firma {
+    font-family: "Great Vibes", cursive;
+    font-size: 26px;
+    color: #7a7a72;
+    margin-bottom: 25px;
+}
+
+/* Botón */
+.asistencia-btn {
+    display: inline-block;
+    background: #4b4a46;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.asistencia-btn:hover {
+    background: #6d6c67;
+}
+
+/* Decoraciones */
+.asistencia-flower {
+    width: 200px;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-330px);
+    z-index: 3;
+}
+
+.asistencia-watercolor-left {
+    width: 260px;
+    top: 240px;
+    left: -25px;
+    opacity: 0.35;
+}
+
+.asistencia-watercolor-right {
+    width: 260px;
+    top: 320px;
+    right: -25px;
+    opacity: 0.35;
+}
+
+@media (max-width: 768px) {
+
+    .asistencia-inner {
+        padding: 55px 35px 70px;
+        max-width: 380px;
+    }
+
+    .asistencia-title {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .asistencia-text {
+        font-size: 14px;
+        margin-bottom: 18px;
+    }
+
+    .asistencia-firma {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .asistencia-btn {
+        padding: 10px 26px;
+        font-size: 14px;
+    }
+
+    /* Decoraciones */
+    .asistencia-flower {
+        width: 160px;
+        top: -5px;
+        transform: translateX(-210px);
+    }
+
+    .asistencia-watercolor-left,
+    .asistencia-watercolor-right {
+        width: 220px;
+        opacity: 0.32;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .asistencia-inner {
+        padding: 45px 25px 55px;
+        max-width: 300px;
+        border-radius: 220px 220px 0 0 / 180px 180px 0 0;
+    }
+
+    .asistencia-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .asistencia-text {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+
+    .asistencia-firma {
+        font-size: 22px;
+        margin-bottom: 18px;
+    }
+
+    .asistencia-btn {
+        font-size: 13.5px;
+        padding: 10px 22px;
+        border-radius: 22px;
+    }
+
+    /* Decoraciones móviles */
+    .asistencia-flower {
+        width: 130px;
+        top: -5px;
+        transform: translateX(-135px);
+    }
+
+    .asistencia-watercolor-left,
+    .asistencia-watercolor-right {
+        width: 180px;
+        top: 210px;
+        opacity: 0.28;
+    }
+}
+
+/* ============================ */
+/* SECCIÓN FINAL PREMIUM        */
+/* ============================ */
+
+.final-inner {
+    background: #efede7;
+    padding: 70px 40px 90px;
+    max-width: 460px;
+    margin: 0 auto;
+    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
+    text-align: center;
+}
+
+/* Nombres */
+.final-names {
+    font-family: "Great Vibes", cursive;
+    font-size: 48px;
+    color: #4b4a46;
+    margin-bottom: 40px;
+}
+
+/* Caja de la fecha */
+.final-date-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto 40px;
+    max-width: 280px;
+}
+
+.date-label {
+    font-family: "Playfair Display", serif;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: #4b4a46;
+}
+
+/* Centro de la fecha */
+.date-center {
+    text-align: center;
+}
+
+.date-day {
+    display: block;
+    font-size: 40px;
+    font-family: "Playfair Display", serif;
+    color: #4b4a46;
+    line-height: 1;
+}
+
+.date-month,
+.date-year {
+    display: block;
+    font-size: 14px;
+    font-family: "Playfair Display", serif;
+    color: #4b4a46;
+    letter-spacing: 1px;
+}
+
+/* Texto final */
+.final-text {
+    font-size: 16px;
+    color: #5a5a54;
+    line-height: 1.45;
+}
+
+/* Flor */
+.final-flower {
+    width: 210px;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-330px);
+    z-index: 3;
+}
+
+/* Acuarelas */
+.final-watercolor-left {
+    width: 260px;
+    top: 250px;
+    left: -30px;
+    opacity: 0.35;
+}
+
+.final-watercolor-right {
+    width: 260px;
+    top: 320px;
+    right: -30px;
+    opacity: 0.35;
+}
+@media (max-width: 768px) {
+
+    .final-inner {
+        padding: 60px 35px 75px;
+        max-width: 380px;
+    }
+
+    .final-names {
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+
+    .final-date-box {
+        max-width: 240px;
+        margin-bottom: 30px;
+    }
+
+    .date-label {
+        font-size: 13px;
+    }
+
+    .date-day {
+        font-size: 34px;
+    }
+
+    .date-month,
+    .date-year {
+        font-size: 13px;
+    }
+
+    .final-text {
+        font-size: 15px;
+    }
+
+    /* Decoraciones */
+    .final-flower {
+        width: 170px;
+        top: -5px;
+        transform: translateX(-210px);
+    }
+
+    .final-watercolor-left,
+    .final-watercolor-right {
+        width: 220px;
+        opacity: 0.32;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .final-inner {
+        padding: 45px 25px 60px;
+        max-width: 300px;
+        border-radius: 220px 220px 0 0 / 180px 180px 0 0;
+    }
+
+    .final-names {
+        font-size: 32px;
+        margin-bottom: 22px;
+    }
+
+    .final-date-box {
+        max-width: 200px;
+        margin-bottom: 25px;
+    }
+
+    .date-label {
+        font-size: 12px;
+    }
+
+    .date-day {
+        font-size: 30px;
+    }
+
+    .date-month,
+    .date-year {
+        font-size: 12px;
+    }
+
+    .final-text {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    /* Decoraciones móviles */
+    .final-flower {
+        width: 130px;
+        top: -5px;
+        transform: translateX(-135px);
+    }
+
+    .final-watercolor-left,
+    .final-watercolor-right {
+        width: 180px;
+        top: 210px;
+        opacity: 0.28;
+    }
+}
+
 
 /* ------------------------------ */
 /* SECCIONES */
 /* ------------------------------ */
 .section {
     padding: 100px 20px;
-    background: var(--arena);
-}
-
-.section.alt {
-    background: var(--blanco);
 }
 
 .section-title {
     font-size: 40px;
-    color: var(--terracota);
     text-align: center;
 }
 
@@ -296,7 +1578,7 @@ h1, h2, h3 {
 /* ------------------------------ */
 .footer {
     padding: 40px;
-    background: var(--terracota);
+    background: var(--verde-olivo);
     text-align: center;
     color: var(--blanco);
 }
@@ -477,89 +1759,7 @@ h1, h2, h3 {
     height: 100%;
 }
 
-/* ============================= */
-/* SECCIÓN LUGAR ESTILO PREMIUM  */
-/* ============================= */
 
-.section-lugar {
-    position: relative;
-    padding: 80px 0;
-    min-height: 600px; /* 🔥 obligatorio para que se vea */
-    overflow: visible !important;
-    z-index: 1;
-}
-
-.watercolor-bg.lugar-bg {
-    position: absolute;
-    inset: 0;
-    background: url("/assets/img/flores.svg") top left/contain no-repeat,
-                url("/assets/img/flores.svg") bottom right/contain no-repeat;
-    opacity: 0.75;
-    z-index: -1;
-    pointer-events: none;
-}
-
-
-
-/* TARJETA ARCO */
-.arch-card {
-    position: relative;
-    width: 92%;
-    max-width: 460px;
-    margin: 0 auto;
-    z-index: 2; /* ADELANTE */
-}
-
-/* ARCO INTERNO */
-.arch-inner {
-    background: #e7e5dd;
-    padding: 60px 35px 80px;
-    border-radius: 220px 220px 0 0 / 180px 180px 0 0;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
-    position: relative;
-}
-
-/* textura de papel */
-.arch-inner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background-image: url("https://www.transparenttextures.com/patterns/paper.png");
-    opacity: 0.13;
-    pointer-events: none;
-}
-
-/* textos */
-.arch-inner h2.section-title {
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    text-align: center;
-    color: #4b4a46;
-    margin-bottom: 15px;
-}
-
-.arch-inner .section-text {
-    text-align: center;
-    font-size: 16px;
-    margin-bottom: 25px;
-    color: #55534d;
-}
-
-/* marco del mapa */
-.arch-inner .map-frame {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.10);
-}
-
-/* responsive */
-@media (max-width: 480px) {
-    .arch-inner {
-        padding: 50px 25px 70px;
-    }
-}
 
 /* ========================= */
 /* REGALOS EN FORMATO ARCO  */
@@ -577,301 +1777,203 @@ h1, h2, h3 {
 .watercolor-bg.regalos-bg {
     position: absolute;
     inset: 0;
-    background: url("assets/img/acuarela-verde.png") center/contain no-repeat;
+    background: url("/assets/img/acuarela-verde.svg") center/contain no-repeat;
     opacity: .40;
     z-index: 1;
     pointer-events: none;
 }
 
-/* Arco */
-.arch-card {
+/* ===================================== */
+/*  SECCIÓN (2nda) */
+/* ===================================== */
+
+.section-arco {
     position: relative;
-    width: 92%;
-    max-width: 460px;
-    z-index: 2;
+    padding: 120px 0;
 }
 
-.arch-inner {
-    background: #e7e5dd;
-    padding: 60px 35px 80px;
-    border-radius: 220px 220px 0 0 / 180px 180px 0 0;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
-    position: relative;
-}
-
-/* Textura papel */
-.arch-inner::before {
-    content: "";
+/* Fondo acuarela detrás del arco */
+.arco-bg {
     position: absolute;
     inset: 0;
-    border-radius: inherit;
-    background-image: url("https://www.transparenttextures.com/patterns/paper.png");
-    opacity: .12;
-    pointer-events: none;
-}
-
-/* Título */
-.arch-inner .section-title {
-    text-align: center;
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    color: #4b4a46;
-    margin-bottom: 20px;
-}
-
-/* Texto descriptivo */
-.regalos-text {
-    text-align: center;
-    font-size: 16px;
-    margin-bottom: 25px;
-    color: #5a5a54;
-    line-height: 1.5;
-}
-
-/* Caja de tienda */
-.gift-box {
-    background: #f6f6f2;
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 25px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-/* Logo tienda */
-.store-logo {
-    width: 130px;
-    margin-bottom: 10px;
-    opacity: 0.9;
-}
-
-/* Número de evento */
-.gift-number {
-    font-size: 15px;
-    color: #4b4a46;
-    margin-bottom: 15px;
-}
-
-/* Botón */
-.gift-btn {
-    display: inline-block;
-    background: #4b4a46;
-    color: white;
-    padding: 10px 25px;
-    border-radius: 25px;
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.gift-btn:hover {
-    background: #6d6c67;
-}
-
-/* ========================= */
-/* SECCIÓN VESTIMENTA PREMIUM */
-/* ========================= */
-
-.section-vestimenta {
-    position: relative;
-    padding: 80px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Fondo acuarela */
-.watercolor-bg.vestimenta-bg {
-    position: absolute;
-    inset: 0;
-    background: url("assets/img/acuarela-verde.png") center/contain no-repeat;
-    opacity: .40;
+    background: 
+        url("/assets/img/acuarela-verde.svg") center/contain no-repeat,
+        url("/assets/img/acuarela-verde.svg") bottom left/40% no-repeat,
+        url("/assets/img/acuarela-verde.svg") top right/40% no-repeat;
+    opacity: 0.35;
     z-index: 1;
-    pointer-events: none;
 }
 
-/* Arco */
-.arch-card {
+/* TARJETA ARCO */
+.arco-card {
     position: relative;
     width: 92%;
-    max-width: 460px;
+    max-width: 520px;
+    margin: 0 auto;
     z-index: 2;
 }
 
-.arch-inner {
-    background: #e7e5dd;
-    padding: 60px 35px 80px;
-    border-radius: 220px 220px 0 0 / 180px 180px 0 0;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+/* ARCO INTERNO */
+.arco-inner {
+    background: #efede7;
+    padding: 70px 40px 90px;
+    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
     position: relative;
 }
 
-/* Textura */
-.arch-inner::before {
+/* Textura de papel */
+.arco-inner::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
     background-image: url("https://www.transparenttextures.com/patterns/paper.png");
-    opacity: .12;
+    opacity: 0.12;
     pointer-events: none;
 }
 
 /* Título */
-.arch-inner .section-title {
-    text-align: center;
+.arco-title {
     font-family: "Playfair Display", serif;
-    font-size: 32px;
-    color: #4b4a46;
-    margin-bottom: 20px;
-}
-
-/* Texto */
-.vestimenta-text {
+    font-size: 26px;
     text-align: center;
-    font-size: 16px;
-    margin-bottom: 30px;
-    color: #5a5a54;
+    margin-bottom: 35px;
+    color: #44433e;
     line-height: 1.4;
 }
 
-/* GRID PREMIUM */
-.dress-grid-premium {
+/* Columnas padres */
+.arco-padres {
     display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-/* Cada item */
-.dress-item {
+    justify-content: space-between;
     text-align: center;
-    width: 120px;
+    margin-bottom: 35px;
 }
 
-/* Iconos */
-.dress-icon {
-    background: #f6f6f2;
-    border-radius: 12px;
-    padding: 18px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    margin-bottom: 10px;
+.arco-padres p {
+    font-size: 14px;
+    color: #55534d;
+    line-height: 1.45;
 }
 
-.dress-icon img {
-    width: 60px;
-    height: auto;
+.arco-padres small {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #6a6a64;
+}
+
+/* Imagen central */
+.arco-img {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.arco-img img {
+    width: 150px;
     opacity: 0.95;
 }
 
-/* Texto debajo */
-.dress-item p {
-    font-size: 14px;
-    color: #4d4d47;
+/* Texto final */
+.arco-bottom {
+    text-align: center;
+    color: #4f4e48;
+    font-size: 15px;
+    line-height: 1.5;
 }
 
-/* ========================= */
-/* SECCIÓN ASISTENCIA PREMIUM */
-/* ========================= */
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .arco-inner {
+        padding: 50px 25px 65px;
+    }
 
-.section-asistencia {
-    position: relative;
-    padding: 80px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .arco-padres {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
 
-/* Fondo acuarela */
-.watercolor-bg.asistencia-bg {
+/* ============================= */
+/* FLORES Y ACUARELAS DEL ARCO  */
+/* ============================= */
+.arco-flower,
+.arco-watercolor {
     position: absolute;
-    inset: 0;
-    background: url("assets/img/acuarela-verde.png") center/contain no-repeat;
-    opacity: .40;
     z-index: 1;
     pointer-events: none;
+    opacity: 0.9;
 }
 
-/* Arco */
-.arch-card {
-    position: relative;
-    width: 92%;
-    max-width: 460px;
-    z-index: 2;
-}
-
-.arch-inner {
-    background: #e7e5dd;
-    padding: 60px 35px 80px;
-    border-radius: 220px 220px 0 0 / 180px 180px 0 0;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
-    position: relative;
-}
-
-/* Textura */
-.arch-inner::before {
-    content: "";
+/* FLORES SUPERIORES */
+.arco-flower.top-left-arco {
+    width: 240px;
     position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background-image: url("https://www.transparenttextures.com/patterns/paper.png");
-    opacity: .12;
-    pointer-events: none;
+    top: 80px;          /* la subimos un poco */
+    left: 50%;
+    transform: translateX(-300px); 
+    z-index: 3;
+    opacity: 0.95;
 }
 
-/* Título */
-.arch-inner .section-title {
-    text-align: center;
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    color: #4b4a46;
-    margin-bottom: 15px;
+/* Acuarela izquierda */
+.arco-watercolor.left-arco {
+    width: 300px;
+    position: absolute;
+    top: 300px;
+    left: 550px;
+    transform: translateX(-40px); /* antes estaban demasiado lejos */
+    opacity: 0.35;
+    z-index: 1;
 }
 
-/* Texto */
-.asistencia-text {
-    text-align: center;
-    font-size: 16px;
-    color: #5a5a54;
-    line-height: 1.4;
-    margin-bottom: 25px;
+/* Acuarela derecha */
+.arco-watercolor.right-arco {
+    width: 300px;
+    position: absolute;
+    top: 300px;
+    right: 550px;
+    transform: translateX(40px);
+    opacity: 0.35;
+    z-index: 1;
 }
 
-/* FORMULARIO PREMIUM */
-.form-rsvp-premium {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* ============================= */
+/* RESPONSIVE DECORACIONES ARCO */
+/* ============================= */
+@media (max-width: 768px) {
+
+    .arco-flower.top-left-arco {
+        width: 160px;
+        top: 20px;
+        transform: translateX(-160px);
+    }
+
+    .arco-watercolor.left-arco {
+        width: 200px;
+        top: 280px;
+        transform: translateX(-20px);
+    }
+
+    .arco-watercolor.right-arco {
+        width: 200px;
+        top: 300px;
+        transform: translateX(20px);
+    }
 }
 
-/* Inputs */
-.form-rsvp-premium input,
-.form-rsvp-premium select {
-    width: 100%;
-    padding: 14px 18px;
-    border: none;
-    background: #f6f6f2;
-    border-radius: 12px;
-    font-size: 15px;
-    color: #4b4a46;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    outline: none;
-}
+@media (max-width: 480px) {
 
-/* Botón */
-.btn-asistencia {
-    margin-top: 15px;
-    padding: 14px 25px;
-    background: #4b4a46;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-size: 15px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: .3s ease;
-}
+    .arco-flower.top-left-arco,
+    .arco-flower.top-right-arco {
+        width: 130px;
+        top: 50px;
+    }
 
-.btn-asistencia:hover {
-    background: #6d6c67;
+    .arco-watercolor.left-arco,
+    .arco-watercolor.right-arco {
+        width: 190px;
+        top: 380px;
+    }
 }

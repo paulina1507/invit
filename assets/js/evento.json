@@ -1,0 +1,92 @@
+{
+  "novia": "Lilian",
+  "novio": "Edris",
+
+  "fecha_boda": "2026-12-20T13:30:00",
+
+  "presentacion": {
+    "texto_bienvenida": "Iniciaremos nuestra historia en matrimonio y tenemos el honor de invitarte a ser parte de este gran día.",
+
+    "padres": {
+      "novia": [
+        "ANA LILIA ALDAS MADRIGAL",
+        "FRANCISCO ISLAS OJOS"
+      ],
+      "novio": [
+        "KARLA ANDREE CHÁVEZ",
+        "GILBERTO VENTURA VALENCIA"
+      ]
+    }
+  },
+
+  "ubicacion": {
+    "dia_semana": "SÁBADO",
+    "dia": "4",
+    "mes": "MAY",
+    "anio": "2024",
+    "hora": "17:30 HRS",
+
+    "lugar": "FINCA LA CONCORDIA",
+
+    "direccion": [
+      "Avenida Paseo de las Fuentes 46",
+      "Col. San Gaspar, Jiutepec Morelos",
+      "C.P. 62534"
+    ]
+  },
+
+  "programa": [
+    {
+      "hora": "13:30 hrs",
+      "texto": "Ceremonia Religiosa",
+      "icono": "5.svg",
+      "lado": "left"
+    },
+    {
+      "hora": "15:00 hrs",
+      "texto": "Cóctel de bienvenida",
+      "icono": "6.svg",
+      "lado": "right"
+    },
+    {
+      "hora": "15:30 hrs",
+      "texto": "Comida",
+      "icono": "7.svg",
+      "lado": "left"
+    },
+    {
+      "hora": "17:00 hrs",
+      "texto": "Todos a la pista",
+      "icono": "8.svg",
+      "lado": "right"
+    }
+  ],
+
+  "vestimenta": {
+    "formal": "FORMAL",
+    "icono": "9.svg",
+    "mujeres": "Colores prohibidos:<br>blanco, beige, café y negro.",
+    "hombres": "Colores prohibidos:<br>beige y azul cielo."
+  },
+
+  "regalos": [
+    {
+      "icono": "10.svg",
+      "label": "Lluvia de Sobres"
+    },
+    {
+      "icono": "11.svg",
+      "label": "Regalo Sorpresa"
+    }
+  ],
+  
+  "galeria": [
+  "gallery1.png",
+  "gallery2.png",
+  "gallery3.png",
+  "gallery4.png",
+  "gallery5.png"
+]
+
+  
+}
