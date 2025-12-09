@@ -10,13 +10,8 @@ fetch("./assets/js/evento.json")
        1) HERO — NOMBRES
     ============================================================= */
     const heroNames = document.querySelector(".hero-names");
-    const finalNames = document.querySelector(".final-names");
-
-    if (heroNames && finalNames) {
-      const nombres = `${data.novia} y ${data.novio}`;
-      heroNames.textContent = nombres;
-      finalNames.textContent = nombres;
-    }
+    if (heroNames)
+      heroNames.textContent = `${data.novia} y ${data.novio}`;
 
 
     /* ============================================================
@@ -27,8 +22,8 @@ fetch("./assets/js/evento.json")
       presentacionText.textContent = data.presentacion.texto_bienvenida;
 
     const padresBlocks = document.querySelectorAll(".arco-padres p");
-
     if (padresBlocks.length === 2) {
+
       padresBlocks[0].innerHTML = `
         ${data.presentacion.padres.novia[0]}<br>
         ${data.presentacion.padres.novia[1]}<br>
@@ -44,23 +39,22 @@ fetch("./assets/js/evento.json")
 
 
     /* ============================================================
-       3) UBICACIÓN
+       3) UBICACIÓN — NUEVO FORMATO BOHO
     ============================================================= */
-    const fechaUbic = document.querySelector(".ubicacion-fecha");
-    const lugarUbic = document.querySelector(".ubicacion-lugar");
-    const dirUbic = document.querySelector(".ubicacion-direccion");
+    const diaNum   = document.querySelector(".uf-dia-num");
+    const mesTxt   = document.querySelector(".uf-mes");
+    const horaTxt  = document.querySelector(".uf-hora");
 
-    if (fechaUbic && lugarUbic && dirUbic) {
-      fechaUbic.innerHTML = `
-        <div>${data.ubicacion.dia_semana}</div>
-        <div class="dia">${data.ubicacion.dia}</div>
-        <div>${data.ubicacion.mes} ${data.ubicacion.anio}</div>
-        <div>${data.ubicacion.hora}</div>
-      `;
+    const lugar    = document.querySelector(".ubicacion-lugar");
+    const direccion= document.querySelector(".ubicacion-direccion");
 
-      lugarUbic.textContent = data.ubicacion.lugar;
-      dirUbic.innerHTML = data.ubicacion.direccion.join("<br>");
-    }
+    if (diaNum)   diaNum.textContent = data.ubicacion.dia;
+    if (mesTxt)   mesTxt.textContent = data.ubicacion.mes;
+    if (horaTxt)  horaTxt.textContent = data.ubicacion.hora;
+
+    if (lugar)    lugar.textContent = data.ubicacion.lugar;
+    if (direccion)
+      direccion.innerHTML = data.ubicacion.direccion.join("<br>");
 
 
     /* ============================================================
@@ -74,20 +68,18 @@ fetch("./assets/js/evento.json")
       data.programa.forEach(item => {
         const div = document.createElement("div");
         div.className = `item ${item.lado}`;
-
         div.innerHTML = `
           <img src="./assets/img/${item.icono}" class="icon">
           <p class="hora">${item.hora}</p>
           <p class="texto">${item.texto}</p>
         `;
-
         timeline.appendChild(div);
       });
     }
 
 
     /* ============================================================
-       5) VESTIMENTA — ÍCONO + TEXTOS
+       5) VESTIMENTA
     ============================================================= */
     const vestIcon = document.querySelector(".vestimenta-icon");
     const vestFormal = document.querySelector(".vestimenta-formal");
@@ -98,7 +90,6 @@ fetch("./assets/js/evento.json")
       vestFormal.textContent = data.vestimenta.formal;
 
       const vContents = vestText.querySelectorAll(".v-content");
-
       if (vContents.length >= 2) {
         vContents[0].innerHTML = data.vestimenta.mujeres;
         vContents[1].innerHTML = data.vestimenta.hombres;
@@ -112,32 +103,29 @@ fetch("./assets/js/evento.json")
     const regalosContainer = document.querySelector(".regalos-inner");
 
     if (regalosContainer) {
-      // elimina los elementos HTML viejos
-      const prev = regalosContainer.querySelectorAll(".regalo-item");
-      prev.forEach(i => i.remove());
+      regalosContainer.querySelectorAll(".regalo-item").forEach(i => i.remove());
 
       data.regalos.forEach(r => {
         const div = document.createElement("div");
         div.className = "regalo-item";
-
         div.innerHTML = `
           <img src="./assets/img/${r.icono}" class="regalo-icon" alt="${r.label}">
           <p class="regalo-label">${r.label}</p>
         `;
-
         regalosContainer.appendChild(div);
       });
     }
 
 
     /* ============================================================
-       7) GALERÍA — DESDE JSON
+       7) GALERÍA – CARRUSEL
     ============================================================= */
     const track = document.querySelector(".carousel-track");
     const leftBtn = document.querySelector(".carousel-btn.left");
     const rightBtn = document.querySelector(".carousel-btn.right");
 
-    if (track && data.galeria) {
+    if (track) {
+
       track.innerHTML = "";
 
       data.galeria.forEach(img => {
@@ -160,27 +148,6 @@ fetch("./assets/js/evento.json")
         track.style.transform = `translateX(-${index * 100}%)`;
       };
     }
-
-
-    /* ============================================================
-       8) FINAL — FECHA
-    ============================================================= */
-
-    // Convertimos la fecha ISO
-    const fechaFinal = new Date(data.fecha_boda);
-
-    const options = { weekday: 'long' };
-    const diaSemana = fechaFinal.toLocaleDateString("es-MX", options).toUpperCase();
-
-    const day = fechaFinal.getDate();
-    const month = fechaFinal.toLocaleDateString("es-MX", { month: "short" }).toUpperCase();
-    const year = fechaFinal.getFullYear();
-
-    document.querySelector(".date-label").textContent = diaSemana;
-    document.querySelector(".date-day").textContent = day;
-    document.querySelector(".date-month").textContent = month;
-    document.querySelector(".date-year").textContent = year;
-    document.querySelector(".final-hour").textContent = data.ubicacion.hora;
 
   })
   .catch(err => console.error("Error cargando evento.json:", err));

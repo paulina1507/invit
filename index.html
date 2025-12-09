@@ -32,7 +32,9 @@
     </div>
 </div>
 
+<!-- ========================= -->
 <!-- NAVBAR -->
+<!-- ========================= -->
 <nav class="navbar">
     <div class="nav-inner">
         <div class="logo">Nuestra Boda</div>
@@ -46,27 +48,19 @@
             <li><a href="#regalos">Regalos</a></li>
             <li><a href="#vestimenta">Vestimenta</a></li>
             <li><a href="#galeria">Galería</a></li>
-            <li><a href="#asistencia">Asistencia</a></li>
+            <li><a href="#final">Final</a></li>
         </ul>
     </div>
 </nav>
 
 <!-- ========================= -->
-<!-- HERO -->
+<!-- HERO (FULL IMG SIN ARCO) -->
 <!-- ========================= -->
-<section class="hero-section">
-    <img src="./assets/img/flores-superior.svg" class="hero-flower top-left">
-    <img src="./assets/img/acuarela-verde.svg" class="hero-watercolor left">
-    <img src="./assets/img/acuarela-verde.svg" class="hero-watercolor right">
+<section class="hero-section" id="inicio">
+    <div class="hero-bg"></div>
 
-    <div class="hero-arc">
-        <img src="./assets/img/novios.png" class="hero-photo">
-    </div>
-
-    <!-- NOMBRES DESDE JSON -->
     <h1 class="hero-names"></h1>
 
-    <!-- CONTADOR -->
     <div class="hero-count">
         <div><span id="dias">00</span><small>Días</small></div>
         <div class="sep">:</div>
@@ -83,30 +77,24 @@
 <!-- ========================= -->
 <section id="presentacion" class="section-arco">
 
-    <img src="./assets/img/flores-superior.svg" class="arco-flower top-left-arco">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor left-arco">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor right-arco">
+    <img src="./assets/img/flores-superior.svg" class="flor-top">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
 
-    <div class="arco-bg"></div>
+    <div class="arco-base">
 
-    <div class="arco-card">
-        <div class="arco-inner">
+        <h2 class="arco-title">Con la bendición de Dios y nuestros padres</h2>
 
-            <h2 class="arco-title">Con la bendición de Dios y nuestros padres</h2>
-
-            <div class="arco-padres">
-                <p></p> <!-- Padres novia -->
-                <p></p> <!-- Padres novio -->
-            </div>
-
-            <div class="arco-img">
-                <img src="./assets/img/novios.svg" alt="pareja">
-            </div>
-
-            <!-- TEXTO DESDE JSON -->
-            <p class="arco-bottom"></p>
-
+        <div class="arco-padres">
+            <p></p>
+            <p></p>
         </div>
+
+        <div class="arco-img">
+            <img src="./assets/img/novios.svg" alt="pareja">
+        </div>
+
+        <p class="arco-bottom"></p>
     </div>
 </section>
 
@@ -114,29 +102,25 @@
 <!-- UBICACIÓN -->
 <!-- ========================= -->
 <section id="ubicacion" class="section-arco">
+    <img src="./assets/img/flores-superior.svg" class="flor-top">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
+    <div class="arco-base">
+        <h2 class="arco-title">Nos Casamos!</h2>
+        <div class="ubicacion-fecha">
+        <div class="uf-dia-num"></div>
+        <div class="uf-mes"></div>
+        <div class="uf-line"></div>
+        <div class="uf-hora"></div>
+    </div>
 
-    <img src="./assets/img/flores-superior.svg" class="arco-flower ubicacion-flower">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor ubicacion-watercolor-left">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor ubicacion-watercolor-right">
+    <h3 class="ubicacion-subtitle">CEREMONIA Y RECEPCIÓN</h3>
+    <h4 class="ubicacion-lugar"></h4>
+    <p class="ubicacion-direccion"></p>
 
-    <div class="arco-card">
-        <div class="arco-inner ubicacion-inner">
+    <a href="https://maps.google.com" target="_blank" class="btn-ubicacion">VER MAPA</a>
 
-            <h2 class="arco-title">Nos Casamos!</h2>
 
-            <!-- FECHA DESDE JSON -->
-            <div class="ubicacion-fecha"></div>
-
-            <div class="ubicacion-img">
-                <img src="./assets/img/finca.png" alt="Finca La Concordia">
-            </div>
-
-            <h3 class="ubicacion-subtitle">CEREMONIA Y RECEPCIÓN</h3>
-            <h4 class="ubicacion-lugar"></h4>
-            <p class="ubicacion-direccion"></p>
-
-            <a href="https://maps.google.com" target="_blank" class="btn-ubicacion">VER MAPA</a>
-        </div>
     </div>
 </section>
 
@@ -144,20 +128,17 @@
 <!-- PROGRAMA -->
 <!-- ========================= -->
 <section id="programa" class="section-arco">
-    
-    <img src="./assets/img/flores-superior.svg" class="arco-flower programa-flower">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor programa-watercolor-left">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor programa-watercolor-right">
 
-    <div class="arco-card">
-        <div class="arco-inner programa-inner">
+    <img src="./assets/img/flores-superior.svg" class="flor-top">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
 
-            <h2 class="programa-title">Programa</h2>
+    <div class="arco-base">
 
-            <!-- TIMELINE DESDE JSON -->
-            <div class="timeline-programa"></div>
+        <h2 class="arco-title">Programa</h2>
 
-        </div>
+        <div class="timeline-programa"></div>
+
     </div>
 </section>
 
@@ -166,29 +147,26 @@
 <!-- ========================= -->
 <section id="vestimenta" class="section-arco">
 
-    <img src="./assets/img/flores-superior.svg" class="arco-flower vestimenta-flower">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor vestimenta-watercolor-left">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor vestimenta-watercolor-right">
+    <img src="./assets/img/flores-superior.svg" class="flor-top">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
 
-    <div class="arco-card">
-        <div class="arco-inner vestimenta-inner">
+    <div class="arco-base">
 
-            <h2 class="vestimenta-title">Código de Vestimenta</h2>
+        <h2 class="arco-title">Código de Vestimenta</h2>
 
-            <div class="vestimenta-icon-wrapper">
-                <img class="vestimenta-icon" alt="Código de vestimenta">
-            </div>
+        <div class="vestimenta-icon-wrapper">
+            <img class="vestimenta-icon" alt="Código de vestimenta">
+        </div>
 
-            <h3 class="vestimenta-formal"></h3>
+        <h3 class="vestimenta-formal"></h3>
 
-            <div class="vestimenta-text">
-                <p class="v-label">Mujeres</p>
-                <p class="v-content"></p>
+        <div class="vestimenta-text">
+            <p class="v-label">Mujeres</p>
+            <p class="v-content"></p>
 
-                <p class="v-label">Hombres</p>
-                <p class="v-content"></p>
-            </div>
-
+            <p class="v-label">Hombres</p>
+            <p class="v-content"></p>
         </div>
     </div>
 </section>
@@ -198,83 +176,55 @@
 <!-- ========================= -->
 <section id="regalos" class="section-arco">
 
-    <img src="./assets/img/flores-superior.svg" class="arco-flower regalos-flower">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor regalos-watercolor-left">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor regalos-watercolor-right">
+    <img src="./assets/img/flores-superior.svg" class="flor-top">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
 
-    <div class="arco-card">
-        <div class="arco-inner regalos-inner">
+    <div class="arco-base regalos-container">
 
-            <h2 class="regalos-title">Sugerencia de Regalos</h2>
+        <h2 class="arco-title">Sugerencia de Regalos</h2>
 
-            <p class="regalos-text">
-                Lo más importante para nosotros es compartir este día contigo.
-            </p>
+        <p class="regalos-desc">
+            Lo más importante para nosotros es compartir este día contigo.<br>
+            Si deseas hacernos un obsequio, habrá una mesa de regalos en la
+            fiesta o, si lo prefieres, un sobre será igualmente bien recibido.
+        </p>
 
-            <!-- Items desde JSON -->
-            <!-- Se insertan aquí -->
+        <div class="regalo-item">
+            <img src="./assets/img/10.svg" class="regalo-icon" alt="Lluvia de sobres">
+            <p class="regalo-label">LLUVIA DE SOBRES</p>
         </div>
+
+        <div class="regalo-item">
+            <img src="./assets/img/11.svg" class="regalo-icon" alt="Regalo sorpresa">
+            <p class="regalo-label">REGALO SORPRESA</p>
+        </div>
+
     </div>
 </section>
+
 
 <!-- ========================= -->
 <!-- GALERÍA -->
 <!-- ========================= -->
 <section id="galeria" class="section-arco">
 
-    <img src="./assets/img/flores-superior.svg" class="arco-flower galeria-flower">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor galeria-watercolor-left">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor galeria-watercolor-right">
+    <img src="./assets/img/flores-superior.svg" class="flor-top">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
 
-    <div class="arco-card">
-        <div class="arco-inner galeria-inner">
+    <div class="arco-base">
 
-            <h2 class="galeria-title">Galería</h2>
+        <h2 class="arco-title">Galería</h2>
 
-            <div class="carousel">
-                <div class="carousel-track"></div>
+        <div class="carousel">
+            <div class="carousel-track"></div>
 
-                <button class="carousel-btn left">&#10094;</button>
-                <button class="carousel-btn right">&#10095;</button>
-            </div>
-
+            <button class="carousel-btn left">&#10094;</button>
+            <button class="carousel-btn right">&#10095;</button>
         </div>
     </div>
 </section>
-
-<!-- ========================= -->
-<!-- FINAL -->
-<!-- ========================= -->
-<section id="final" class="section-arco">
-
-    <img src="./assets/img/flores-superior.svg" class="arco-flower final-flower">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor final-watercolor-left">
-    <img src="./assets/img/acuarela-verde.svg" class="arco-watercolor final-watercolor-right">
-
-    <div class="arco-card">
-        <div class="arco-inner final-inner">
-
-            <h2 class="final-names"></h2>
-
-            <div class="final-date-box">
-                <div><span class="date-label"></span></div>
-
-                <div class="date-center">
-                    <span class="date-day"></span>
-                    <span class="date-month"></span>
-                    <span class="date-year"></span>
-                </div>
-
-                <div><span class="date-label final-hour"></span></div>
-            </div>
-
-            <p class="final-text">
-                Esperamos con entusiasmo que seas parte de nuestro día especial
-            </p>
-        </div>
-    </div>
-</section>
-
 <!-- FOOTER -->
 <footer class="footer">
     <small>Diseñado con amor por Shiny Maker Events</small>
@@ -287,5 +237,6 @@
 <script src="./assets/js/event-data.js"></script>
 <script src="./assets/js/navbar.js"></script>
 <script src="./assets/js/carousel.js"></script>
+
 </body>
 </html>

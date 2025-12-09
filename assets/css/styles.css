@@ -104,59 +104,271 @@ h1, h2, h3 {
         text-align: center;
     }
 }
+/* ========================================================= */
+/* 🟫 ARCO BASE */
+/* ========================================================= */
 
-
-/* =============================== */
-/* HERO SECTION 
-/* =============================== */
-.hero-section {
-    position: relative;
-    text-align: center;
-    padding-top: 185px;      
-    padding-bottom: 70px;
-    overflow: hidden;
-}
-
-/* ========================== */
-/*            ARCO            */
-/* ========================== */
-.hero-arc {
-    width: 450px;
-    height: 500px;
+.arco-base {
+    width: 430px;
+    min-height: 560px;
+    background: #efede7;
+    border-radius: 260px 260px 0 0;
     margin: 0 auto;
+    padding: 65px 38px 80px;
     position: relative;
     overflow: hidden;
-    border-radius: 200px 200px 0 0;
-
-    /* Sombra tipo referencia */
-    box-shadow: 0 22px 45px rgba(0,0,0,0.20);
+    box-shadow: 0 18px 38px rgba(0,0,0,0.18);
 }
 
-.hero-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+/* Textura papel */
+.arco-base::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/paper.png");
+    opacity: .12;
+    pointer-events: none;
     border-radius: inherit;
 }
 
-/* ========================== */
-/*           NOMBRES          */
-/* ========================== */
-.hero-names {
-    font-family: 'Great Vibes', cursive;
-    font-size: 86px;
-    margin-top: 25px;
-    color: #3a3a3a;
-}
+/* Sección arco contenedor */
+.section-arco {
+    position: relative;
+    padding: 120px 0;
 
-/* ========================== */
-/*         CONTADOR           */
-/* ========================== */
-.hero-count {
-    margin-top: 15px;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.section-arco .arco-base {
+    margin-top: 80px; /* deja espacio para la flor */
+}
+
+.arco-title {
+    font-family: "Great Vibes", cursive;
+    font-size: 70px;
+    color: #44433e;
+    text-align: center;
+    margin-bottom: 35px;
+    line-height: 1.2;
+    font-weight: normal; /* Great Vibes no usa weights altos */
+}
+
+/* ========================================================= */
+/* 🌿 FLOR SUPERIOR — ARRIBA IZQUIERDA */
+/* ========================================================= */
+
+.section-arco .flor-top {
+    position: absolute;
+    width: 290px;
+    top: 160px;                /* baja un poco la flor */
+    left: 44%;
+    transform: translateX(-210px); /* izquierda real */
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* ========================================================= */
+/* 🎨 ACUARELAS GRANDES Y CENTRADAS */
+/* ========================================================= */
+
+.section-arco .acuarela-left,
+.section-arco .acuarela-right {
+    position: absolute;
+    width: 360px;       /* MÁS grandes */
+    top: 220px;         /* MÁS centradas verticalmente */
+    opacity: .40;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Izquierda */
+.section-arco .acuarela-left {
+    left: 50%;
+    transform: translateX(-330px);
+}
+
+/* Derecha */
+.section-arco .acuarela-right {
+    right: 50%;
+    transform: translateX(330px);
+}
+
+/* ========================================================= */
+/* 📌 RESPONSIVE — TABLET 768px */
+/* ========================================================= */
+
+@media (max-width: 768px) {
+
+    .arco-base {
+        width: 340px;
+        min-height: 520px;
+        padding: 55px 30px 70px;
+        border-radius: 230px 230px 0 0;
+    }
+
+    /* Flor tablet */
+    .section-arco .flor-top {
+        width: 180px;
+        top: -28px;
+        transform: translateX(-170px);
+    }
+
+    /* Acuarelas tablet */
+    .section-arco .acuarela-left,
+    .section-arco .acuarela-right {
+        width: 280px;
+        top: 210px;
+        opacity: .35;
+    }
+
+    .section-arco .acuarela-left {
+        transform: translateX(-250px);
+    }
+
+    .section-arco .acuarela-right {
+        transform: translateX(250px);
+    }
+
+    .arco-title { font-size: 24px; }
+    .arco-padres p { font-size: 13px; }
+}
+
+/* ========================================================= */
+/* 📱 CELULAR NORMAL 480px */
+/* ========================================================= */
+
+@media (max-width: 480px) {
+
+    .arco-base {
+        width: 300px;
+        min-height: 480px;
+        padding: 45px 25px 55px;
+        border-radius: 210px 210px 0 0;
+    }
+
+    .section-arco .flor-top {
+        width: 150px;
+        top: -18px;
+        transform: translateX(-130px);
+    }
+
+    .section-arco .acuarela-left,
+    .section-arco .acuarela-right {
+        width: 220px;
+        top: 200px;
+        opacity: .32;
+    }
+
+    .section-arco .acuarela-left {
+        transform: translateX(-185px);
+    }
+
+    .section-arco .acuarela-right {
+        transform: translateX(185px);
+    }
+
+    .arco-title { font-size: 22px; }
+    .arco-img img { width: 120px; }
+    .arco-bottom { font-size: 14px; }
+}
+
+/* ========================================================= */
+/* 🍏 iPhone pequeño 390px */
+/* ========================================================= */
+
+@media (max-width: 390px) {
+
+    .arco-base {
+        width: 270px;
+        min-height: 450px;
+        padding: 40px 20px 50px;
+        border-radius: 200px 200px 0 0;
+    }
+
+    .section-arco .flor-top {
+        width: 135px;
+        top: -14px;
+        transform: translateX(-115px);
+    }
+
+    .section-arco .acuarela-left,
+    .section-arco .acuarela-right {
+        width: 200px;
+        top: 185px;
+        opacity: .30;
+    }
+
+    .section-arco .acuarela-left {
+        transform: translateX(-165px);
+    }
+
+    .section-arco .acuarela-right {
+        transform: translateX(165px);
+    }
+
+    .arco-title {
+        font-size: 20px;
+        line-height: 1.3;
+    }
+
+    .arco-img img { width: 110px; }
+    .arco-bottom { font-size: 13px; }
+}
+
+
+
+/* ========================= */
+/* HERO FULL SCREEN COVER    */
+/* ========================= */
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* ocupa toda la pantalla */
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 120px; /* espacio por el navbar fijo */
+    text-align: center;
+}
+
+/* Imagen de fondo */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url("../img/novios.png") center/cover no-repeat;
+    z-index: -1;
+    filter: brightness(0.88); /* ligero oscurecimiento para resaltar texto */
+}
+
+/* ========================= */
+/* NOMBRES                    */
+/* ========================= */
+.hero-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(42px, 8vw, 100px); 
+    /* min:42px, ideal:8vw, max:100px */
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.45);
+}
+
+/* ========================= */
+/* CONTADOR                  */
+/* ========================= */
+.hero-count {
+    margin-top: 20px;
+    display: flex;
+    gap: clamp(10px, 3vw, 30px);
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-count div {
@@ -164,154 +376,174 @@ h1, h2, h3 {
 }
 
 .hero-count span {
-    font-size: 36px;
-    font-weight: 600;
-    color: #333;
+    font-size: clamp(28px, 5vw, 50px);
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.35);
 }
 
 .hero-count small {
     display: block;
+    font-size: clamp(12px, 2.6vw, 16px);
+    color: #f1f1f1;
     margin-top: 2px;
-    font-size: 12px;
-    color: #777;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
 }
 
+/* Separador “:” */
 .hero-count .sep {
-    font-size: 28px;
+    font-size: clamp(24px, 5vw, 38px);
     font-weight: 600;
-    color: #333;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
 }
 
-/* ========================== */
-/*     FLORES & ACUARELAS     */
-/* ========================== */
-.hero-watercolor {
-    position: absolute;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* 🌿 Flor superior izquierda */
-.hero-flower.top-left {
-    width: 240px;
-    top: 100px;                
-    left: 48%;
-    transform: translateX(-260px);
-    opacity: 0.95;
-    position: absolute;
-    z-index: 3;
-}
-
-/* 🎨 Acuarelas laterales */
-.hero-watercolor.left {
-    width: 330px;
-    left: 550px;             
-    top: 280px;
-    opacity: 0.45;
-}
-
-.hero-watercolor.right {
-    width: 330px;
-    right: 550px;             
-    top: 280px;
-    opacity: 0.45;
-}
-
+/* ========================= */
+/* RESPONSIVE AJUSTES EXTRA  */
+/* ========================= */
 @media (max-width: 768px) {
-
     .hero-section {
-        padding-top: 105px;  
+        padding-top: 100px;
     }
 
-    .hero-arc {
-        width: 280px;
-        height: 360px;
-    }
-
-    .hero-flower.top-left {
-        width: 170px;
-        top: 105px;           
-        transform: translateX(-160px);
-    }
-
-    .hero-watercolor.left {
-        width: 240px;
-        left: -25px;
-        top: 250px;
-    }
-
-    .hero-watercolor.right {
-        width: 240px;
-        right: -25px;
-        top: 250px;
-    }
-
-    .hero-names {
-        font-size: 42px;
+    .hero-count {
+        gap: 18px;
     }
 }
 
 @media (max-width: 480px) {
-
     .hero-section {
         padding-top: 95px;
     }
 
-    .hero-arc {
-        width: 250px;
-        height: 330px;
-    }
-
-    .hero-flower.top-left {
-        width: 150px;
-        top: 125px;           
-        transform: translateX(-135px);
-    }
-
-    .hero-watercolor.left,
-    .hero-watercolor.right {
-        width: 210px;
-        top: 230px;
-    }
-
-    .hero-names {
-        font-size: 34px;
+    .hero-count {
+        gap: 12px;
     }
 }
-/* ================================== */
-/* SECCIÓN UBICACIÓN (BASE) */
-/* ================================== */
 
-.ubicacion-inner {
+/* Para pantallas muy grandes */
+@media (min-width: 1400px) {
+    .hero-section {
+        padding-top: 140px;
+    }
+}
+
+/* ===================================== */
+/*  PRESENTACION
+/* ===================================== */
+
+.section-arco {
+    position: relative;
+    padding: 120px 0;
+}
+
+/* Título */
+.arco-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 26px;
     text-align: center;
+    margin-bottom: 35px;
+    color: #44433e;
+    line-height: 1.4;
 }
+
+/* Columnas padres */
+.arco-padres {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.arco-padres p {
+    font-size: 14px;
+    color: #55534d;
+    line-height: 1.45;
+}
+
+.arco-padres small {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #6a6a64;
+}
+
+/* Imagen central */
+.arco-img {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.arco-img img {
+    width: 150px;
+    opacity: 0.95;
+}
+
+/* Texto final */
+.arco-bottom {
+    text-align: center;
+    color: #4f4e48;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+
+    .arco-padres {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* ================================== */
+/* UBICACIÓN (BOHO PREMIUM)
+/* ================================== */
 
 .ubicacion-fecha {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    margin: 20px auto 25px;
-    max-width: 340px;
-    font-size: 13px;
-    color: #4a4a44;
-    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 20px;
+    text-transform: uppercase;
 }
 
-.ubicacion-fecha .dia {
-    font-size: 42px;
-    font-family: 'Playfair Display';
+/* Día grande */
+.uf-dia-num {
+    font-family: "Playfair Display", serif;
+    font-size: 60px;
     font-weight: bold;
+    color: #4c4c46;
     line-height: 1;
 }
 
-/* Imagen del lugar */
-.ubicacion-img img {
-    width: 100%;
-    max-width: 280px;
-    border-radius: 6px;
-    margin: 15px auto;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+/* Mes abreviado */
+.uf-mes {
+    font-family: "Playfair Display", serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    color: #6d6d62;
+    margin-top: 4px;
 }
 
+/* Línea separadora */
+.uf-line {
+    width: 60px;
+    height: 2px;
+    background: #b5b5a8;
+    margin: 10px 0;
+    opacity: .55;
+}
+
+/* Hora */
+.uf-hora {
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #4c4c46;
+    margin-top: 4px;
+}
+
+/* Subtítulos */
 .ubicacion-subtitle {
     margin-top: 10px;
     font-size: 15px;
@@ -319,6 +551,7 @@ h1, h2, h3 {
     color: #4d4d47;
 }
 
+/* Lugar */
 .ubicacion-lugar {
     font-size: 20px;
     margin-top: 6px;
@@ -327,6 +560,7 @@ h1, h2, h3 {
     color: #3f3f3a;
 }
 
+/* Dirección */
 .ubicacion-direccion {
     font-size: 15px;
     color: #555;
@@ -351,44 +585,30 @@ h1, h2, h3 {
     background: var(--verde-gris);
 }
 
-/* Ajustes decorativos */
-.ubicacion-flower {
-    width: 240px;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-300px);
-}
-
-.ubicacion-watercolor-left {
-    top: 260px;
-    left: -40px;
-    width: 300px;
-}
-
-.ubicacion-watercolor-right {
-    top: 300px;
-    right: -40px;
-    width: 300px;
-}
-
-
-
 /* ================================== */
-/* 📱 RESPONSIVE – MÓVIL */
+/* 📱 RESPONSIVE – TABLET (<= 768px)
 /* ================================== */
 
 @media (max-width: 768px) {
 
-    .ubicacion-fecha {
-        max-width: 300px;
-        font-size: 12px;
-        grid-template-columns: repeat(4, 1fr);
+    /* Fecha */
+    .uf-dia-num {
+        font-size: 52px;
     }
 
-    .ubicacion-fecha .dia {
-        font-size: 36px;
+    .uf-mes {
+        font-size: 20px;
     }
 
+    .uf-line {
+        width: 52px;
+    }
+
+    .uf-hora {
+        font-size: 15px;
+    }
+
+    /* Imagen */
     .ubicacion-img img {
         max-width: 250px;
     }
@@ -396,33 +616,30 @@ h1, h2, h3 {
     .ubicacion-lugar {
         font-size: 18px;
     }
-
-    /* Decorativos al estilo hero */
-    .ubicacion-flower {
-        width: 180px;
-        top: 90px;
-        transform: translateX(-210px);
-    }
-
-    .ubicacion-watercolor-left,
-    .ubicacion-watercolor-right {
-        width: 240px;
-        top: 230px;
-    }
 }
+
+/* ================================== */
+/* 📱 RESPONSIVE – MÓVIL (<= 480px)
+/* ================================== */
 
 @media (max-width: 480px) {
 
-    /* Fecha más respirada */
-    .ubicacion-fecha {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 230px;
-        font-size: 11px;
-        gap: 6px;
+    /* Fecha BOHO */
+    .uf-dia-num {
+        font-size: 45px;
     }
 
-    .ubicacion-fecha .dia {
-        font-size: 32px;
+    .uf-mes {
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+
+    .uf-line {
+        width: 45px;
+    }
+
+    .uf-hora {
+        font-size: 14px;
     }
 
     /* Imagen */
@@ -438,73 +655,11 @@ h1, h2, h3 {
     .ubicacion-direccion {
         font-size: 13px;
     }
-
-    /* Decorativos siguiendo exactamente tu hero */
-    .ubicacion-flower {
-        width: 150px;
-        top: 115px;
-        transform: translateX(-150px);
-    }
-
-    .ubicacion-watercolor-left,
-    .ubicacion-watercolor-right {
-        width: 200px;
-        top: 210px;
-    }
 }
 
-/* ========================= */
-/* PROGRAMA  */
-/* ========================= */
-
-.programa-inner {
-    background: #efede7; /* gris cálido */
-    padding: 60px 40px 60px;
-    width: 100%;
-    max-width: 460px; /* más estrecho */
-    margin: 0 auto;
-    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
-    text-align: center;
-}
-
-/* Título centrado */
-.programa-title {
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    margin-bottom: 30px;
-    text-align: center !important;
-}
 
 /* ========================================= */
-/* DECORACIONES */
-/* ========================================= */
-
-/* flor arriba izquierda */
-.programa-flower {
-    width: 190px;              /* más pequeña */
-    top: -18px;                /* un poco más abajo */
-    left: 50%;
-    transform: translateX(-330px);
-    z-index: 3;
-}
-
-/* acuarelas */
-.programa-watercolor-left {
-    width: 260px;
-    top: 240px;
-    left: -20px;
-    opacity: 0.35;
-}
-
-.programa-watercolor-right {
-    width: 260px;
-    top: 300px;
-    right: -20px;
-    opacity: 0.35;
-}
-
-/* ========================================= */
-/* TIMELINE — AJUSTADO EXACTO AL DISEÑO */
+/* PROGRAMA */
 /* ========================================= */
 
 .timeline-programa {
@@ -593,28 +748,6 @@ h1, h2, h3 {
 
 @media (max-width: 768px) {
 
-    .programa-inner {
-        padding: 50px 30px 55px;
-        max-width: 380px;
-    }
-
-    .programa-title {
-        font-size: 28px;
-    }
-
-    /* Decoraciones */
-    .programa-flower {
-        width: 150px;
-        top: -10px;
-        transform: translateX(-200px);
-    }
-
-    .programa-watercolor-left,
-    .programa-watercolor-right {
-        width: 220px;
-        opacity: 0.3;
-    }
-
     /* Timeline contenedor */
     .timeline-programa {
         max-width: 300px;
@@ -646,31 +779,6 @@ h1, h2, h3 {
 }
 
 @media (max-width: 480px) {
-
-    .programa-inner {
-        padding: 45px 25px 50px;
-        max-width: 310px;
-    }
-
-    .programa-title {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-
-    /* Flor superior */
-    .programa-flower {
-        width: 130px;
-        top: -5px;
-        transform: translateX(-130px);
-    }
-
-    /* Acuarelas */
-    .programa-watercolor-left,
-    .programa-watercolor-right {
-        width: 180px;
-        top: 220px;
-        opacity: 0.28;
-    }
 
     /* Timeline */
     .timeline-programa {
@@ -724,22 +832,6 @@ h1, h2, h3 {
 /* SECCIÓN VESTIMENTA PREMIUM   */
 /* ============================ */
 
-.vestimenta-inner {
-    padding: 60px 40px 70px;
-    width: 100%;
-    max-width: 460px;
-    margin: 0 auto;
-    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
-    text-align: center;
-}
-
-.vestimenta-title {
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    margin-bottom: 25px;
-    color: #4a4a44;
-}
-
 /* Ícono único (vestido+traje) */
 .vestimenta-icon-wrapper {
     text-align: center;
@@ -778,39 +870,7 @@ h1, h2, h3 {
     margin-bottom: 10px;
 }
 
-/* Decoraciones */
-.vestimenta-flower {
-    width: 200px;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-330px);
-    z-index: 3;
-}
-
-.vestimenta-watercolor-left {
-    width: 260px;
-    top: 240px;
-    left: -20px;
-    opacity: 0.35;
-}
-
-.vestimenta-watercolor-right {
-    width: 260px;
-    top: 300px;
-    right: -20px;
-    opacity: 0.35;
-}
 @media (max-width: 768px) {
-
-    .vestimenta-inner {
-        padding: 55px 35px 60px;
-        max-width: 380px;
-    }
-
-    .vestimenta-title {
-        font-size: 28px;
-        margin-bottom: 20px;
-    }
 
     .vestimenta-icon {
         width: 180px;
@@ -830,32 +890,9 @@ h1, h2, h3 {
         font-size: 14.5px;
     }
 
-    /* Decoraciones */
-    .vestimenta-flower {
-        width: 160px;
-        transform: translateX(-210px);
-        top: -5px;
-    }
-
-    .vestimenta-watercolor-left,
-    .vestimenta-watercolor-right {
-        width: 220px;
-        opacity: 0.3;
-    }
 }
 
 @media (max-width: 480px) {
-
-    .vestimenta-inner {
-        padding: 45px 25px 55px;
-        max-width: 300px;
-        border-radius: 220px 220px 0 0 / 180px 180px 0 0;
-    }
-
-    .vestimenta-title {
-        font-size: 24px;
-        margin-bottom: 15px;
-    }
 
     .vestimenta-icon {
         width: 150px;
@@ -882,95 +919,99 @@ h1, h2, h3 {
         margin-bottom: 8px;
     }
 
-    /* Decoraciones móviles */
-    .vestimenta-flower {
-        width: 130px;
-        top: -5px;
-        transform: translateX(-135px);
-    }
-
-    .vestimenta-watercolor-left,
-    .vestimenta-watercolor-right {
-        width: 180px;
-        top: 210px;
-        opacity: 0.28;
-    }
 }
 
-
 /* ============================ */
-/* SECCIÓN DE REGALOS PREMIUM  */
+/* SECCIÓN DE REGALOS (LIMPIO) */
 /* ============================ */
 
-.regalos-inner {
-    background: #efede7;
-    padding: 60px 40px 70px;
-    width: 100%;
-    max-width: 460px;
-    margin: 0 auto;
-    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
+.regalos-container {
     text-align: center;
+    padding: 70px 40px 90px;
 }
 
-.regalos-title {
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    margin-bottom: 25px;
-    color: #4a4a44;
-}
-
-.regalos-text {
+/* Texto descriptivo */
+.regalos-text,
+.regalos-desc {
     font-size: 15px;
     line-height: 1.55;
-    margin-bottom: 35px;
     color: #5a5a54;
+    max-width: 480px;
+    margin: 0 auto 40px;
 }
 
-/* Ítems de regalos */
+/* Ítems */
 .regalo-item {
-    margin-bottom: 35px;
+    margin-bottom: 45px;
 }
 
 .regalo-icon {
-    width: 90px;       /* icono grande tipo referencia */
+    width: clamp(70px, 18vw, 95px);  /* RESPONSIVO */
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     opacity: 0.9;
 }
 
 .regalo-label {
-    font-size: 16px;
-    font-weight: 500;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(15px, 3.6vw, 19px);
     color: #4b4a46;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 8px;
 }
 
-/* Decoraciones */
-
-/* flor */
-.regalos-flower {
-    width: 200px;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-330px);
-    z-index: 3;
-}
-
-/* acuarelas */
-.regalos-watercolor-left {
-    width: 260px;
-    top: 250px;
-    left: -25px;
-    opacity: 0.35;
-}
-
-.regalos-watercolor-right {
-    width: 260px;
-    top: 320px;
-    right: -25px;
-    opacity: 0.35;
-}
 /* ============================ */
-/* CARRUSEL PREMIUM */
+/* RESPONSIVE 768px */
+/* ============================ */
+@media (max-width: 768px) {
+
+    .regalos-text,
+    .regalos-desc {
+        font-size: 14px;
+        margin-bottom: 35px;
+    }
+
+    .regalo-item {
+        margin-bottom: 38px;
+    }
+}
+
+/* ============================ */
+/* RESPONSIVE 480px */
+/* ============================ */
+@media (max-width: 480px) {
+
+    .regalos-container {
+        padding: 55px 25px 70px;
+    }
+
+    .regalos-text,
+    .regalos-desc {
+        font-size: 13px;
+        line-height: 1.45;
+        margin-bottom: 28px;
+    }
+
+    .regalo-item {
+        margin-bottom: 32px;
+    }
+
+    .regalo-icon {
+        width: clamp(60px, 22vw, 80px);
+    }
+
+    .regalo-label {
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+}
+
+
+
+/* ============================ */
+/* CARRUSEL 
 /* ============================ */
 
 .carousel {
@@ -1025,57 +1066,7 @@ h1, h2, h3 {
     right: -20px;
 }
 
-/* Decoración del arco */
-.galeria-inner {
-    background: #efede7;
-    padding: 60px 40px 80px;
-    max-width: 460px;
-    margin: 0 auto;
-    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
-    text-align: center;
-}
-
-.galeria-title {
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    margin-bottom: 30px;
-    color: #4b4a46;
-}
-
-/* Flor */
-.galeria-flower {
-    width: 200px;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-330px);
-}
-
-/* Acuarelas */
-.galeria-watercolor-left {
-    width: 260px;
-    top: 230px;
-    left: -25px;
-    opacity: .35;
-}
-
-.galeria-watercolor-right {
-    width: 260px;
-    top: 300px;
-    right: -25px;
-    opacity: .35;
-}
-
 @media (max-width: 768px) {
-
-    .regalos-inner {
-        padding: 55px 35px 65px;
-        max-width: 380px;
-    }
-
-    .regalos-title {
-        font-size: 28px;
-        margin-bottom: 20px;
-    }
 
     .regalos-text {
         font-size: 14px;
@@ -1093,33 +1084,9 @@ h1, h2, h3 {
     .regalo-label {
         font-size: 15px;
     }
-
-    /* Decoraciones */
-    .regalos-flower {
-        width: 160px;
-        top: -5px;
-        transform: translateX(-220px);
-    }
-
-    .regalos-watercolor-left,
-    .regalos-watercolor-right {
-        width: 220px;
-        opacity: 0.32;
-    }
 }
 
 @media (max-width: 480px) {
-
-    .regalos-inner {
-        padding: 45px 25px 50px;
-        max-width: 300px;
-        border-radius: 220px 220px 0 0 / 180px 180px 0 0;
-    }
-
-    .regalos-title {
-        font-size: 24px;
-        margin-bottom: 15px;
-    }
 
     .regalos-text {
         font-size: 13px;
@@ -1138,41 +1105,11 @@ h1, h2, h3 {
     .regalo-label {
         font-size: 14px;
     }
-
-    /* Decoraciones */
-    .regalos-flower {
-        width: 130px;
-        top: -5px;
-        transform: translateX(-135px);
-    }
-
-    .regalos-watercolor-left,
-    .regalos-watercolor-right {
-        width: 180px;
-        top: 210px;
-        opacity: 0.28;
-    }
 }
 
 /* ============================ */
 /* ASISTENCIA PREMIUM EN ARCO  */
 /* ============================ */
-
-.asistencia-inner {
-    background: #efede7;
-    padding: 60px 40px 80px;
-    max-width: 460px;
-    margin: 0 auto;
-    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
-    text-align: center;
-}
-
-.asistencia-title {
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    margin-bottom: 25px;
-    color: #4b4a46;
-}
 
 .asistencia-text {
     font-size: 15px;
@@ -1205,40 +1142,7 @@ h1, h2, h3 {
     background: #6d6c67;
 }
 
-/* Decoraciones */
-.asistencia-flower {
-    width: 200px;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-330px);
-    z-index: 3;
-}
-
-.asistencia-watercolor-left {
-    width: 260px;
-    top: 240px;
-    left: -25px;
-    opacity: 0.35;
-}
-
-.asistencia-watercolor-right {
-    width: 260px;
-    top: 320px;
-    right: -25px;
-    opacity: 0.35;
-}
-
 @media (max-width: 768px) {
-
-    .asistencia-inner {
-        padding: 55px 35px 70px;
-        max-width: 380px;
-    }
-
-    .asistencia-title {
-        font-size: 28px;
-        margin-bottom: 20px;
-    }
 
     .asistencia-text {
         font-size: 14px;
@@ -1254,33 +1158,9 @@ h1, h2, h3 {
         padding: 10px 26px;
         font-size: 14px;
     }
-
-    /* Decoraciones */
-    .asistencia-flower {
-        width: 160px;
-        top: -5px;
-        transform: translateX(-210px);
-    }
-
-    .asistencia-watercolor-left,
-    .asistencia-watercolor-right {
-        width: 220px;
-        opacity: 0.32;
-    }
 }
 
 @media (max-width: 480px) {
-
-    .asistencia-inner {
-        padding: 45px 25px 55px;
-        max-width: 300px;
-        border-radius: 220px 220px 0 0 / 180px 180px 0 0;
-    }
-
-    .asistencia-title {
-        font-size: 24px;
-        margin-bottom: 15px;
-    }
 
     .asistencia-text {
         font-size: 13px;
@@ -1298,279 +1178,6 @@ h1, h2, h3 {
         border-radius: 22px;
     }
 
-    /* Decoraciones móviles */
-    .asistencia-flower {
-        width: 130px;
-        top: -5px;
-        transform: translateX(-135px);
-    }
-
-    .asistencia-watercolor-left,
-    .asistencia-watercolor-right {
-        width: 180px;
-        top: 210px;
-        opacity: 0.28;
-    }
-}
-
-/* ============================ */
-/* SECCIÓN FINAL PREMIUM        */
-/* ============================ */
-
-.final-inner {
-    background: #efede7;
-    padding: 70px 40px 90px;
-    max-width: 460px;
-    margin: 0 auto;
-    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
-    text-align: center;
-}
-
-/* Nombres */
-.final-names {
-    font-family: "Great Vibes", cursive;
-    font-size: 48px;
-    color: #4b4a46;
-    margin-bottom: 40px;
-}
-
-/* Caja de la fecha */
-.final-date-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto 40px;
-    max-width: 280px;
-}
-
-.date-label {
-    font-family: "Playfair Display", serif;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    color: #4b4a46;
-}
-
-/* Centro de la fecha */
-.date-center {
-    text-align: center;
-}
-
-.date-day {
-    display: block;
-    font-size: 40px;
-    font-family: "Playfair Display", serif;
-    color: #4b4a46;
-    line-height: 1;
-}
-
-.date-month,
-.date-year {
-    display: block;
-    font-size: 14px;
-    font-family: "Playfair Display", serif;
-    color: #4b4a46;
-    letter-spacing: 1px;
-}
-
-/* Texto final */
-.final-text {
-    font-size: 16px;
-    color: #5a5a54;
-    line-height: 1.45;
-}
-
-/* Flor */
-.final-flower {
-    width: 210px;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-330px);
-    z-index: 3;
-}
-
-/* Acuarelas */
-.final-watercolor-left {
-    width: 260px;
-    top: 250px;
-    left: -30px;
-    opacity: 0.35;
-}
-
-.final-watercolor-right {
-    width: 260px;
-    top: 320px;
-    right: -30px;
-    opacity: 0.35;
-}
-@media (max-width: 768px) {
-
-    .final-inner {
-        padding: 60px 35px 75px;
-        max-width: 380px;
-    }
-
-    .final-names {
-        font-size: 40px;
-        margin-bottom: 30px;
-    }
-
-    .final-date-box {
-        max-width: 240px;
-        margin-bottom: 30px;
-    }
-
-    .date-label {
-        font-size: 13px;
-    }
-
-    .date-day {
-        font-size: 34px;
-    }
-
-    .date-month,
-    .date-year {
-        font-size: 13px;
-    }
-
-    .final-text {
-        font-size: 15px;
-    }
-
-    /* Decoraciones */
-    .final-flower {
-        width: 170px;
-        top: -5px;
-        transform: translateX(-210px);
-    }
-
-    .final-watercolor-left,
-    .final-watercolor-right {
-        width: 220px;
-        opacity: 0.32;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .final-inner {
-        padding: 45px 25px 60px;
-        max-width: 300px;
-        border-radius: 220px 220px 0 0 / 180px 180px 0 0;
-    }
-
-    .final-names {
-        font-size: 32px;
-        margin-bottom: 22px;
-    }
-
-    .final-date-box {
-        max-width: 200px;
-        margin-bottom: 25px;
-    }
-
-    .date-label {
-        font-size: 12px;
-    }
-
-    .date-day {
-        font-size: 30px;
-    }
-
-    .date-month,
-    .date-year {
-        font-size: 12px;
-    }
-
-    .final-text {
-        font-size: 14px;
-        line-height: 1.4;
-    }
-
-    /* Decoraciones móviles */
-    .final-flower {
-        width: 130px;
-        top: -5px;
-        transform: translateX(-135px);
-    }
-
-    .final-watercolor-left,
-    .final-watercolor-right {
-        width: 180px;
-        top: 210px;
-        opacity: 0.28;
-    }
-}
-
-
-/* ------------------------------ */
-/* SECCIONES */
-/* ------------------------------ */
-.section {
-    padding: 100px 20px;
-}
-
-.section-title {
-    font-size: 40px;
-    text-align: center;
-}
-
-/* ------------------------------ */
-/* TIMELINE */
-/* ------------------------------ */
-.timeline {
-    display: flex;
-    gap: 40px;
-    justify-content: space-around;
-    margin-top: 40px;
-}
-
-.event {
-    text-align: center;
-}
-
-.event-icon {
-    font-size: 40px;
-    color: var(--rosegold);
-}
-
-/* ------------------------------ */
-/* GALERÍA MASONRY */
-/* ------------------------------ */
-.masonry {
-    column-count: 3;
-    column-gap: 15px;
-}
-
-.masonry img {
-    width: 100%;
-    margin-bottom: 15px;
-    border-radius: 8px;
-}
-
-/* ------------------------------ */
-/* FORMULARIO */
-/* ------------------------------ */
-.form-rsvp {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.form-rsvp input,
-.form-rsvp select {
-    padding: 12px;
-    border: 2px solid var(--terracota);
-    background: var(--arena);
-    border-radius: 5px;
-}
-
-.form-rsvp button {
-    padding: 14px;
-    border: none;
-    background: var(--terracota);
-    color: var(--blanco);
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 /* ------------------------------ */
@@ -1781,199 +1388,4 @@ h1, h2, h3 {
     opacity: .40;
     z-index: 1;
     pointer-events: none;
-}
-
-/* ===================================== */
-/*  SECCIÓN (2nda) */
-/* ===================================== */
-
-.section-arco {
-    position: relative;
-    padding: 120px 0;
-}
-
-/* Fondo acuarela detrás del arco */
-.arco-bg {
-    position: absolute;
-    inset: 0;
-    background: 
-        url("/assets/img/acuarela-verde.svg") center/contain no-repeat,
-        url("/assets/img/acuarela-verde.svg") bottom left/40% no-repeat,
-        url("/assets/img/acuarela-verde.svg") top right/40% no-repeat;
-    opacity: 0.35;
-    z-index: 1;
-}
-
-/* TARJETA ARCO */
-.arco-card {
-    position: relative;
-    width: 92%;
-    max-width: 520px;
-    margin: 0 auto;
-    z-index: 2;
-}
-
-/* ARCO INTERNO */
-.arco-inner {
-    background: #efede7;
-    padding: 70px 40px 90px;
-    border-radius: 260px 260px 0 0 / 220px 220px 0 0;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
-    position: relative;
-}
-
-/* Textura de papel */
-.arco-inner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background-image: url("https://www.transparenttextures.com/patterns/paper.png");
-    opacity: 0.12;
-    pointer-events: none;
-}
-
-/* Título */
-.arco-title {
-    font-family: "Playfair Display", serif;
-    font-size: 26px;
-    text-align: center;
-    margin-bottom: 35px;
-    color: #44433e;
-    line-height: 1.4;
-}
-
-/* Columnas padres */
-.arco-padres {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    margin-bottom: 35px;
-}
-
-.arco-padres p {
-    font-size: 14px;
-    color: #55534d;
-    line-height: 1.45;
-}
-
-.arco-padres small {
-    display: block;
-    margin-top: 6px;
-    font-size: 12px;
-    color: #6a6a64;
-}
-
-/* Imagen central */
-.arco-img {
-    text-align: center;
-    margin: 25px 0;
-}
-
-.arco-img img {
-    width: 150px;
-    opacity: 0.95;
-}
-
-/* Texto final */
-.arco-bottom {
-    text-align: center;
-    color: #4f4e48;
-    font-size: 15px;
-    line-height: 1.5;
-}
-
-/* RESPONSIVE */
-@media (max-width: 480px) {
-    .arco-inner {
-        padding: 50px 25px 65px;
-    }
-
-    .arco-padres {
-        flex-direction: column;
-        gap: 20px;
-    }
-}
-
-/* ============================= */
-/* FLORES Y ACUARELAS DEL ARCO  */
-/* ============================= */
-.arco-flower,
-.arco-watercolor {
-    position: absolute;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.9;
-}
-
-/* FLORES SUPERIORES */
-.arco-flower.top-left-arco {
-    width: 240px;
-    position: absolute;
-    top: 80px;          /* la subimos un poco */
-    left: 50%;
-    transform: translateX(-300px); 
-    z-index: 3;
-    opacity: 0.95;
-}
-
-/* Acuarela izquierda */
-.arco-watercolor.left-arco {
-    width: 300px;
-    position: absolute;
-    top: 300px;
-    left: 550px;
-    transform: translateX(-40px); /* antes estaban demasiado lejos */
-    opacity: 0.35;
-    z-index: 1;
-}
-
-/* Acuarela derecha */
-.arco-watercolor.right-arco {
-    width: 300px;
-    position: absolute;
-    top: 300px;
-    right: 550px;
-    transform: translateX(40px);
-    opacity: 0.35;
-    z-index: 1;
-}
-
-/* ============================= */
-/* RESPONSIVE DECORACIONES ARCO */
-/* ============================= */
-@media (max-width: 768px) {
-
-    .arco-flower.top-left-arco {
-        width: 160px;
-        top: 20px;
-        transform: translateX(-160px);
-    }
-
-    .arco-watercolor.left-arco {
-        width: 200px;
-        top: 280px;
-        transform: translateX(-20px);
-    }
-
-    .arco-watercolor.right-arco {
-        width: 200px;
-        top: 300px;
-        transform: translateX(20px);
-    }
-}
-
-@media (max-width: 480px) {
-
-    .arco-flower.top-left-arco,
-    .arco-flower.top-right-arco {
-        width: 130px;
-        top: 50px;
-    }
-
-    .arco-watercolor.left-arco,
-    .arco-watercolor.right-arco {
-        width: 190px;
-        top: 380px;
-    }
 }
