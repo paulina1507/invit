@@ -164,7 +164,7 @@ h1, h2, h3 {
     position: absolute;
     width: 290px;
     top: 160px;                /* baja un poco la flor */
-    left: 44%;
+    left: 42%;
     transform: translateX(-210px); /* izquierda real */
     z-index: 5;
     pointer-events: none;
@@ -202,6 +202,10 @@ h1, h2, h3 {
 
 @media (max-width: 768px) {
 
+    .section-arco {
+        padding-top: 160px; /* baja el arco para que la flor quede pegada */
+    }
+
     .arco-base {
         width: 340px;
         min-height: 520px;
@@ -211,25 +215,26 @@ h1, h2, h3 {
 
     /* Flor tablet */
     .section-arco .flor-top {
-        width: 180px;
-        top: -28px;
-        transform: translateX(-170px);
+        width: 230px;
+        top: 160px;              /* 🔥 subimos la flor */
+        left: 34%;
+        transform: translateX(-165px);
     }
 
     /* Acuarelas tablet */
     .section-arco .acuarela-left,
     .section-arco .acuarela-right {
         width: 280px;
-        top: 210px;
+        top: 230px;
         opacity: .35;
     }
 
     .section-arco .acuarela-left {
-        transform: translateX(-250px);
+        transform: translateX(-240px);
     }
 
     .section-arco .acuarela-right {
-        transform: translateX(250px);
+        transform: translateX(240px);
     }
 
     .arco-title { font-size: 24px; }
@@ -242,6 +247,10 @@ h1, h2, h3 {
 
 @media (max-width: 480px) {
 
+    .section-arco {
+        padding-top: 180px; /* más espacio para flor + arco */
+    }
+
     .arco-base {
         width: 300px;
         min-height: 480px;
@@ -251,23 +260,24 @@ h1, h2, h3 {
 
     .section-arco .flor-top {
         width: 150px;
-        top: -18px;
-        transform: translateX(-130px);
+        top: -30px;             /* 🔥 subimos más la flor */
+        left: 50%;
+        transform: translateX(-120px);
     }
 
     .section-arco .acuarela-left,
     .section-arco .acuarela-right {
         width: 220px;
-        top: 200px;
+        top: 205px;
         opacity: .32;
     }
 
     .section-arco .acuarela-left {
-        transform: translateX(-185px);
+        transform: translateX(-175px);
     }
 
     .section-arco .acuarela-right {
-        transform: translateX(185px);
+        transform: translateX(175px);
     }
 
     .arco-title { font-size: 22px; }
@@ -281,6 +291,10 @@ h1, h2, h3 {
 
 @media (max-width: 390px) {
 
+    .section-arco {
+        padding-top: 195px; /* 🔥 aún más espacio arriba */
+    }
+
     .arco-base {
         width: 270px;
         min-height: 450px;
@@ -290,23 +304,24 @@ h1, h2, h3 {
 
     .section-arco .flor-top {
         width: 135px;
-        top: -14px;
-        transform: translateX(-115px);
+        top: -35px;            /* 🔥 flor más arriba para alineación perfecta */
+        left: 50%;
+        transform: translateX(-110px);
     }
 
     .section-arco .acuarela-left,
     .section-arco .acuarela-right {
         width: 200px;
-        top: 185px;
+        top: 190px;
         opacity: .30;
     }
 
     .section-arco .acuarela-left {
-        transform: translateX(-165px);
+        transform: translateX(-160px);
     }
 
     .section-arco .acuarela-right {
-        transform: translateX(165px);
+        transform: translateX(160px);
     }
 
     .arco-title {
@@ -318,6 +333,107 @@ h1, h2, h3 {
     .arco-bottom { font-size: 13px; }
 }
 
+/* ===================================== */
+/*  PRESENTACIÓN — ESTILOS DEL TEXTO     */
+/* ===================================== */
+
+.presentacion-title {
+    font-family: "Great Vibes", cursive;
+    font-size: 34px;
+    color: #44433e;
+    text-align: center;
+    margin-bottom: 25px;
+    line-height: 1.2;
+    font-weight: normal;
+}
+
+.presentacion-nombres {
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #3e3e3a;
+    margin-bottom: 25px;
+}
+
+.presentacion-frase {
+    font-size: 16px;
+    text-align: center;
+    color: #55534d;
+    margin-bottom: 25px;
+}
+
+/* Bloque categoría (Padres, Padrinos, etc.) */
+.presentacion-grupo {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.presentacion-grupo-titulo {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color: #3c3c38;
+    margin-bottom: 8px;
+}
+
+.presentacion-grupo-lista {
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.45;
+    color: #4f4e48;
+}
+
+.presentacion-final {
+    text-align: center;
+    color: #4f4e48;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-top: 15px;
+}
+
+/* =============================== */
+/*  CENTRAR SOLO EL CONTENIDO DE TEXTO */
+/* =============================== */
+
+.arco-title,
+.arco-nombres,
+.arco-frase,
+.arco-grupo,
+.arco-grupo-titulo,
+.arco-grupo-lista,
+.arco-bottom {
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 480px) {
+
+    .presentacion-title {
+        font-size: 28px;
+    }
+
+    .presentacion-nombres {
+        font-size: 26px;
+    }
+
+    .presentacion-frase {
+        font-size: 15px;
+    }
+
+    .presentacion-grupo-titulo {
+        font-size: 15px;
+    }
+
+    .presentacion-grupo-lista {
+        font-size: 14px;
+    }
+}
 
 
 /* ========================= */
@@ -487,6 +603,8 @@ h1, h2, h3 {
     line-height: 1.5;
 }
 
+
+
 /* RESPONSIVE */
 @media (max-width: 480px) {
 
@@ -585,6 +703,22 @@ h1, h2, h3 {
     background: var(--verde-gris);
 }
 
+/* ===================================== */
+/* UBICACIÓN — CENTRAR SOLO EL TEXTO     */
+/* ===================================== */
+
+#ubicacion .arco-title,
+#ubicacion .ubicacion-fecha,
+#ubicacion .ubicacion-subtitle,
+#ubicacion .ubicacion-lugar,
+#ubicacion .ubicacion-direccion,
+#ubicacion .btn-ubicacion {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 /* ================================== */
 /* 📱 RESPONSIVE – TABLET (<= 768px)
 /* ================================== */
@@ -666,7 +800,7 @@ h1, h2, h3 {
     position: relative;
     margin: 0 auto;
     width: 100%;
-    max-width: 340px; /* más estrecho */
+    max-width: 420px; /* más estrecho */
     padding-top: 20px;
 }
 
@@ -718,7 +852,7 @@ h1, h2, h3 {
 
 /* Íconos tamaño referencia */
 .timeline-programa .icon {
-    width: 55px;
+    width: 100px;
     height: auto;
     opacity: 0.9;
     margin-bottom: 8px;
@@ -728,19 +862,26 @@ h1, h2, h3 {
 /* DISTRIBUCIÓN IZQUIERDA / DERECHA */
 /* ========================================= */
 
+/* Íconos tamaño */
+.timeline-programa .icon {
+    width: 70px;        /* antes 100px  🔥 mucho más equilibrado */
+    height: auto;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+/* Lado izquierdo */
 .timeline-programa .item.left {
     text-align: right;
-    padding-right: 60px;      /* más cerca del centro */
+    padding-right: 40px;     /* antes 60px */
 }
 
+/* Lado derecho */
 .timeline-programa .item.right {
     text-align: left;
-    padding-left: 60px;       /* más cerca del centro */
+    padding-left: 40px;      /* antes 60px */
 }
 
-.timeline-programa .item.left .icon {
-    margin-left: auto;
-}
 
 .timeline-programa .item.right .icon {
     margin-right: auto;
@@ -919,6 +1060,16 @@ h1, h2, h3 {
         margin-bottom: 8px;
     }
 
+}
+
+/* CENTRAR SOLO EL CONTENIDO DE LA SECCIÓN DE VESTIMENTA */
+#vestimenta .vestimenta-formal,
+#vestimenta .vestimenta-text,
+#vestimenta .v-label,
+#vestimenta .v-content {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* ============================ */

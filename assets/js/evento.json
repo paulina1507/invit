@@ -1,23 +1,34 @@
 {
-  "novia": "Lilian",
-  "novio": "Edris",
+  "novia": "Elena",
+  "novio": "Julian",
 
   "fecha_boda": "2026-12-20T13:30:00",
 
   "presentacion": {
-    "texto_bienvenida": "Iniciaremos nuestra historia en matrimonio y tenemos el honor de invitarte a ser parte de este gran día.",
+    "titulo": "Tenemos el honor de invitarte a nuestra boda",
+
+    "nombres": "ELENA & JULIAN",
+
+    "frase": "Con la bendición de Dios y en compañía de:",
 
     "padres": {
-      "novia": [
-        "ANA LILIA ALDAS MADRIGAL",
-        "FRANCISCO ISLAS OJOS"
-      ],
-      "novio": [
-        "KARLA ANDREE CHÁVEZ",
-        "GILBERTO VENTURA VALENCIA"
-      ]
-    }
-  },
+        "novia": [
+            "SARA ORTIZ HUERTA",
+            "EMILIO HERNÁNDEZ FUENTES"
+        ],
+        "novio": [
+            "BLANCA MÉNDEZ CARRASCO",
+            "GERARDO ANDRADE GARCÍA"
+        ]
+    },
+
+    "padrinos": [
+        "AURELIA RIVERA NIETO",
+        "BERNARDO ORTEGA ORTIZ"
+    ],
+
+    "texto_final": "Iniciaremos nuestra historia en matrimonio y tenemos el honor de invitarte a ser parte de este gran día."
+},
 
   "ubicacion": {
     "dia_semana": "SÁBADO",

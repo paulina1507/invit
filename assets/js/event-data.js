@@ -14,28 +14,37 @@ fetch("./assets/js/evento.json")
       heroNames.textContent = `${data.novia} y ${data.novio}`;
 
 
-    /* ============================================================
-       2) PRESENTACIÓN — TEXTO Y PADRES
-    ============================================================= */
-    const presentacionText = document.querySelector(".arco-bottom");
-    if (presentacionText)
-      presentacionText.textContent = data.presentacion.texto_bienvenida;
+/* ============================================================
+   PRESENTACIÓN — RELLENO DESDE JSON
+============================================================ */
 
-    const padresBlocks = document.querySelectorAll(".arco-padres p");
-    if (padresBlocks.length === 2) {
+// Título principal
+document.querySelector(".arco-title").textContent =
+  data.presentacion.titulo;
 
-      padresBlocks[0].innerHTML = `
-        ${data.presentacion.padres.novia[0]}<br>
-        ${data.presentacion.padres.novia[1]}<br>
-        <small>Padres de la novia</small>
-      `;
+// Nombres de los novios
+document.querySelector(".arco-nombres").textContent =
+  data.presentacion.nombres;
 
-      padresBlocks[1].innerHTML = `
-        ${data.presentacion.padres.novio[0]}<br>
-        ${data.presentacion.padres.novio[1]}<br>
-        <small>Padres del novio</small>
-      `;
-    }
+// Frase secundaria
+document.querySelector(".arco-frase").textContent =
+  data.presentacion.frase;
+
+// Padres de la novia
+document.querySelector(".padres-novia").innerHTML =
+  `${data.presentacion.padres.novia[0]}<br>${data.presentacion.padres.novia[1]}`;
+
+// Padres del novio
+document.querySelector(".padres-novio").innerHTML =
+  `${data.presentacion.padres.novio[0]}<br>${data.presentacion.padres.novio[1]}`;
+
+// Padrinos
+document.querySelector(".padrinos").innerHTML = 
+  data.presentacion.padrinos.join("<br>");
+
+// Texto final
+document.querySelector(".arco-bottom").textContent =
+  data.presentacion.texto_final;
 
 
     /* ============================================================
