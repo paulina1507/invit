@@ -15,22 +15,39 @@
 
 <!-- AUDIO -->
 <audio id="bgSong" preload="auto" loop>
-    <source src="assets/audio/tu-cancion.mp3" type="audio/mp3">
+    <source src="assets/audio/cancion.mp3" type="audio/mp3">
 </audio>
-
-<!-- SOBRE DE ENTRADA -->
-<div id="EnvelopeIntro" class="premium-envelope-overlay">
-    <div class="premium-envelope">
-        <div class="pe-fold fold-top"></div>
-        <div class="pe-fold fold-bottom"></div>
-        <div class="pe-fold fold-left"></div>
-        <div class="pe-fold fold-right"></div>
-
-        <div id="sealButton" class="pe-seal">
-            <img src="assets/img/sello.svg" alt="Sello">
-        </div>
-    </div>
+<!-- BOTÓN FIJO DE PLAY/PAUSE -->
+<div id="musicToggle" class="music-btn">
+    <img id="musicIcon" src="assets/img/play.svg" alt="play">
 </div>
+
+<div id="envelopeOverlay" class="envelope-overlay">
+
+    <div class="envelope">
+        
+        <!-- Solapa izquierda -->
+        <div class="fold fold-left"></div>
+
+        <!-- Solapa derecha (encima de la izquierda) -->
+        <div class="fold fold-right"></div>
+
+        <!-- Solapa superior -->
+        <div class="fold fold-top"></div>
+
+        <!-- Solapa inferior -->
+        <div class="fold fold-bottom"></div>
+
+        <!-- Sello -->
+        <div id="sealButton" class="seal">
+            <img src="assets/img/sello.svg" alt="Abrir">
+        </div>
+
+    </div>
+
+</div>
+
+
 
 <!-- ========================= -->
 <!-- NAVBAR -->
@@ -48,7 +65,6 @@
             <li><a href="#regalos">Regalos</a></li>
             <li><a href="#vestimenta">Vestimenta</a></li>
             <li><a href="#galeria">Galería</a></li>
-            <li><a href="#final">Final</a></li>
         </ul>
     </div>
 </nav>
