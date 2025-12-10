@@ -17,41 +17,30 @@
 <audio id="bgSong" preload="auto" loop>
     <source src="assets/audio/cancion.mp3" type="audio/mp3">
 </audio>
-<!-- BOTÓN FIJO DE PLAY/PAUSE -->
+
+<!-- BOTÓN DE MÚSICA -->
 <div id="musicToggle" class="music-btn">
     <img id="musicIcon" src="assets/img/play.svg" alt="play">
 </div>
 
+<!-- SOBRE -->
 <div id="envelopeOverlay" class="envelope-overlay">
 
     <div class="envelope">
-        
-        <!-- Solapa izquierda -->
         <div class="fold fold-left"></div>
-
-        <!-- Solapa derecha (encima de la izquierda) -->
         <div class="fold fold-right"></div>
-
-        <!-- Solapa superior -->
         <div class="fold fold-top"></div>
-
-        <!-- Solapa inferior -->
         <div class="fold fold-bottom"></div>
 
-        <!-- Sello -->
         <div id="sealButton" class="seal">
             <img src="assets/img/sello.svg" alt="Abrir">
         </div>
-
     </div>
 
 </div>
 
 
-
-<!-- ========================= -->
 <!-- NAVBAR -->
-<!-- ========================= -->
 <nav class="navbar">
     <div class="nav-inner">
         <div class="logo">Nuestra Boda</div>
@@ -69,9 +58,8 @@
     </div>
 </nav>
 
-<!-- ========================= -->
-<!-- HERO (FULL IMG SIN ARCO) -->
-<!-- ========================= -->
+
+<!-- HERO -->
 <section class="hero-section" id="inicio">
     <div class="hero-bg"></div>
 
@@ -88,39 +76,40 @@
     </div>
 </section>
 
-<!-- ========================= -->
+
+<!-- ========================================================= -->
 <!-- PRESENTACIÓN -->
-<!-- ========================= -->
+<!-- ========================================================= -->
 <section id="presentacion" class="section-arco">
 
+    <!-- EXTERNAS -->
     <img src="./assets/img/flores-superior.svg" class="flor-top">
     <img src="./assets/img/acuarela-verde.svg" class="acuarela-left">
     <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
 
     <div class="arco-base">
 
-        <!-- ENCABEZADO -->
-        <h2 class="arco-title">Tenemos el honor de invitarte a nuestra boda</h2>
+        <!-- INTERNAS (4) -->
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-right">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-right">
 
-        <!-- NOMBRES -->
+        <h2 class="arco-title">Tenemos el honor de invitarte a nuestra boda</h2>
         <h3 class="arco-nombres"></h3>
 
-        <!-- FRASE -->
         <p class="arco-frase">Con la bendición de Dios y en compañía de:</p>
 
-        <!-- PADRES DE LA NOVIA -->
         <div class="arco-grupo">
             <h4 class="arco-grupo-titulo">Padres de la novia:</h4>
             <p class="padres-novia arco-grupo-lista"></p>
         </div>
 
-        <!-- PADRES DEL NOVIO -->
         <div class="arco-grupo">
             <h4 class="arco-grupo-titulo">Padres del novio:</h4>
             <p class="padres-novio arco-grupo-lista"></p>
         </div>
 
-        <!-- PADRINOS -->
         <div class="arco-grupo">
             <h4 class="arco-grupo-titulo">Nuestros padrinos de velación:</h4>
             <p class="padrinos arco-grupo-lista"></p>
@@ -135,36 +124,44 @@
 </section>
 
 
-
-<!-- ========================= -->
+<!-- ========================================================= -->
 <!-- UBICACIÓN -->
-<!-- ========================= -->
+<!-- ========================================================= -->
 <section id="ubicacion" class="section-arco">
+
     <img src="./assets/img/flores-superior.svg" class="flor-top">
     <img src="./assets/img/acuarela-verde.svg" class="acuarela-left">
     <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
+
     <div class="arco-base">
+
+        <!-- INTERNAS -->
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-right">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-right">
+
         <h2 class="arco-title">Ubicación</h2>
+
         <div class="ubicacion-fecha">
-        <div class="uf-dia-num"></div>
-        <div class="uf-mes"></div>
-        <div class="uf-line"></div>
-        <div class="uf-hora"></div>
-    </div>
+            <div class="uf-dia-num"></div>
+            <div class="uf-mes"></div>
+            <div class="uf-line"></div>
+            <div class="uf-hora"></div>
+        </div>
 
-    <h3 class="ubicacion-subtitle">CEREMONIA Y RECEPCIÓN</h3>
-    <h4 class="ubicacion-lugar"></h4>
-    <p class="ubicacion-direccion"></p>
+        <h3 class="ubicacion-subtitle">CEREMONIA Y RECEPCIÓN</h3>
+        <h4 class="ubicacion-lugar"></h4>
+        <p class="ubicacion-direccion"></p>
 
-    <a href="https://maps.google.com" target="_blank" class="btn-ubicacion">VER MAPA</a>
-
-
+        <a href="https://maps.google.com" target="_blank" class="btn-ubicacion">VER MAPA</a>
     </div>
 </section>
 
-<!-- ========================= -->
+
+<!-- ========================================================= -->
 <!-- PROGRAMA -->
-<!-- ========================= -->
+<!-- ========================================================= -->
 <section id="programa" class="section-arco">
 
     <img src="./assets/img/flores-superior.svg" class="flor-top">
@@ -173,16 +170,21 @@
 
     <div class="arco-base">
 
+        <!-- INTERNAS -->
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-right">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-right">
+
         <h2 class="arco-title">Programa</h2>
-
         <div class="timeline-programa"></div>
-
     </div>
 </section>
 
-<!-- ========================= -->
+
+<!-- ========================================================= -->
 <!-- VESTIMENTA -->
-<!-- ========================= -->
+<!-- ========================================================= -->
 <section id="vestimenta" class="section-arco">
 
     <img src="./assets/img/flores-superior.svg" class="flor-top">
@@ -190,6 +192,12 @@
     <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
 
     <div class="arco-base">
+
+        <!-- INTERNAS -->
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-right">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-right">
 
         <h2 class="arco-title">Código de Vestimenta</h2>
 
@@ -209,9 +217,10 @@
     </div>
 </section>
 
-<!-- ========================= -->
+
+<!-- ========================================================= -->
 <!-- REGALOS -->
-<!-- ========================= -->
+<!-- ========================================================= -->
 <section id="regalos" class="section-arco">
 
     <img src="./assets/img/flores-superior.svg" class="flor-top">
@@ -219,6 +228,12 @@
     <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
 
     <div class="arco-base regalos-container">
+
+        <!-- INTERNAS -->
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-right">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-right">
 
         <h2 class="arco-title">Sugerencia de Regalos</h2>
 
@@ -237,14 +252,14 @@
             <img src="./assets/img/11.svg" class="regalo-icon" alt="Regalo sorpresa">
             <p class="regalo-label">REGALO SORPRESA</p>
         </div>
-
     </div>
 </section>
 
 
-<!-- ========================= -->
+
+<!-- ========================================================= -->
 <!-- GALERÍA -->
-<!-- ========================= -->
+<!-- ========================================================= -->
 <section id="galeria" class="section-arco">
 
     <img src="./assets/img/flores-superior.svg" class="flor-top">
@@ -252,6 +267,12 @@
     <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
 
     <div class="arco-base">
+
+        <!-- INTERNAS -->
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-top-right">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-left">
+        <img src="./assets/img/acuarela-verde.svg" class="acuarela-mid-bottom-right">
 
         <h2 class="arco-title">Galería</h2>
 
@@ -261,12 +282,16 @@
             <button class="carousel-btn left">&#10094;</button>
             <button class="carousel-btn right">&#10095;</button>
         </div>
+
     </div>
 </section>
+
+
 <!-- FOOTER -->
 <footer class="footer">
     <small>Diseñado con amor por Shiny Maker Events</small>
 </footer>
+
 
 <!-- SCRIPTS -->
 <script src="./assets/js/countdown.js"></script>

@@ -15,9 +15,6 @@
     --texto-primario: #1F1F1F;  /* Negro suave */
 }
 
-/* ------------------------------ */
-/* BASE */
-/* ------------------------------ */
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -77,7 +74,6 @@ h1, h2, h3 {
     cursor: pointer;
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
     .nav-toggle {
         display: block;
@@ -89,7 +85,7 @@ h1, h2, h3 {
         right: 0;
         width: 100%;
         flex-direction: column;
-        background: var(--verde-olivo);
+        background: var(--oliva);
         padding: 20px 0;
         gap: 15px;
         display: none;
@@ -120,7 +116,6 @@ h1, h2, h3 {
     box-shadow: 0 18px 38px rgba(0,0,0,0.18);
 }
 
-/* Textura papel */
 .arco-base::before {
     content: "";
     position: absolute;
@@ -131,7 +126,6 @@ h1, h2, h3 {
     border-radius: inherit;
 }
 
-/* Sección arco contenedor */
 .section-arco {
     position: relative;
     padding: 120px 0;
@@ -143,7 +137,7 @@ h1, h2, h3 {
 }
 
 .section-arco .arco-base {
-    margin-top: 80px; /* deja espacio para la flor */
+    margin-top: 80px; 
 }
 
 .arco-title {
@@ -153,32 +147,164 @@ h1, h2, h3 {
     text-align: center;
     margin-bottom: 35px;
     line-height: 1.2;
-    font-weight: normal; /* Great Vibes no usa weights altos */
+    font-weight: normal; 
 }
 
 /* ========================================================= */
-/* 🌿 FLOR SUPERIOR — ARRIBA IZQUIERDA */
+/* 🌿 FLOR SUPERIOR 
 /* ========================================================= */
 
 .section-arco .flor-top {
     position: absolute;
-    width: clamp(150px, 28vw, 290px);   /* responsivo */
-    top: clamp(60px, 12vw, 190px);      /* 🔥 ahora SÍ baja más */
+    width: clamp(150px, 28vw, 290px);   
+    top: clamp(60px, 12vw, 190px);     
     left: 50%;
-    transform: translateX(-110%);        /* más a la izquierda */
+    transform: translateX(-110%);        
     z-index: 5;
     pointer-events: none;
 }
 
 /* ========================================================= */
-/* 🎨 ACUARELAS GRANDES Y CENTRADAS */
+/*      ACUARELAS INTERNAS (DENTRO DEL ARCO)                */
+/* ========================================================= */
+
+.arco-base {
+    position: relative;
+    overflow: hidden;        /* Corta todo lo que se salga del arco */
+}
+
+/* Estilo general */
+.acuarela-mid-top-left,
+.acuarela-mid-top-right,
+.acuarela-mid-bottom-left,
+.acuarela-mid-bottom-right {
+    position: absolute;
+    width: 70%;              /* Tamaño ideal */
+    opacity: 0.22;           /* Suave y elegante */
+    filter: blur(2px);       /* Mezcla orgánica */
+    pointer-events: none;
+    z-index: 0;              /* Detrás del contenido */
+}
+
+/* ========================== */
+/*        ARRIBA (2)          */
+/* ========================== */
+
+/* Arriba izquierda */
+.acuarela-mid-top-left {
+    top: -12%;
+    left: -8%;
+    transform: rotate(-10deg);
+}
+
+/* Arriba derecha */
+.acuarela-mid-top-right {
+    top: -12%;
+    right: -8%;
+    transform: rotate(10deg);
+}
+
+/* ========================== */
+/*        ABAJO (2)           */
+/* ========================== */
+
+/* Abajo izquierda */
+.acuarela-mid-bottom-left {
+    bottom: -15%;
+    left: -6%;
+    transform: rotate(8deg);
+}
+
+/* Abajo derecha */
+.acuarela-mid-bottom-right {
+    bottom: -15%;
+    right: -6%;
+    transform: rotate(-8deg);
+}
+
+
+
+/* ========================================================= */
+/* 📱 RESPONSIVE – TABLET (<= 768px)                         */
+/* ========================================================= */
+@media (max-width: 768px) {
+
+    .acuarela-mid-top-left,
+    .acuarela-mid-top-right,
+    .acuarela-mid-bottom-left,
+    .acuarela-mid-bottom-right {
+        width: 200px;
+        opacity: 0.20;
+        filter: blur(2px);
+    }
+
+    .acuarela-mid-top-left {
+        top: -20px;
+        left: -40px;
+    }
+
+    .acuarela-mid-top-right {
+        top: -20px;
+        right: -40px;
+    }
+
+    .acuarela-mid-bottom-left {
+        bottom: -20px;
+        left: -40px;
+    }
+
+    .acuarela-mid-bottom-right {
+        bottom: -20px;
+        right: -40px;
+    }
+}
+
+
+/* ========================================================= */
+/* 📱 RESPONSIVE – MÓVIL (<= 480px)                           */
+/* ========================================================= */
+@media (max-width: 480px) {
+
+    .acuarela-mid-top-left,
+    .acuarela-mid-top-right,
+    .acuarela-mid-bottom-left,
+    .acuarela-mid-bottom-right {
+        width: 150px;
+        opacity: 0.16;
+        filter: blur(1.8px);
+    }
+
+    .acuarela-mid-top-left {
+        top: -10px;
+        left: -25px;
+    }
+
+    .acuarela-mid-top-right {
+        top: -10px;
+        right: -25px;
+    }
+
+    .acuarela-mid-bottom-left {
+        bottom: -10px;
+        left: -25px;
+    }
+
+    .acuarela-mid-bottom-right {
+        bottom: -10px;
+        right: -25px;
+    }
+}
+
+
+/* ========================================================= */
+/* ACUARELAS 
 /* ========================================================= */
 
 .section-arco .acuarela-left,
 .section-arco .acuarela-right {
     position: absolute;
-    width: 360px;       /* MÁS grandes */
-    top: 220px;         /* MÁS centradas verticalmente */
+    width: 360px;       
+    top: 220px;         
     opacity: .40;
     z-index: 1;
     pointer-events: none;
@@ -197,13 +323,13 @@ h1, h2, h3 {
 }
 
 /* ========================================================= */
-/* 📌 RESPONSIVE — TABLET 768px */
+/* RESPONSIVE — TABLET 768px 
 /* ========================================================= */
 
 @media (max-width: 768px) {
 
     .section-arco {
-        padding-top: 160px; /* baja el arco para que la flor quede pegada */
+        padding-top: 160px; 
     }
 
     .arco-base {
@@ -213,7 +339,6 @@ h1, h2, h3 {
         border-radius: 230px 230px 0 0;
     }
 
-    /* Flor tablet */
     .section-arco .flor-top {
         width: clamp(100px, 42vw, 220px);
         top: 200px;
@@ -221,7 +346,6 @@ h1, h2, h3 {
         transform: translateX(-145%);
     }
 
-    /* Acuarelas tablet */
     .section-arco .acuarela-left,
     .section-arco .acuarela-right {
         width: 280px;
@@ -242,13 +366,13 @@ h1, h2, h3 {
 }
 
 /* ========================================================= */
-/* 📱 CELULAR NORMAL 480px */
+/* CELULAR NORMAL 480px */
 /* ========================================================= */
 
 @media (max-width: 480px) {
 
     .section-arco {
-        padding-top: 180px; /* más espacio para flor + arco */
+        padding-top: 180px; 
     }
 
     .arco-base {
@@ -259,11 +383,8 @@ h1, h2, h3 {
     }
 
     .section-arco .flor-top {
-        width: clamp(120px, 42vw, 170px);   /* tamaño adecuado */
-        top: 110px;                         /* 🔥 la bajamos bastante */
-        left: 52%;                           /* un poquito más al centro */
-        transform: translateX(-115%);        /* pero sigue hacia la izquierda */
-        z-index: 5;
+        width: clamp(110px, 42vw, 170px);
+        top: 80px;
     }
 
     .section-arco .acuarela-left,
@@ -287,13 +408,13 @@ h1, h2, h3 {
 }
 
 /* ========================================================= */
-/* 🍏 iPhone pequeño 390px */
+/* iPhone pequeño 390px */
 /* ========================================================= */
 
 @media (max-width: 390px) {
 
     .section-arco {
-        padding-top: 215px; /* 🔥 suficiente espacio por el menú móvil */
+        padding-top: 215px; 
     }
 
     .arco-base {
@@ -304,10 +425,10 @@ h1, h2, h3 {
     }
 
     .section-arco .flor-top {
-        width: clamp(120px, 42vw, 160px);  /* tamaño equilibrado */
-        top: 270px;                        /* 🔥 más abajo para que no choque */
-        left: 51%;                         /* centrado perfecto */
-        transform: translateX(-120%);      /* sesgo exacto tipo boho */
+        width: clamp(120px, 42vw, 160px);  
+        top: 270px;                        
+        left: 51%;                         
+        transform: translateX(-120%);      
         z-index: 5;
         pointer-events: none;
     }
@@ -336,7 +457,7 @@ h1, h2, h3 {
     .arco-bottom { font-size: 13px; }
 }
 
-/* 📱 iPhone 12/13/14 – 390px a 430px */
+/* iPhone 12/13/14 – 390px a 430px */
 @media (min-width: 391px) and (max-width: 480px) {
 
     .section-arco {
@@ -373,7 +494,7 @@ h1, h2, h3 {
 }
 
 /* ===================================== */
-/*  PRESENTACIÓN — ESTILOS DEL TEXTO     */
+/*  PRESENTACIÓN   */
 /* ===================================== */
 
 .presentacion-title {
@@ -402,7 +523,6 @@ h1, h2, h3 {
     margin-bottom: 25px;
 }
 
-/* Bloque categoría (Padres, Padrinos, etc.) */
 .presentacion-grupo {
     text-align: center;
     margin-bottom: 28px;
@@ -431,10 +551,6 @@ h1, h2, h3 {
     margin-top: 15px;
 }
 
-/* =============================== */
-/*  CENTRAR SOLO EL CONTENIDO DE TEXTO */
-/* =============================== */
-
 .arco-title,
 .arco-nombres,
 .arco-frase,
@@ -447,9 +563,6 @@ h1, h2, h3 {
     margin-right: auto;
     width: 100%;
 }
-
-
-/* ========== RESPONSIVE ========== */
 
 @media (max-width: 480px) {
 
@@ -474,56 +587,46 @@ h1, h2, h3 {
     }
 }
 
-
-/* ========================= */
-/* HERO FULL SCREEN COVER    */
-/* ========================= */
-
 .hero-section {
     position: relative;
     width: 100%;
-    height: 100vh; /* ocupa toda la pantalla */
+    height: 100vh;
     overflow: hidden;
-
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-
-    padding-top: 120px; /* espacio por el navbar fijo */
+    justify-content: flex-start; 
+    padding-top: clamp(280px, 45vh, 520px);
     text-align: center;
 }
 
-/* Imagen de fondo */
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: url("../img/novios.png") center/cover no-repeat;
+    background-image: url("../img/novios.png");
+    background-size: cover;      
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: -1;
-    filter: brightness(0.88); /* ligero oscurecimiento para resaltar texto */
+    filter: brightness(0.88);
 }
 
-/* ========================= */
-/* NOMBRES                    */
-/* ========================= */
 .hero-names {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(42px, 8vw, 100px); 
-    /* min:42px, ideal:8vw, max:100px */
+    font-size: clamp(42px, 8vw, 100px);
     color: #ffffff;
     margin: 0;
+    margin-top: 250px;
     text-shadow: 0 4px 18px rgba(0,0,0,0.45);
 }
 
-/* ========================= */
-/* CONTADOR                  */
-/* ========================= */
 .hero-count {
-    margin-top: 20px;
+    margin-top: 35px;
     display: flex;
     gap: clamp(10px, 3vw, 30px);
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    margin-top: 25px; 
 }
 
 .hero-count div {
@@ -545,7 +648,6 @@ h1, h2, h3 {
     text-shadow: 0 2px 8px rgba(0,0,0,0.35);
 }
 
-/* Separador “:” */
 .hero-count .sep {
     font-size: clamp(24px, 5vw, 38px);
     font-weight: 600;
@@ -553,41 +655,42 @@ h1, h2, h3 {
     text-shadow: 0 2px 8px rgba(0,0,0,0.35);
 }
 
-/* ========================= */
-/* RESPONSIVE AJUSTES EXTRA  */
-/* ========================= */
+/* 🔥 ARREGLA ESPACIO EN MÓVIL */
 @media (max-width: 768px) {
     .hero-section {
-        padding-top: 100px;
+        padding-top: 110px !important;   /* antes 160/280px */
+        height: 90vh;                    /* evita hueco extra */
+    }
+
+    .hero-names {
+        transform: translateY(40px) !important;  /* mucho más natural */
     }
 
     .hero-count {
-        gap: 18px;
+        transform: translateY(60px) !important;
     }
 }
 
+/* 🔥 PARA MÓVILES MUY PEQUEÑOS */
 @media (max-width: 480px) {
     .hero-section {
-        padding-top: 95px;
+        padding-top: 95px !important;
+    }
+
+    .hero-names {
+        transform: translateY(20px) !important;
     }
 
     .hero-count {
-        gap: 12px;
+        transform: translateY(40px) !important;
     }
 }
 
-/* Para pantallas muy grandes */
-@media (min-width: 1400px) {
-    .hero-section {
-        padding-top: 140px;
-    }
-}
 
 /* ===================================== */
 /*  PRESENTACION
 /* ===================================== */
 
-/* Columnas padres */
 .arco-padres {
     display: flex;
     justify-content: space-between;
@@ -608,7 +711,6 @@ h1, h2, h3 {
     color: #6a6a64;
 }
 
-/* Imagen central */
 .arco-img {
     text-align: center;
     margin: 25px 0;
@@ -619,7 +721,6 @@ h1, h2, h3 {
     opacity: 0.95;
 }
 
-/* Texto final */
 .arco-bottom {
     text-align: center;
     color: #4f4e48;
@@ -627,9 +728,6 @@ h1, h2, h3 {
     line-height: 1.5;
 }
 
-
-
-/* RESPONSIVE */
 @media (max-width: 480px) {
 
     .arco-padres {
@@ -639,7 +737,7 @@ h1, h2, h3 {
 }
 
 /* ================================== */
-/* UBICACIÓN (BOHO PREMIUM)
+/* UBICACIÓN 
 /* ================================== */
 
 .ubicacion-fecha {
