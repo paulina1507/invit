@@ -1,8 +1,33 @@
 {
+
+  "logo": "Nuestra Boda",
+
+  "audio": "cancion.mp3",
+
+  "footer_text": "Diseñado con amor por Shiny Maker Events",
+
+  "navbar_style": "claro",
+
+  "nav_items": [
+    { "label": "Inicio", "href": "#inicio" },
+    { "label": "Presentación", "href": "#presentacion" },
+    { "label": "Lugar", "href": "#ubicacion" },
+    { "label": "Programa", "href": "#programa" },
+    { "label": "Regalos", "href": "#regalos" },
+    { "label": "Vestimenta", "href": "#vestimenta" },
+    { "label": "Galería", "href": "#galeria" }
+  ],
+
+
+  "hero_imagen": "novios.png",
+
   "novia": "Elena",
   "novio": "Julian",
 
   "fecha_boda": "2026-12-20T13:30:00",
+
+
+  "presentacion_imagen": "novios.svg",
 
   "presentacion": {
     "titulo": "Tenemos el honor de invitarte a nuestra boda",
@@ -12,39 +37,55 @@
     "frase": "Con la bendición de Dios y en compañía de:",
 
     "padres": {
-        "novia": [
-            "SARA ORTIZ HUERTA",
-            "EMILIO HERNÁNDEZ FUENTES"
-        ],
-        "novio": [
-            "BLANCA MÉNDEZ CARRASCO",
-            "GERARDO ANDRADE GARCÍA"
-        ]
+      "novia": [
+        "SARA ORTIZ HUERTA",
+        "EMILIO HERNÁNDEZ FUENTES"
+      ],
+      "novio": [
+        "BLANCA MÉNDEZ CARRASCO",
+        "GERARDO ANDRADE GARCÍA"
+      ]
     },
 
     "padrinos": [
-        "AURELIA RIVERA NIETO",
-        "BERNARDO ORTEGA ORTIZ"
+      "AURELIA RIVERA NIETO",
+      "BERNARDO ORTEGA ORTIZ"
     ],
 
     "texto_final": "Iniciaremos nuestra historia en matrimonio y tenemos el honor de invitarte a ser parte de este gran día."
-},
+  },
 
   "ubicacion": {
-    "dia_semana": "SÁBADO",
-    "dia": "4",
-    "mes": "MAY",
-    "anio": "2024",
-    "hora": "17:30 HRS",
+  "titulo": "Ubicación",
+  "fecha_boda": "2026-12-20",
 
-    "lugar": "FINCA LA CONCORDIA",
+  "lugares": [
+    {
+      "tipo": "Ceremonia Religiosa",
+      "hora": "17:30 HRS",
+      "lugar": "Parroquia San José",
+      "direccion": [
+        "Av. Principal 123",
+        "Centro Histórico",
+        "C.P. 62000"
+      ],
+      "mapa": "https://maps.google.com"
+    },
+    {
+      "tipo": "Recepción",
+      "hora": "20:00 HRS",
+      "lugar": "Finca La Concordia",
+      "direccion": [
+        "Avenida Paseo de las Fuentes 46",
+        "Col. San Gaspar, Jiutepec Morelos",
+        "C.P. 62534"
+      ],
+      "mapa": "https://maps.google.com"
+    }
+  ]
+},
 
-    "direccion": [
-      "Avenida Paseo de las Fuentes 46",
-      "Col. San Gaspar, Jiutepec Morelos",
-      "C.P. 62534"
-    ]
-  },
+  "programa_titulo": "Programa del Evento",
 
   "programa": [
     {
@@ -74,11 +115,22 @@
   ],
 
   "vestimenta": {
-    "formal": "FORMAL",
+    "titulo": "Código de Vestimenta",
+
     "icono": "9.svg",
+
+    "formal": "FORMAL",
+
+    "label_mujeres": "Mujeres",
     "mujeres": "Colores prohibidos:<br>blanco, beige, café y negro.",
+
+    "label_hombres": "Hombres",
     "hombres": "Colores prohibidos:<br>beige y azul cielo."
   },
+
+  "regalos_titulo": "Sugerencia de Regalos",
+
+  "regalos_descripcion": "Lo más importante para nosotros es compartir este día contigo.<br>Si deseas hacernos un obsequio, habrá una mesa de regalos en la fiesta.",
 
   "regalos": [
     {
@@ -90,14 +142,14 @@
       "label": "Regalo Sorpresa"
     }
   ],
-  
-  "galeria": [
-  "gallery1.png",
-  "gallery2.png",
-  "gallery3.png",
-  "gallery4.png",
-  "gallery5.png"
-]
 
-  
+  "galeria_titulo": "Galería",
+
+  "galeria": [
+    "gallery1.png",
+    "gallery2.png",
+    "gallery3.png",
+    "gallery4.png",
+    "gallery5.png"
+  ]
 }

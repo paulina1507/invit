@@ -7,156 +7,211 @@ fetch("./assets/js/evento.json")
   .then(data => {
 
     /* ============================================================
-       1) HERO — NOMBRES
+       0) LOGO, NAVBAR, FOOTER, AUDIO
     ============================================================= */
-    const heroNames = document.querySelector(".hero-names");
-    if (heroNames)
-      heroNames.textContent = `${data.novia} y ${data.novio}`;
+
+    // logo
+    const logo = document.querySelector(".logo");
+    if (logo) logo.textContent = data.logo;
+
+    // navbar dinámico
+    const navMenu = document.getElementById("navMenu");
+    if (navMenu) {
+        navMenu.innerHTML = "";
+        data.nav_items.forEach(item => {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${item.href}">${item.label}</a>`;
+            navMenu.appendChild(li);
+        });
+    }
+
+    // footer
+    const footer = document.getElementById("footer-text");
+    if (footer) footer.innerHTML = data.footer_text;
+
+    // audio dinámico
+    const audio = document.querySelector("#bgSong source");
+    if (audio) audio.src = `./assets/audio/${data.audio}`;
 
 
+    /* ============================================================
+       1) HERO — NOMBRES + Imagen de Hero
+    ============================================================= */
+
+    const heroNames = document.getElementById("hero-names");
+    if (heroNames) heroNames.textContent = `${data.novia} & ${data.novio}`;
+
+    // imagen dinámica del hero
+    const heroBg = document.querySelector(".hero-bg");
+    if (heroBg) {
+        heroBg.style.backgroundImage = `url('./assets/img/${data.hero_imagen}')`;
+    }
+
+
+    /* ============================================================
+       2) PRESENTACIÓN
+    ============================================================= */
+
+    document.getElementById("titulo-presentacion").textContent = data.presentacion.titulo;
+    document.getElementById("nombres-presentacion").textContent = data.presentacion.nombres;
+    document.getElementById("frase-presentacion").textContent = data.presentacion.frase;
+
+    document.getElementById("padres-novia").innerHTML = data.presentacion.padres.novia.join("<br>");
+    document.getElementById("padres-novio").innerHTML = data.presentacion.padres.novio.join("<br>");
+    document.getElementById("padrinos").innerHTML = data.presentacion.padrinos.join("<br>");
+
+    document.getElementById("texto-final-presentacion").textContent = data.presentacion.texto_final;
+
+    // imagen de presentación
+    const imgPresentacion = document.querySelector(".arco-img img");
+    if (imgPresentacion) {
+        imgPresentacion.src = `./assets/img/${data.presentacion_imagen}`;
+    }
+
+
+    /* ============================================================
+       3) UBICACIÓN — MULTI LUGARES
+    ============================================================= */
 /* ============================================================
-   PRESENTACIÓN — RELLENO DESDE JSON
+   3) UBICACIÓN — MULTI LUGARES
 ============================================================ */
+function renderUbicacion() {
 
-// Título principal
-document.querySelector(".arco-title").textContent =
-  data.presentacion.titulo;
+    const ub = data.ubicacion;
 
-// Nombres de los novios
-document.querySelector(".arco-nombres").textContent =
-  data.presentacion.nombres;
+    document.getElementById("ubicacion-titulo").textContent = ub.titulo;
 
-// Frase secundaria
-document.querySelector(".arco-frase").textContent =
-  data.presentacion.frase;
+    const lista = document.getElementById("ubicacion-lista");
+    lista.innerHTML = "";
 
-// Padres de la novia
-document.querySelector(".padres-novia").innerHTML =
-  `${data.presentacion.padres.novia[0]}<br>${data.presentacion.padres.novia[1]}`;
+    /* FECHA OFICIAL EN FORMATO MINIMAL */
+    const fecha = new Date(data.fecha_boda);
 
-// Padres del novio
-document.querySelector(".padres-novio").innerHTML =
-  `${data.presentacion.padres.novio[0]}<br>${data.presentacion.padres.novio[1]}`;
+    const dia = fecha.getDate().toString().padStart(2, "0");
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+    const anio = fecha.getFullYear();
 
-// Padrinos
-document.querySelector(".padrinos").innerHTML = 
-  data.presentacion.padrinos.join("<br>");
+    const fechaGeneral = document.getElementById("ubicacion-fecha-general");
+    fechaGeneral.innerHTML = `
+        <div class="fecha-minimal">${dia} · ${mes} · ${anio}</div>
+    `;
 
-// Texto final
-document.querySelector(".arco-bottom").textContent =
-  data.presentacion.texto_final;
+    /* EVENTOS — SIN FECHA */
+    ub.lugares.forEach(l => {
+        const card = document.createElement("div");
+        card.className = "ubicacion-card";
 
+        card.innerHTML = `
+            <h3 class="ubicacion-subtitle">${l.tipo.toUpperCase()}</h3>
+            <p class="ubicacion-hora">${l.hora}</p>
 
-    /* ============================================================
-       3) UBICACIÓN — NUEVO FORMATO BOHO
-    ============================================================= */
-    const diaNum   = document.querySelector(".uf-dia-num");
-    const mesTxt   = document.querySelector(".uf-mes");
-    const horaTxt  = document.querySelector(".uf-hora");
+            <h4 class="ubicacion-lugar">${l.lugar}</h4>
 
-    const lugar    = document.querySelector(".ubicacion-lugar");
-    const direccion= document.querySelector(".ubicacion-direccion");
+            <p class="ubicacion-direccion">${l.direccion.join("<br>")}</p>
 
-    if (diaNum)   diaNum.textContent = data.ubicacion.dia;
-    if (mesTxt)   mesTxt.textContent = data.ubicacion.mes;
-    if (horaTxt)  horaTxt.textContent = data.ubicacion.hora;
+            <a href="${l.mapa}" target="_blank" class="btn-ubicacion">VER MAPA</a>
+        `;
 
-    if (lugar)    lugar.textContent = data.ubicacion.lugar;
-    if (direccion)
-      direccion.innerHTML = data.ubicacion.direccion.join("<br>");
+        lista.appendChild(card);
+    });
+}
 
+renderUbicacion();
 
     /* ============================================================
-       4) PROGRAMA — TIMELINE
+       4) PROGRAMA — TÍTULO + TIMELINE
     ============================================================= */
-    const timeline = document.querySelector(".timeline-programa");
+
+    // cargar título del programa
+    const programaTitulo = document.getElementById("programa-titulo");
+    if (programaTitulo) programaTitulo.textContent = data.programa_titulo;
+
+    // timeline
+    const timeline = document.getElementById("timeline-programa");
 
     if (timeline) {
-      timeline.innerHTML = "";
+        timeline.innerHTML = "";
 
-      data.programa.forEach(item => {
-        const div = document.createElement("div");
-        div.className = `item ${item.lado}`;
-        div.innerHTML = `
-          <img src="./assets/img/${item.icono}" class="icon">
-          <p class="hora">${item.hora}</p>
-          <p class="texto">${item.texto}</p>
-        `;
-        timeline.appendChild(div);
-      });
+        data.programa.forEach(item => {
+            const div = document.createElement("div");
+            div.className = `item ${item.lado}`;
+            div.innerHTML = `
+                <img src="./assets/img/${item.icono}" class="icon">
+                <p class="hora">${item.hora}</p>
+                <p class="texto">${item.texto}</p>
+            `;
+            timeline.appendChild(div);
+        });
     }
 
 
     /* ============================================================
        5) VESTIMENTA
     ============================================================= */
-    const vestIcon = document.querySelector(".vestimenta-icon");
-    const vestFormal = document.querySelector(".vestimenta-formal");
-    const vestText = document.querySelector(".vestimenta-text");
+    document.getElementById("vestimenta-titulo").textContent = data.vestimenta.titulo;
+    document.getElementById("vestimenta-icon").src = `./assets/img/${data.vestimenta.icono}`;
+    document.getElementById("vestimenta-formal").textContent = data.vestimenta.formal;
 
-    if (vestIcon && vestFormal && vestText) {
-      vestIcon.src = `./assets/img/${data.vestimenta.icono}`;
-      vestFormal.textContent = data.vestimenta.formal;
+    // labels dinámicos
+    const labelM = document.querySelector('.v-label[data-type="mujeres"]');
+    const labelH = document.querySelector('.v-label[data-type="hombres"]');
 
-      const vContents = vestText.querySelectorAll(".v-content");
-      if (vContents.length >= 2) {
-        vContents[0].innerHTML = data.vestimenta.mujeres;
-        vContents[1].innerHTML = data.vestimenta.hombres;
-      }
-    }
+    if (labelM) labelM.textContent = data.vestimenta.label_mujeres;
+    if (labelH) labelH.textContent = data.vestimenta.label_hombres;
+
+    document.getElementById("vestimenta-mujeres").innerHTML = data.vestimenta.mujeres;
+    document.getElementById("vestimenta-hombres").innerHTML = data.vestimenta.hombres;
 
 
     /* ============================================================
        6) REGALOS
     ============================================================= */
-    const regalosContainer = document.querySelector(".regalos-inner");
+    document.getElementById("regalos-titulo").textContent = data.regalos_titulo;
+    document.querySelector(".regalos-desc").innerHTML = data.regalos_descripcion;
 
-    if (regalosContainer) {
-      regalosContainer.querySelectorAll(".regalo-item").forEach(i => i.remove());
+    const regalosContainer = document.getElementById("regalos-inner");
+    regalosContainer.innerHTML = "";
 
-      data.regalos.forEach(r => {
+    data.regalos.forEach(r => {
         const div = document.createElement("div");
         div.className = "regalo-item";
         div.innerHTML = `
-          <img src="./assets/img/${r.icono}" class="regalo-icon" alt="${r.label}">
-          <p class="regalo-label">${r.label}</p>
+            <img src="./assets/img/${r.icono}" class="regalo-icon" alt="${r.label}">
+            <p class="regalo-label">${r.label}</p>
         `;
         regalosContainer.appendChild(div);
-      });
-    }
+    });
 
 
     /* ============================================================
-       7) GALERÍA – CARRUSEL
+       7) GALERÍA
     ============================================================= */
-    const track = document.querySelector(".carousel-track");
-    const leftBtn = document.querySelector(".carousel-btn.left");
-    const rightBtn = document.querySelector(".carousel-btn.right");
+    document.getElementById("galeria-titulo").textContent = data.galeria_titulo;
+    const track = document.getElementById("carousel-track");
 
     if (track) {
+        track.innerHTML = "";
+        data.galeria.forEach(img => {
+            const el = document.createElement("img");
+            el.src = `./assets/img/${img}`;
+            el.classList.add("carousel-img");
+            track.appendChild(el);
+        });
 
-      track.innerHTML = "";
+        let index = 0;
+        const total = data.galeria.length;
 
-      data.galeria.forEach(img => {
-        const el = document.createElement("img");
-        el.src = `./assets/img/${img}`;
-        el.classList.add("carousel-img");
-        track.appendChild(el);
-      });
+        document.getElementById("carousel-right").addEventListener("click", () => {
+            index = (index + 1) % total;
+            track.style.transform = `translateX(-${index * 100}%)`;
+        });
 
-      let index = 0;
-      const total = data.galeria.length;
-
-      rightBtn.onclick = () => {
-        index = (index + 1) % total;
-        track.style.transform = `translateX(-${index * 100}%)`;
-      };
-
-      leftBtn.onclick = () => {
-        index = (index - 1 + total) % total;
-        track.style.transform = `translateX(-${index * 100}%)`;
-      };
+        document.getElementById("carousel-left").addEventListener("click", () => {
+            index = (index - 1 + total) % total;
+            track.style.transform = `translateX(-${index * 100}%)`;
+        });
     }
 
   })
+
   .catch(err => console.error("Error cargando evento.json:", err));
