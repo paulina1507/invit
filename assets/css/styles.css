@@ -26,9 +26,9 @@ body {
     color: var(--negro);
     position: relative;
     min-height: 100vh;
-    padding-bottom: 90px;
+    padding-bottom: 200px; /* ya pensado para el footer fijo */
+    overflow-x: hidden;    /* puedes incluirlo aquí */
 }
-
 
 h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
@@ -187,6 +187,22 @@ html, body {
 @keyframes heroFadeIn {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ANIMACIÓN DE CAÍDA SUAVE DEL SOBRE */
+@keyframes envelopeDrop {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(120px) scale(0.94);
+        opacity: 0;
+    }
+}
+
+.envelope.drop-exit {
+    animation: envelopeDrop 1.2s ease forwards;
 }
 /* ========================================================= */
 /* ANTI-FLORES: BLOQUEA CUALQUIER ACUARELA EN EL HERO        */
@@ -383,7 +399,6 @@ html, body {
 .section-arco,
 .hero-section {
     position: relative;
-    z-index: 5;
 }
 
 /* ========================================================= */
@@ -419,6 +434,29 @@ html, body {
     margin: 28px auto;      
     display: block;
 }
+@media (max-width: 480px) {
+
+    .arco-base {
+        width: 86%;             
+        max-width: 320px;     
+        min-height: 580px;      
+        padding: 70px 28px 65px;
+        border-radius: 200px 200px 0 0;
+    }
+
+    .arco-title {
+        font-size: 32px; 
+    }
+
+    .arco-nombres {
+        font-size: 18px;
+    }
+
+    .arco-img img {
+        width: 120px;
+    }
+}
+
 /* ========================================================= */
 /* UBICACIÓN  */
 /* ========================================================= */
@@ -789,6 +827,8 @@ html, body {
 /* ========================================================= */
 /* FOOTER */
 /* ========================================================= */
+/* FOOTER */
+/* ========================================================= */
 footer {
     position: fixed;
     bottom: 0;
@@ -799,15 +839,19 @@ footer {
     background: var(--oliva);
     color: var(--blanco);
     z-index: 999999 !important;
+
+    /* estados iniciales */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .8s ease;
 }
 
-footer.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999999 !important;
+/* se muestra solo cuando el sobre está abierto */
+body.content-ready footer {
+    opacity: 1;
+    pointer-events: auto;
 }
+
 
 /* ========================================================= */
 /* PANTALLA DEL SOBRE                */
@@ -823,19 +867,21 @@ footer.footer {
     z-index: 9999;
 
     opacity: 1;
-    backdrop-filter: blur(0);
+    backdrop-filter: blur(0px);
     transition: opacity 1.6s ease, backdrop-filter 1.6s ease;
 }
 
 .envelope-overlay.fade-out {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    visibility: hidden !important;
-    display: none !important;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    backdrop-filter: blur(6px);
+    /* NO display:none aquí */
 }
 
+
 .section-arco:last-of-type {
-    margin-bottom: 120px;
+    margin-bottom: 200px;
 }
 
 
@@ -845,7 +891,6 @@ footer.footer {
 /* ---- Desde abajo ---- */
 .reveal {
     opacity: 0;
-    transform: translateY(40px);
     transition: opacity .9s ease, transform .9s ease;
 }
 

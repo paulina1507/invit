@@ -12,7 +12,7 @@ const musicIcon = document.getElementById("musicIcon");
 
 let musicPlaying = false;
 
-/* Ocultar botón de música al inicio */
+/* Ocultar botón música al inicio */
 musicBtn.style.opacity = "0";
 musicBtn.style.pointerEvents = "none";
 
@@ -20,93 +20,109 @@ musicBtn.style.pointerEvents = "none";
 seal.classList.add("idle-pulse");
 
 
-/* ----------------------------- */
-/* AUDIO                         */
-/* ----------------------------- */
+/* ========================================================= */
+/* AUDIO                                                     */
+/* ========================================================= */
 
 function fadeInAudio(audio, duration = 2000) {
     audio.volume = 0;
-    audio.play().catch(()=>{});
+    audio.play().catch(() => {});
 
     let start = null;
-    function fade(ts) {
+    function animate(ts) {
         if (!start) start = ts;
-        let progress = ts - start;
+        const progress = ts - start;
         audio.volume = Math.min(progress / duration, 1);
 
-        if (progress < duration) requestAnimationFrame(fade);
+        if (progress < duration) requestAnimationFrame(animate);
     }
-    requestAnimationFrame(fade);
+    requestAnimationFrame(animate);
 }
 
 function fadeOutAudio(audio, duration = 1600) {
-    let startVolume = audio.volume;
+    let startVol = audio.volume;
     let start = null;
 
-    function fade(ts) {
+    function animate(ts) {
         if (!start) start = ts;
-        let progress = ts - start;
+        const progress = ts - start;
 
-        audio.volume = Math.max(startVolume - (progress / duration), 0);
+        audio.volume = Math.max(startVol - (progress / duration), 0);
 
         if (progress < duration) {
-            requestAnimationFrame(fade);
+            requestAnimationFrame(animate);
         } else {
             audio.pause();
             audio.volume = 1;
         }
     }
-    requestAnimationFrame(fade);
+    requestAnimationFrame(animate);
 }
 
 
-/* ----------------------------- */
-/* ABRIR SOBRE (VERSIÓN PRO)     */
-/* ----------------------------- */
+/* ========================================================= */
+/* APERTURA DEL SOBRE – VERSIÓN CINEMÁTICA                   */
+/* ========================================================= */
 
 seal.addEventListener("click", () => {
 
-    /* Quitar animación previa y mostrar la vibración */
+    /* 1. Vibración bonita */
     seal.classList.remove("idle-pulse");
     seal.classList.add("shake");
 
-    /* Iniciar música */
+    /* 2. Música */
     fadeInAudio(bgSong, 2000);
     musicPlaying = true;
     musicIcon.src = "assets/img/pause.svg";
     musicBtn.classList.add("music-playing");
 
-    /* Evitar clics sobre overlay */
+    /* Bloquea clics sobre la overlay */
     overlay.style.pointerEvents = "none";
 
-    /* Espera mínima para la vibración */
+    /* 3. Retraso suave antes del despliegue */
     setTimeout(() => {
-
         seal.classList.remove("shake");
         envelope.classList.add("open");
 
-        /* Inicio del fade-out CSS */
+        /* 4. Fade-out visual del overlay */
         overlay.classList.add("fade-out");
 
-        /* RETIRO REAL del overlay cuando la animación CSS termina */
-        const transitionTime = 1600; // mismo tiempo que tu CSS
-        setTimeout(() => {
-            overlay.style.display = "none";
-        }, transitionTime + 50); // 50ms por seguridad
+        /* 5. Remover overlay y sobre después de la transición REAL */
+        const transitionTime = 1600;
 
-        /* Mostrar botón de música con elegancia */
+        const envelopeEl = document.querySelector(".envelope");
+
+        setTimeout(() => {
+            /* Desaparece overlay */
+            overlay.style.display = "none";
+
+            /* animación de caída suave del sobre */
+            envelopeEl.classList.add("drop-exit");
+
+            /* desaparecer sobre totalmente */
+            setTimeout(() => {
+                envelopeEl.style.display = "none";
+
+                /* ⭐ MOSTRAR CONTENIDO Y FOOTER ⭐ */
+                document.body.classList.add("content-ready");
+
+            }, 1200); // tiempo de la animación drop-exit
+
+        }, transitionTime + 50);
+
+        /* 6. Mostrar el botón de música */
         setTimeout(() => {
             musicBtn.style.opacity = "1";
             musicBtn.style.pointerEvents = "auto";
-        }, transitionTime);
+        }, transitionTime + 400);
 
     }, 300);
 });
 
 
-/* ----------------------------- */
-/* BOTÓN PLAY/PAUSE              */
-/* ----------------------------- */
+/* ========================================================= */
+/* BOTÓN DE MÚSICA                                           */
+/* ========================================================= */
 
 musicBtn.addEventListener("click", () => {
     if (!musicPlaying) {
@@ -114,6 +130,7 @@ musicBtn.addEventListener("click", () => {
         musicPlaying = true;
         musicIcon.src = "assets/img/pause.svg";
         musicBtn.classList.add("music-playing");
+
     } else {
         fadeOutAudio(bgSong, 1400);
         musicPlaying = false;
