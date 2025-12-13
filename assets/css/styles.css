@@ -30,6 +30,11 @@ body {
     overflow-x: hidden;    /* puedes incluirlo aquí */
 }
 
+body.lock-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
 h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
 }
@@ -49,6 +54,15 @@ html, body {
     background: var(--oliva);
     padding: 12px 0;
     z-index: 1000;
+    opacity: 0;
+    transform: translateY(-12px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+/* cuando el contenido está listo */
+body.content-ready .navbar {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .nav-inner {
@@ -146,9 +160,28 @@ html, body {
     letter-spacing: 2px;
     font-weight: 400;
     text-shadow: 0 8px 35px rgba(0,0,0,0.45);
+    transform: translateY(20px);
+}
+
+.hero-names,
+.hero-count {
     opacity: 0;
     transform: translateY(20px);
-    animation: heroFadeIn 1.6s ease forwards 0.4s;
+}
+
+.hero-names {
+    animation: heroFadeIn 1.4s ease forwards;
+}
+
+.hero-count {
+    animation: heroFadeIn 1.6s ease forwards;
+    animation-delay: 0.25s;
+}
+
+body.content-ready footer {
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0.35s;
 }
 
 /* Contador */
@@ -156,8 +189,6 @@ html, body {
     display: flex;
     gap: clamp(16px, 4vw, 40px);
     margin-top: 35px;
-    opacity: 0;
-    transform: translateY(20px);
     animation: heroFadeIn 1.6s ease forwards 0.9s;
 }
 
@@ -615,183 +646,195 @@ html, body {
 }
 
 /* ========================================================= */
-/* PROGRAMA                    */
+/* PROGRAMA – TIMELINE (FIX DEFINITIVO)                       */
 /* ========================================================= */
 
 .timeline-programa {
-    width: 100%;
-    max-width: 380px;
-    margin: auto;
-    position: relative;
+  position: relative;
+  min-height: 400px;
+  padding: 4rem 0;
+  overflow: visible;
 }
 
 /* ============================= */
 /* LÍNEAS                        */
 /* ============================= */
-
+/* Línea base gris */
 .timeline-programa::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 2px;
-    height: 100%;
-    background: var(--verde-gris);
-    transform: translateX(-50%);
-    z-index: 0;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--verde-gris);
+  transform: translateX(-50%);
+  z-index: 0;
 }
 
+/* Línea dorada progresiva */
 .timeline-programa::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 3px;
-    height: 0;
-    transform: translateX(-50%);
-    background: linear-gradient(
-        to bottom,
-        #f3d28c,
-        #d4a663,
-        #b8924a
-    );
-    box-shadow:
-        0 0 6px rgba(212,166,99,0.6),
-        0 0 12px rgba(212,166,99,0.35);
-    transition: height 0.9s cubic-bezier(.4,0,.2,1);
-    z-index: 1;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 3px;
+  height: var(--progress, 0%);
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    #f3d28c,
+    #d4a663,
+    #b8924a
+  );
+  box-shadow:
+    0 0 6px rgba(212,166,99,0.6),
+    0 0 12px rgba(212,166,99,0.35);
+  transition: height 0.25s linear;
+  z-index: 1;
 }
 
-.timeline-programa.progress-25::after { height: 25%; }
-.timeline-programa.progress-50::after { height: 50%; }
-.timeline-programa.progress-75::after { height: 75%; }
-.timeline-programa.progress-100::after { height: 100%; }
+
+/* 🔧 PROGRESO CORRECTO (LEE data-progress) */
+.timeline-programa[data-progress="25"]::after { height: 25%; }
+.timeline-programa[data-progress="50"]::after { height: 50%; }
+.timeline-programa[data-progress="75"]::after { height: 75%; }
+.timeline-programa[data-progress="100"]::after { height: 100%; }
+
+/* ============================= */
+/* ITEMS                         */
+/* ============================= */
 
 .timeline-programa .item {
-    position: relative;
-    padding: 18px 0;
-    opacity: 0;
-    transform: translateY(16px);
-    transition:
-        opacity 0.5s ease,
-        transform 0.5s ease;
-    z-index: 2;
-}
-
-.timeline-programa .item.active {
-    opacity: 1;
-    transform: translateY(0);
+  position: relative;
+  margin: 2.5rem 0;
+  z-index: 2;
 }
 
 /* punto */
 .timeline-programa .item::before {
-    content: "";
-    width: 12px;
-    height: 12px;
-    background: #d4a663;
-    position: absolute;
-    left: 50%;
-    top: 22px;
-    transform: translateX(-50%) scale(0.8);
-    border-radius: 50%;
-    opacity: 0;
-    transition:
-        transform 0.4s ease,
-        opacity 0.4s ease,
-        box-shadow 0.4s ease;
-    z-index: 3;
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #d4a663;
+  position: absolute;
+  left: 50%;
+  top: 22px;
+  transform: translateX(-50%) scale(0.8);
+  border-radius: 50%;
+  opacity: 0;
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease,
+    box-shadow 0.4s ease;
+  z-index: 3;
 }
 
 .timeline-programa .item.active::before {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.25);
-    box-shadow: 0 0 10px rgba(212,166,99,0.6);
+  opacity: 1;
+  transform: translateX(-50%) scale(1.25);
+  box-shadow: 0 0 10px rgba(212,166,99,0.6);
 }
 
+/* ============================= */
+/* ICONOS                        */
+/* ============================= */
+
 .timeline-programa .icon {
-    width: 70px;
-    height: 70px;
-    object-fit: contain;
-    display: block;
-    margin-bottom: 6px;
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 6px;
 
-    opacity: 0;
-    transform: translateY(18px) scale(0.96);
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
 
-    transition:
-        opacity 0.45s cubic-bezier(.4,0,.2,1),
-        transform 0.45s cubic-bezier(.4,0,.2,1),
-        filter 0.4s ease;
+  transition:
+    opacity 0.45s cubic-bezier(.4,0,.2,1),
+    transform 0.45s cubic-bezier(.4,0,.2,1),
+    filter 0.4s ease;
 
-    transition-delay: 0.18s;
-    will-change: transform;
+  transition-delay: 0.35s;
 }
 
 .timeline-programa .item.active .icon {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 @media (hover: hover) {
-    .timeline-programa .item:hover .icon {
-        transform: translateY(-6px) rotate(-2deg);
-        filter: drop-shadow(0 6px 8px rgba(0,0,0,0.15));
-    }
+  .timeline-programa .item:hover .icon {
+    transform: translateY(-6px) rotate(-2deg);
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.15));
+  }
 }
 
+/* ============================= */
+/* POSICIONES                    */
+/* ============================= */
+
 .timeline-programa .item.left {
-    text-align: right;
-    padding-right: 20px;
+  text-align: right;
+  padding-right: 20px;
 }
 
 .timeline-programa .item.left .icon {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .timeline-programa .item.right {
-    text-align: left;
-    padding-left: 20px;
+  text-align: left;
+  padding-left: 20px;
 }
 
 .timeline-programa .item.right .icon {
-    margin-right: auto;
+  margin-right: auto;
 }
 
-/* textos */
+/* ============================= */
+/* TEXTOS                        */
+/* ============================= */
+
 .timeline-programa .hora {
-    font-size: 15px;
-    font-weight: 600;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .timeline-programa .texto {
-    font-size: 14px;
-    color: #5c5c55;
+  font-size: 14px;
+  color: #5c5c55;
 }
+
+/* ============================= */
+/* MOBILE                         */
+/* ============================= */
 
 @media (max-width: 480px) {
 
-    .timeline-programa {
-        max-width: 260px;
-    }
+  .timeline-programa {
+    max-width: 260px;
+    margin: 0 auto;
+  }
 
-    .timeline-programa .item {
-        text-align: center !important;
-        padding: 22px 0;
-    }
+  .timeline-programa .item {
+    text-align: center !important;
+    padding: 22px 0;
+  }
 
-    .timeline-programa .icon {
-        margin-left: auto;
-        margin-right: auto;
-    }
+  .timeline-programa .icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    .timeline-programa .item.left,
-    .timeline-programa .item.right {
-        padding-left: 0;
-        padding-right: 0;
-    }
+  .timeline-programa .item.left,
+  .timeline-programa .item.right {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
-    .timeline-programa .hora { font-size: 13px; }
-    .timeline-programa .texto { font-size: 12.5px; }
+  .timeline-programa .hora { font-size: 13px; }
+  .timeline-programa .texto { font-size: 12.5px; }
 }
 
 /* ========================================================= */
@@ -1555,7 +1598,7 @@ body.content-ready footer {
     pointer-events: none;
     width: 58px;
     height: 58px;
-    background: rgba(255,255,255,0.65);
+    background:rgba(255,255,255,0.65);
     backdrop-filter: blur(8px);
     border-radius: 50%;
     display: flex;
@@ -1563,9 +1606,21 @@ body.content-ready footer {
     align-items: center;
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(0,0,0,0.18);
-    transition: transform .25s ease, background .25s ease;
     z-index: 99998;
+    transition:
+        opacity .6s ease,
+        transform .6s ease,
+        background .25s ease;
+    transform: scale(0.92);
 }
+
+
+body.content-ready .music-btn {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
 
 .music-btn:hover {
     transform: scale(1.08);

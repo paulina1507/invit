@@ -1,155 +1,154 @@
 {
+  "meta": {
+    "title": "Nuestra Boda | Elena & Julián",
+    "description": "Acompáñanos a celebrar nuestra boda"
+  },
 
   "logo": "Nuestra Boda",
 
-  "audio": "cancion.mp3",
+  "audio": {
+    "src": "cancion.mp3",
+    "autoplay_on_open": true,
+    "loop": true,
+    "icons": {
+      "play": "play.svg",
+      "pause": "pause.svg"
+    }
+  },
 
-  "footer_text": "Diseñado con amor por Shiny Maker Events",
+  "footer": {
+    "text": "Diseñado con amor por Shiny Maker Events"
+  },
 
-  "navbar_style": "claro",
+  "navbar": {
+    "items": [
+      { "label": "Inicio", "href": "#inicio" },
+      { "label": "Presentación", "href": "#presentacion" },
+      { "label": "Lugar", "href": "#ubicacion" },
+      { "label": "Programa", "href": "#programa" },
+      { "label": "Regalos", "href": "#regalos" },
+      { "label": "Vestimenta", "href": "#vestimenta" },
+      { "label": "Galería", "href": "#galeria" }
+    ]
+  },
 
-  "nav_items": [
-    { "label": "Inicio", "href": "#inicio" },
-    { "label": "Presentación", "href": "#presentacion" },
-    { "label": "Lugar", "href": "#ubicacion" },
-    { "label": "Programa", "href": "#programa" },
-    { "label": "Regalos", "href": "#regalos" },
-    { "label": "Vestimenta", "href": "#vestimenta" },
-    { "label": "Galería", "href": "#galeria" }
-  ],
-
-
-  "hero_imagen": "novios.png",
-
-  "novia": "Elena",
-  "novio": "Julian",
-
-  "fecha_boda": "2026-12-20T13:30:00",
-
-
-  "presentacion_imagen": "novios.svg",
+  "hero": {
+    "background": "novios.png",
+    "names": {
+      "novia": "Elena",
+      "novio": "Julián"
+    },
+    "fecha_boda": "2026-12-20T13:30:00",
+    "countdown_labels": {
+      "dias": "Días",
+      "horas": "Horas",
+      "minutos": "Minutos",
+      "segundos": "Segundos"
+    }
+  },
 
   "presentacion": {
     "titulo": "Tenemos el honor de invitarte a nuestra boda",
-
-    "nombres": "ELENA & JULIAN",
-
+    "nombres": "ELENA & JULIÁN",
     "frase": "Con la bendición de Dios y en compañía de:",
-
     "padres": {
-      "novia": [
-        "SARA ORTIZ HUERTA",
-        "EMILIO HERNÁNDEZ FUENTES"
-      ],
-      "novio": [
-        "BLANCA MÉNDEZ CARRASCO",
-        "GERARDO ANDRADE GARCÍA"
-      ]
+      "novia": ["SARA ORTIZ HUERTA", "EMILIO HERNÁNDEZ FUENTES"],
+      "novio": ["BLANCA MÉNDEZ CARRASCO", "GERARDO ANDRADE GARCÍA"]
     },
-
-    "padrinos": [
-      "AURELIA RIVERA NIETO",
-      "BERNARDO ORTEGA ORTIZ"
-    ],
-
-    "texto_final": "Iniciaremos nuestra historia en matrimonio y tenemos el honor de invitarte a ser parte de este gran día."
+    "padrinos": ["AURELIA RIVERA NIETO", "BERNARDO ORTEGA ORTIZ"],
+    "texto_final": "Iniciaremos nuestra historia en matrimonio y tenemos el honor de invitarte a ser parte de este gran día.",
+    "imagen": "novios.svg",
+    "labels": {
+      "padres_novia": "Padres de la Novia",
+      "padres_novio": "Padres del Novio",
+      "padrinos": "Padrinos"
+    }
   },
 
   "ubicacion": {
-  "titulo": "Ubicación",
-  "fecha_boda": "2026-12-20",
+    "titulo": "Ubicación",
+    "lugares": [
+      {
+        "tipo": "Ceremonia Religiosa",
+        "hora": "17:30 HRS",
+        "lugar": "Parroquia San José",
+        "direccion": [
+          "Av. Principal 123",
+          "Centro Histórico",
+          "C.P. 62000"
+        ],
+        "mapa": "https://maps.google.com"
+      },
+      {
+        "tipo": "Recepción",
+        "hora": "20:00 HRS",
+        "lugar": "Finca La Concordia",
+        "direccion": [
+          "Avenida Paseo de las Fuentes 46",
+          "Col. San Gaspar, Jiutepec Morelos",
+          "C.P. 62534"
+        ],
+        "mapa": "https://maps.google.com"
+      }
+    ]
+  },
 
-  "lugares": [
-    {
-      "tipo": "Ceremonia Religiosa",
-      "hora": "17:30 HRS",
-      "lugar": "Parroquia San José",
-      "direccion": [
-        "Av. Principal 123",
-        "Centro Histórico",
-        "C.P. 62000"
-      ],
-      "mapa": "https://maps.google.com"
-    },
-    {
-      "tipo": "Recepción",
-      "hora": "20:00 HRS",
-      "lugar": "Finca La Concordia",
-      "direccion": [
-        "Avenida Paseo de las Fuentes 46",
-        "Col. San Gaspar, Jiutepec Morelos",
-        "C.P. 62534"
-      ],
-      "mapa": "https://maps.google.com"
-    }
-  ]
-},
-
-  "programa_titulo": "Programa del Evento",
-
-  "programa": [
-    {
-      "hora": "13:30 hrs",
-      "texto": "Ceremonia Religiosa",
-      "icono": "5.svg",
-      "lado": "left"
-    },
-    {
-      "hora": "15:00 hrs",
-      "texto": "Cóctel de bienvenida",
-      "icono": "6.svg",
-      "lado": "right"
-    },
-    {
-      "hora": "15:30 hrs",
-      "texto": "Comida",
-      "icono": "7.svg",
-      "lado": "left"
-    },
-    {
-      "hora": "17:00 hrs",
-      "texto": "Todos a la pista",
-      "icono": "8.svg",
-      "lado": "right"
-    }
-  ],
+  "programa": {
+    "titulo": "Programa del Evento",
+    "progress_steps": [25, 50, 75, 100],
+    "items": [
+      { "hora": "13:30 hrs", "texto": "Ceremonia Religiosa", "icono": "5.svg", "lado": "left" },
+      { "hora": "15:00 hrs", "texto": "Cóctel de bienvenida", "icono": "6.svg", "lado": "right" },
+      { "hora": "15:30 hrs", "texto": "Comida", "icono": "7.svg", "lado": "left" },
+      { "hora": "17:00 hrs", "texto": "Todos a la pista", "icono": "8.svg", "lado": "right" }
+    ]
+  },
 
   "vestimenta": {
     "titulo": "Código de Vestimenta",
-
     "icono": "9.svg",
-
     "formal": "FORMAL",
-
-    "label_mujeres": "Mujeres",
+    "labels": {
+      "mujeres": "Mujeres",
+      "hombres": "Hombres"
+    },
     "mujeres": "Colores prohibidos:<br>blanco, beige, café y negro.",
-
-    "label_hombres": "Hombres",
     "hombres": "Colores prohibidos:<br>beige y azul cielo."
   },
 
-  "regalos_titulo": "Sugerencia de Regalos",
+  "regalos": {
+    "titulo": "Sugerencia de Regalos",
+    "descripcion": "Lo más importante para nosotros es compartir este día contigo.<br>Si deseas hacernos un obsequio, habrá una mesa de regalos en la fiesta.",
+    "items": [
+      { "icono": "10.svg", "label": "Lluvia de Sobres" },
+      { "icono": "11.svg", "label": "Regalo Sorpresa" }
+    ]
+  },
 
-  "regalos_descripcion": "Lo más importante para nosotros es compartir este día contigo.<br>Si deseas hacernos un obsequio, habrá una mesa de regalos en la fiesta.",
+  "galeria": {
+    "titulo": "Galería",
+    "imagenes": [
+      "gallery1.png",
+      "gallery2.png",
+      "gallery3.png",
+      "gallery4.png",
+      "gallery5.png"
+    ]
+  },
 
-  "regalos": [
-    {
-      "icono": "10.svg",
-      "label": "Lluvia de Sobres"
+  "rsvp": {
+    "enabled": true,
+    "titulo": "Este pase es válido para dos personas",
+    "texto": "Nos encantaría saber si podrán acompañarnos en este día tan especial.<br>Gracias por tomarse un momento para responder.",
+    "nota": "Este pase incluye a dos personas.<br>Si lo desean, pueden compartirnos los siguientes datos.",
+    "botones": {
+      "si": "Sí, asistiremos",
+      "no": "No podremos asistir"
     },
-    {
-      "icono": "11.svg",
-      "label": "Regalo Sorpresa"
+    "final": {
+      "titulo": "¡Gracias por confirmar!",
+      "texto": "Nos llena de alegría saber que compartirán este día con nosotros.",
+      "firma": "Elena & Julián"
     }
-  ],
-
-  "galeria_titulo": "Galería",
-
-  "galeria": [
-    "gallery1.png",
-    "gallery2.png",
-    "gallery3.png",
-    "gallery4.png",
-    "gallery5.png"
-  ]
+  }
 }

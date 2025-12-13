@@ -1,140 +1,91 @@
-/* ----------------------------- */
-/* REFERENCIAS                   */
-/* ----------------------------- */
+document.addEventListener("DOMContentLoaded", () => {
 
-const envelope = document.querySelector(".envelope");
-const seal = document.getElementById("sealButton");
-const overlay = document.getElementById("envelopeOverlay");
+  const body = document.body;
+  const overlay = document.getElementById("envelopeOverlay");
+  const seal = document.getElementById("sealButton");
+  const envelope = document.querySelector(".envelope");
 
-const bgSong = document.getElementById("bgSong");
-const musicBtn = document.getElementById("musicToggle");
-const musicIcon = document.getElementById("musicIcon");
+  const bgSong = document.getElementById("bgSong");
+  const musicBtn = document.getElementById("musicToggle");
+  const musicIcon = document.getElementById("musicIcon");
 
-let musicPlaying = false;
+  let musicPlaying = false;
 
-/* Ocultar botón música al inicio */
-musicBtn.style.opacity = "0";
-musicBtn.style.pointerEvents = "none";
+  /* Estado inicial seguro */
+  body.classList.remove("lock-scroll");
+  body.classList.add("content-ready");
 
-/* Animación inicial del sello */
-seal.classList.add("idle-pulse");
+  musicBtn.style.opacity = "0";
+  musicBtn.style.pointerEvents = "none";
 
+  if (!overlay || !seal || !envelope) {
+    overlay?.remove();
+    return;
+  }
 
-/* ========================================================= */
-/* AUDIO                                                     */
-/* ========================================================= */
+  seal.classList.add("idle-pulse");
 
-function fadeInAudio(audio, duration = 2000) {
-    audio.volume = 0;
-    audio.play().catch(() => {});
+  function revealContent() {
+    body.classList.add("content-ready");
+    body.classList.remove("lock-scroll");
 
-    let start = null;
-    function animate(ts) {
-        if (!start) start = ts;
-        const progress = ts - start;
-        audio.volume = Math.min(progress / duration, 1);
+    overlay.classList.add("fade-out");
+    setTimeout(() => overlay.remove(), 1200);
 
-        if (progress < duration) requestAnimationFrame(animate);
-    }
-    requestAnimationFrame(animate);
-}
+    musicBtn.style.opacity = "1";
+    musicBtn.style.pointerEvents = "auto";
 
-function fadeOutAudio(audio, duration = 1600) {
-    let startVol = audio.volume;
-    let start = null;
+    document.dispatchEvent(new Event("reveal:init"));
+    document.dispatchEvent(new Event("timeline:ready"));
+  }
 
-    function animate(ts) {
-        if (!start) start = ts;
-        const progress = ts - start;
+  seal.addEventListener("click", () => {
 
-        audio.volume = Math.max(startVol - (progress / duration), 0);
-
-        if (progress < duration) {
-            requestAnimationFrame(animate);
-        } else {
-            audio.pause();
-            audio.volume = 1;
-        }
-    }
-    requestAnimationFrame(animate);
-}
-
-
-/* ========================================================= */
-/* APERTURA DEL SOBRE – VERSIÓN CINEMÁTICA                   */
-/* ========================================================= */
-
-seal.addEventListener("click", () => {
-
-    /* 1. Vibración bonita */
     seal.classList.remove("idle-pulse");
     seal.classList.add("shake");
+    seal.style.pointerEvents = "none";
 
-    /* 2. Música */
-    fadeInAudio(bgSong, 2000);
-    musicPlaying = true;
-    musicIcon.src = "assets/img/pause.svg";
-    musicBtn.classList.add("music-playing");
+    if (bgSong) {
+      bgSong.volume = 0;
+      bgSong.play().catch(() => {});
+      musicPlaying = true;
+      musicIcon.src = "assets/img/pause.svg";
 
-    /* Bloquea clics sobre la overlay */
-    overlay.style.pointerEvents = "none";
-
-    /* 3. Retraso suave antes del despliegue */
-    setTimeout(() => {
-        seal.classList.remove("shake");
-        envelope.classList.add("open");
-
-        /* 4. Fade-out visual del overlay */
-        overlay.classList.add("fade-out");
-
-        /* 5. Remover overlay y sobre después de la transición REAL */
-        const transitionTime = 1600;
-
-        const envelopeEl = document.querySelector(".envelope");
-
-        setTimeout(() => {
-            /* Desaparece overlay */
-            overlay.style.display = "none";
-
-            /* animación de caída suave del sobre */
-            envelopeEl.classList.add("drop-exit");
-
-            /* desaparecer sobre totalmente */
-            setTimeout(() => {
-                envelopeEl.style.display = "none";
-
-                /* ⭐ MOSTRAR CONTENIDO Y FOOTER ⭐ */
-                document.body.classList.add("content-ready");
-
-            }, 1200); // tiempo de la animación drop-exit
-
-        }, transitionTime + 50);
-
-        /* 6. Mostrar el botón de música */
-        setTimeout(() => {
-            musicBtn.style.opacity = "1";
-            musicBtn.style.pointerEvents = "auto";
-        }, transitionTime + 400);
-
-    }, 300);
-});
-
-
-/* ========================================================= */
-/* BOTÓN DE MÚSICA                                           */
-/* ========================================================= */
-
-musicBtn.addEventListener("click", () => {
-    if (!musicPlaying) {
-        fadeInAudio(bgSong, 1800);
-        musicPlaying = true;
-        musicIcon.src = "assets/img/pause.svg";
-        musicBtn.classList.add("music-playing");
-
-    } else {
-        fadeOutAudio(bgSong, 1400);
-        musicPlaying = false;
-        musicIcon.src = "assets/img/play.svg";
-        musicBtn.classList.remove("music-playing");
+      let vol = 0;
+      const fade = setInterval(() => {
+        vol += 0.05;
+        bgSong.volume = Math.min(vol, 1);
+        if (vol >= 1) clearInterval(fade);
+      }, 80);
     }
+
+    setTimeout(() => {
+      envelope.classList.add("open");
+    }, 300);
+
+    setTimeout(() => {
+      revealContent();
+    }, 1600);
+  });
+
+  musicBtn.addEventListener("click", () => {
+    if (!bgSong) return;
+
+    if (musicPlaying) {
+      bgSong.pause();
+      musicIcon.src = "assets/img/play.svg";
+    } else {
+      bgSong.play().catch(() => {});
+      musicIcon.src = "assets/img/pause.svg";
+    }
+    musicPlaying = !musicPlaying;
+  });
+
+  /* Fallback automático por si nadie hace click */
+  setTimeout(() => {
+    if (!body.classList.contains("content-ready")) {
+      revealContent();
+    }
+  }, 3500);
+
 });

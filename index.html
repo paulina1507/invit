@@ -1,194 +1,243 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shiny Maker Events</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- El título se sobreescribe desde event-data.js -->
+  <title>Shiny Maker Events</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 
 <body>
-<!-- AUDIO DINÁMICO -->
+
+<!-- ================= AUDIO ================= -->
 <audio id="bgSong" preload="auto" loop>
-    <source src="assets/audio/cancion.mp3" type="audio/mp3">
+  <source src="" type="audio/mp3">
 </audio>
-<!-- BOTÓN DE MÚSICA -->
+
+<!-- ================= BOTÓN DE MÚSICA ================= -->
 <div id="musicToggle" class="music-btn reveal-zoom">
-    <img id="musicIcon" src="assets/img/play.svg" alt="music toggle">
+  <img id="musicIcon" src="" alt="music toggle">
 </div>
-<!-- SOBRE ANIMADO -->
+
+<!-- ================= SOBRE ================= -->
 <div id="envelopeOverlay" class="envelope-overlay">
-    <div class="envelope reveal-zoom">
-        <div class="fold fold-left"></div>
-        <div class="fold fold-right"></div>
-        <div class="fold fold-top"></div>
-        <div class="fold fold-bottom"></div>
-        <div id="sealButton" class="seal reveal-zoom">
-            <img src="assets/img/sello.svg" alt="Abrir">
-        </div>
+  <div class="envelope reveal-zoom">
+    <div class="fold fold-left"></div>
+    <div class="fold fold-right"></div>
+    <div class="fold fold-top"></div>
+    <div class="fold fold-bottom"></div>
+    <div id="sealButton" class="seal reveal-zoom">
+      <img src="assets/img/sello.svg" alt="Abrir">
     </div>
+  </div>
 </div>
-<!-- NAVBAR -->
+
+<!-- ================= NAVBAR ================= -->
 <nav class="navbar reveal">
-    <div class="nav-inner">
-        <div class="logo"></div>
-        <div class="nav-toggle" id="navToggle">☰</div>
-        <ul class="nav-menu" id="navMenu"></ul>
-    </div>
+  <div class="nav-inner">
+    <div class="logo"></div>
+    <div class="nav-toggle" id="navToggle">☰</div>
+    <ul class="nav-menu" id="navMenu"></ul>
+  </div>
 </nav>
-<!-- HERO -->
+
+<!-- ================= HERO ================= -->
 <section class="hero-section" id="inicio">
-    <div class="hero-bg"></div>
-    <h1 class="hero-names reveal" id="hero-names"></h1>
-    <div class="hero-count reveal-zoom">
-        <div><span id="dias">00</span><small>Días</small></div>
-        <div class="sep">:</div>
-        <div><span id="horas">00</span><small>Horas</small></div>
-        <div class="sep">:</div>
-        <div><span id="minutos">00</span><small>Minutos</small></div>
-        <div class="sep">:</div>
-        <div><span id="segundos">00</span><small>Segundos</small></div>
-    </div>
+  <div class="hero-bg"></div>
+
+  <h1 class="hero-names reveal" id="hero-names"></h1>
+
+  <div class="hero-count reveal-zoom">
+    <div><span id="dias">00</span><small id="label-dias"></small></div>
+    <div class="sep">:</div>
+    <div><span id="horas">00</span><small id="label-horas"></small></div>
+    <div class="sep">:</div>
+    <div><span id="minutos">00</span><small id="label-minutos"></small></div>
+    <div class="sep">:</div>
+    <div><span id="segundos">00</span><small id="label-segundos"></small></div>
+  </div>
 </section>
-<!-- PRESENTACIÓN -->
+
+<!-- ================= PRESENTACIÓN ================= -->
 <section id="presentacion" class="section-arco reveal">
-    <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
-    <div class="arco-base reveal-zoom">
-        <img src="./assets/img/acuarela-verde.svg" class="acuarela-interna-top reveal-fx">
-        <img src="./assets/img/acuarela-verde.svg" class="acuarela-interna-bottom reveal-fx">
-        <h2 id="titulo-presentacion" class="arco-title reveal"></h2>
-        <h3 id="nombres-presentacion" class="arco-nombres reveal"></h3>
-        <p id="frase-presentacion" class="arco-frase reveal"></p>
-        <div class="arco-grupo reveal-left">
-            <h4 class="arco-grupo-titulo" data-label="padres-novia"></h4>
-            <p id="padres-novia" class="arco-grupo-lista"></p>
-        </div>
-        <div class="arco-grupo reveal-right">
-            <h4 class="arco-grupo-titulo" data-label="padres-novio"></h4>
-            <p id="padres-novio" class="arco-grupo-lista"></p>
-        </div>
-        <div class="arco-grupo reveal-left">
-            <h4 class="arco-grupo-titulo" data-label="padrinos"></h4>
-            <p id="padrinos" class="arco-grupo-lista"></p>
-        </div>
-        <div class="arco-img reveal-zoom">
-            <img src="" alt="pareja">
-        </div>
-        <p id="texto-final-presentacion" class="arco-bottom reveal"></p>
+
+  <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
+
+  <div class="arco-base reveal-zoom">
+
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-interna-top reveal-fx">
+    <img src="./assets/img/acuarela-verde.svg" class="acuarela-interna-bottom reveal-fx">
+
+    <h2 id="titulo-presentacion" class="arco-title reveal"></h2>
+    <h3 id="nombres-presentacion" class="arco-nombres reveal"></h3>
+    <p id="frase-presentacion" class="arco-frase reveal"></p>
+
+    <div class="arco-grupo reveal-left">
+      <h4 class="arco-grupo-titulo" id="label-padres-novia"></h4>
+      <p id="padres-novia" class="arco-grupo-lista"></p>
     </div>
+
+    <div class="arco-grupo reveal-right">
+      <h4 class="arco-grupo-titulo" id="label-padres-novio"></h4>
+      <p id="padres-novio" class="arco-grupo-lista"></p>
+    </div>
+
+    <div class="arco-grupo reveal-left">
+      <h4 class="arco-grupo-titulo" id="label-padrinos"></h4>
+      <p id="padrinos" class="arco-grupo-lista"></p>
+    </div>
+
+    <div class="arco-img reveal-zoom">
+      <img src="" alt="pareja">
+    </div>
+
+    <p id="texto-final-presentacion" class="arco-bottom reveal"></p>
+  </div>
 </section>
-<!-- UBICACIÓN -->
+
+<!-- ================= UBICACIÓN ================= -->
 <section id="ubicacion" class="section-arco reveal">
-    <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
-    <div class="arco-base ubicacion-premium reveal-zoom">
-        <h2 class="arco-title reveal" id="ubicacion-titulo"></h2>
-        <div id="ubicacion-fecha-general" class="ubicacion-fecha-general reveal-zoom"></div>
-        <div id="ubicacion-lista" class="ubicacion-lista"></div>
-    </div>
+
+  <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
+
+  <div class="arco-base ubicacion-premium reveal-zoom">
+    <h2 class="arco-title reveal" id="ubicacion-titulo"></h2>
+    <div id="ubicacion-fecha-general" class="ubicacion-fecha-general reveal-zoom"></div>
+    <div id="ubicacion-lista" class="ubicacion-lista"></div>
+  </div>
 </section>
-<!-- PROGRAMA -->
+
+<!-- ================= PROGRAMA ================= -->
 <section id="programa" class="section-arco reveal">
-    <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
-    <div class="arco-base reveal-zoom">
-        <h2 class="arco-title reveal" id="programa-titulo"></h2>
-        <div id="timeline-programa" class="timeline-programa"></div>
-    </div>
+
+  <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
+
+  <div class="arco-base reveal-zoom">
+    <h2 class="arco-title reveal" id="programa-titulo"></h2>
+    <div id="timeline-programa" class="timeline-programa"></div>
+  </div>
 </section>
-<!-- VESTIMENTA -->
+
+<!-- ================= VESTIMENTA ================= -->
 <section id="vestimenta" class="section-arco reveal">
-    <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
-    <div class="arco-base reveal-zoom">
-        <h2 class="arco-title reveal" id="vestimenta-titulo"></h2>
-        <div class="vestimenta-icon-wrapper">
-            <img id="vestimenta-icon" class="vestimenta-icon">
-        </div>
-        <h3 id="vestimenta-formal" class="vestimenta-formal reveal"></h3>
-        <div class="vestimenta-text">
-            <p class="v-label reveal-left" data-type="mujeres"></p>
-            <p id="vestimenta-mujeres" class="v-content reveal-left"></p>
-            <p class="v-label reveal-right" data-type="hombres"></p>
-            <p id="vestimenta-hombres" class="v-content reveal-right"></p>
-        </div>
+
+  <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
+
+  <div class="arco-base reveal-zoom">
+    <h2 class="arco-title reveal" id="vestimenta-titulo"></h2>
+
+    <div class="vestimenta-icon-wrapper">
+      <img id="vestimenta-icon" class="vestimenta-icon">
     </div>
+
+    <h3 id="vestimenta-formal" class="vestimenta-formal reveal"></h3>
+
+    <div class="vestimenta-text">
+      <p class="v-label reveal-left" id="label-mujeres"></p>
+      <p id="vestimenta-mujeres" class="v-content reveal-left"></p>
+
+      <p class="v-label reveal-right" id="label-hombres"></p>
+      <p id="vestimenta-hombres" class="v-content reveal-right"></p>
+    </div>
+  </div>
 </section>
-<!-- REGALOS -->
+
+<!-- ================= REGALOS ================= -->
 <section id="regalos" class="section-arco reveal">
-    <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
-    <div class="arco-base regalos-container reveal-zoom">
-        <h2 class="arco-title reveal" id="regalos-titulo"></h2>
-        <p class="regalos-desc reveal"></p>
-        <div class="regalos-inner" id="regalos-inner"></div>
-    </div>
+
+  <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
+
+  <div class="arco-base regalos-container reveal-zoom">
+    <h2 class="arco-title reveal" id="regalos-titulo"></h2>
+    <p class="regalos-desc reveal"></p>
+    <div class="regalos-inner" id="regalos-inner"></div>
+  </div>
 </section>
-<!-- GALERÍA -->
+
+<!-- ================= GALERÍA ================= -->
 <section id="galeria" class="section-arco reveal">
-    <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
-    <div class="arco-base reveal-zoom">
-        <h2 class="arco-title reveal" id="galeria-titulo"></h2>
-        <div class="carousel reveal-zoom">
-            <div class="carousel-track" id="carousel-track"></div>
-            <button class="carousel-btn left reveal-left" id="carousel-left">&#10094;</button>
-            <button class="carousel-btn right reveal-right" id="carousel-right">&#10095;</button>
-        </div>
+
+  <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
+
+  <div class="arco-base reveal-zoom">
+    <h2 class="arco-title reveal" id="galeria-titulo"></h2>
+
+    <div class="carousel reveal-zoom">
+      <div class="carousel-track" id="carousel-track"></div>
+      <button class="carousel-btn left reveal-left" id="carousel-left">&#10094;</button>
+      <button class="carousel-btn right reveal-right" id="carousel-right">&#10095;</button>
     </div>
+  </div>
 </section>
-<!-- RSVP -->
+<!-- ================= RSVP ================= -->
 <section id="rsvp" class="section-arco reveal">
-    <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
-    <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
-    <div class="arco-base rsvp-container reveal-zoom">
-        <div id="rsvp-form">
-            <h2 class="arco-title reveal">Este pase es válido para dos personas</h2>
-            <p class="rsvp-text reveal">
-                Nos encantaría saber si podrán acompañarnos en este día tan especial.<br>
-                Gracias por tomarse un momento para responder.
-            </p>
-            <div class="rsvp-options reveal-zoom">
-                <button class="rsvp-btn yes" data-response="yes">Sí, asistiremos</button>
-                <button class="rsvp-btn no" data-response="no">No podremos asistir</button>
-            </div>
-            <div id="rsvp-details" class="rsvp-details">
-                <p class="rsvp-note">
-                    Este pase incluye a dos personas.<br>
-                    Si lo desean, pueden compartirnos los siguientes datos.
-                </p>
-                <input type="text" placeholder="Nombre del invitado">
-                <input type="text" placeholder="Nombre del acompañante (opcional)">
-                <textarea placeholder="Mensaje para los anfitriones (opcional)"></textarea>
-                <button id="rsvp-confirm" class="rsvp-confirm">Confirmar asistencia</button>
-            </div>
-        </div>
-        <div id="rsvp-final" class="rsvp-final">
-            <h2 id="rsvp-final-title"></h2>
-            <p id="rsvp-final-text"></p>
-            <p class="rsvp-sign">
-                Con cariño,<br>
-                <strong id="rsvp-names"></strong>
-            </p>
-        </div>
+
+  <img src="./assets/img/flores-superior.svg" class="flor-top reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-left reveal-fx">
+  <img src="./assets/img/acuarela-verde.svg" class="acuarela-right reveal-fx">
+
+  <div class="arco-base rsvp-container reveal-zoom">
+
+    <!-- FORMULARIO -->
+    <div id="rsvp-form">
+
+      <h2 class="arco-title reveal"></h2>
+      <p class="rsvp-text reveal"></p>
+
+      <div class="rsvp-options reveal-zoom">
+        <button class="rsvp-btn yes" data-response="yes"></button>
+        <button class="rsvp-btn no" data-response="no"></button>
+      </div>
+
+      <div class="rsvp-details">
+        <p class="rsvp-note"></p>
+
+        <input type="text" placeholder="Nombre del invitado">
+        <input type="text" placeholder="Acompañante (opcional)">
+        <textarea placeholder="Mensaje"></textarea>
+
+        <button class="rsvp-confirm">Confirmar</button>
+      </div>
+
     </div>
+
+    <!-- CONFIRMACIÓN FINAL -->
+    <div id="rsvp-final">
+      <h2 id="rsvp-final-title"></h2>
+      <p id="rsvp-final-text"></p>
+      <strong id="rsvp-names"></strong>
+    </div>
+
+  </div>
 </section>
-<!-- FOOTER -->
+
+<!-- ================= FOOTER ================= -->
 <footer>
-    <small id="footer-text"></small>
+  <small id="footer-text"></small>
 </footer>
-<!-- SCRIPTS -->
-<script src="assets/js/scroll-animations.js"></script>
+
+<!-- ================= SCRIPTS (ORDEN CORRECTO) ================= -->
+<script src="./assets/js/scroll-animations.js"></script>
 <script src="./assets/js/timeline.js"></script>
 <script src="./assets/js/countdown.js"></script>
 <script src="./assets/js/envelope-open.js"></script>
@@ -196,5 +245,6 @@
 <script src="./assets/js/event-data.js"></script>
 <script src="./assets/js/carousel.js"></script>
 <script src="./assets/js/rsvp.js"></script>
+
 </body>
 </html>
