@@ -26,7 +26,7 @@ body {
     color: var(--negro);
     position: relative;
     min-height: 100vh;
-    padding-bottom: 200px; /* ya pensado para el footer fijo */
+    padding-bottom: 90px; /* ya pensado para el footer fijo */
     overflow-x: hidden;    /* puedes incluirlo aquí */
 }
 
@@ -615,8 +615,9 @@ html, body {
 }
 
 /* ========================================================= */
-/* PROGRAMA */
+/* PROGRAMA                    */
 /* ========================================================= */
+
 .timeline-programa {
     width: 100%;
     max-width: 380px;
@@ -624,7 +625,10 @@ html, body {
     position: relative;
 }
 
-/* línea central */
+/* ============================= */
+/* LÍNEAS                        */
+/* ============================= */
+
 .timeline-programa::before {
     content: "";
     position: absolute;
@@ -634,21 +638,49 @@ html, body {
     height: 100%;
     background: var(--verde-gris);
     transform: translateX(-50%);
+    z-index: 0;
 }
 
-/* ícono */
-.timeline-programa .icon {
-    width: 70px;
-    height: 70px;
-    object-fit: contain;
-    display: block;
-    margin-bottom: 6px;
+.timeline-programa::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 3px;
+    height: 0;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        to bottom,
+        #f3d28c,
+        #d4a663,
+        #b8924a
+    );
+    box-shadow:
+        0 0 6px rgba(212,166,99,0.6),
+        0 0 12px rgba(212,166,99,0.35);
+    transition: height 0.9s cubic-bezier(.4,0,.2,1);
+    z-index: 1;
 }
 
-/* cada evento */
+.timeline-programa.progress-25::after { height: 25%; }
+.timeline-programa.progress-50::after { height: 50%; }
+.timeline-programa.progress-75::after { height: 75%; }
+.timeline-programa.progress-100::after { height: 100%; }
+
 .timeline-programa .item {
     position: relative;
     padding: 18px 0;
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+    z-index: 2;
+}
+
+.timeline-programa .item.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* punto */
@@ -660,32 +692,69 @@ html, body {
     position: absolute;
     left: 50%;
     top: 22px;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scale(0.8);
     border-radius: 50%;
+    opacity: 0;
+    transition:
+        transform 0.4s ease,
+        opacity 0.4s ease,
+        box-shadow 0.4s ease;
+    z-index: 3;
 }
 
-/* ============================= */
-/*      ALTERNADO ESCRITORIO     */
-/* ============================= */
+.timeline-programa .item.active::before {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.25);
+    box-shadow: 0 0 10px rgba(212,166,99,0.6);
+}
 
-/* izquierda */
+.timeline-programa .icon {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 6px;
+
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+
+    transition:
+        opacity 0.45s cubic-bezier(.4,0,.2,1),
+        transform 0.45s cubic-bezier(.4,0,.2,1),
+        filter 0.4s ease;
+
+    transition-delay: 0.18s;
+    will-change: transform;
+}
+
+.timeline-programa .item.active .icon {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+@media (hover: hover) {
+    .timeline-programa .item:hover .icon {
+        transform: translateY(-6px) rotate(-2deg);
+        filter: drop-shadow(0 6px 8px rgba(0,0,0,0.15));
+    }
+}
+
 .timeline-programa .item.left {
     text-align: right;
     padding-right: 20px;
 }
 
 .timeline-programa .item.left .icon {
-    margin-left: auto;        /* icono alineado a la derecha */
+    margin-left: auto;
 }
 
-/* derecha */
 .timeline-programa .item.right {
     text-align: left;
     padding-left: 20px;
 }
 
 .timeline-programa .item.right .icon {
-    margin-right: auto;       /* icono alineado a la izquierda */
+    margin-right: auto;
 }
 
 /* textos */
@@ -699,35 +768,26 @@ html, body {
     color: #5c5c55;
 }
 
-/* ============================= */
-/*            MÓVIL              */
-/* ============================= */
-
 @media (max-width: 480px) {
 
     .timeline-programa {
         max-width: 260px;
     }
 
-    /* todo centrado y limpio */
     .timeline-programa .item {
         text-align: center !important;
         padding: 22px 0;
     }
 
-    /* iconos centrados */
     .timeline-programa .icon {
         margin-left: auto;
         margin-right: auto;
     }
 
-    /* quitar desplazamientos laterales */
-    .timeline-programa .item.left {
-        padding-right: 200px;
-    }
-
+    .timeline-programa .item.left,
     .timeline-programa .item.right {
-        padding-left: 200px;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .timeline-programa .hora { font-size: 13px; }
@@ -735,55 +795,160 @@ html, body {
 }
 
 /* ========================================================= */
-/* VESTIMENTA */
+/* VESTIMENTA                     */
 /* ========================================================= */
-.vestimenta-icon {
-    width: 200px;
-    margin: auto;
-    display: block;
+
+#vestimenta {
+    text-align: center;
 }
 
+#vestimenta .vestimenta-formal,
+#vestimenta .v-label,
+#vestimenta .v-content {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
+}
+
+#vestimenta.reveal.visible .vestimenta-formal,
+#vestimenta.reveal.visible .v-label,
+#vestimenta.reveal.visible .v-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.vestimenta-icon {
+    width: 200px;
+    margin: 26px auto 10px;
+    display: block;
+
+    opacity: 0;
+    transform: translateY(22px) scale(0.96);
+
+    transition:
+        opacity 0.5s cubic-bezier(.4,0,.2,1),
+        transform 0.5s cubic-bezier(.4,0,.2,1),
+        filter 0.4s ease;
+
+    transition-delay: 0.22s; 
+    will-change: transform;
+}
+
+#vestimenta.reveal.visible .vestimenta-icon {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+@media (hover: hover) {
+    #vestimenta.reveal.visible .vestimenta-icon:hover {
+        transform: translateY(-6px) scale(1.02);
+        filter: drop-shadow(0 8px 10px rgba(0,0,0,0.15));
+    }
+}
+
+/* TEXTOS */
 .vestimenta-formal {
     font-size: 20px;
-    text-align: center;
     margin-bottom: 18px;
 }
 
 .v-label {
     font-weight: 600;
     margin-top: 15px;
-    text-align: center;
 }
 
 .v-content {
     font-size: 14px;
-    text-align: center;
     margin-bottom: 8px;
 }
+
+@media (max-width: 480px) {
+    .vestimenta-icon {
+        width: 170px;
+        margin: 22px auto 8px;
+    }
+}
 /* ========================================================= */
-/* REGALOS */
+/* REGALOS                  */
 /* ========================================================= */
-.regalos-container {
+
+#regalos {
     text-align: center;
 }
 
 .regalos-desc {
     font-size: 15px;
     max-width: 380px;
-    margin: 0 auto 30px;
+    margin: 0 auto 34px;
+
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
 }
 
-.regalo-item { margin-bottom: 30px; }
+#regalos.reveal.visible .regalos-desc {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.regalos-container {
+    text-align: center;
+}
+
+.regalo-item {
+    margin-bottom: 32px;
+
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+
+    transition:
+        opacity 0.55s cubic-bezier(.4,0,.2,1),
+        transform 0.55s cubic-bezier(.4,0,.2,1),
+        filter 0.4s ease;
+
+    will-change: transform;
+}
+
+#regalos.reveal.visible .regalo-item {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+#regalos.reveal.visible .regalo-item:nth-child(1) { transition-delay: 0.15s; }
+#regalos.reveal.visible .regalo-item:nth-child(2) { transition-delay: 0.30s; }
+#regalos.reveal.visible .regalo-item:nth-child(3) { transition-delay: 0.45s; }
+#regalos.reveal.visible .regalo-item:nth-child(4) { transition-delay: 0.60s; }
 
 .regalo-icon {
     width: clamp(70px, 18vw, 95px);
+    display: block;
+    margin: 0 auto 10px;
 }
 
+/* TEXTO */
 .regalo-label {
     font-size: clamp(15px, 3.6vw, 19px);
     letter-spacing: 1px;
     font-weight: 500;
 }
+
+@media (hover: hover) {
+    .regalo-item:hover {
+        transform: translateY(-6px) scale(1.03);
+        filter: drop-shadow(0 8px 12px rgba(0,0,0,0.16));
+    }
+}
+
+@media (max-width: 480px) {
+    .regalo-item {
+        margin-bottom: 26px;
+    }
+}
+
 /* ========================================================= */
 /* GALERÍA */
 /* ========================================================= */
@@ -826,9 +991,7 @@ html, body {
 .carousel-btn.right { right: -20px; }
 /* ========================================================= */
 /* FOOTER */
-/* ========================================================= */
-/* FOOTER */
-/* ========================================================= */
+
 footer {
     position: fixed;
     bottom: 0;
@@ -838,7 +1001,7 @@ footer {
     text-align: center;
     background: var(--oliva);
     color: var(--blanco);
-    z-index: 999999 !important;
+    z-index: 50;
 
     /* estados iniciales */
     opacity: 0;
@@ -876,19 +1039,11 @@ body.content-ready footer {
     pointer-events: none;
     visibility: hidden;
     backdrop-filter: blur(6px);
-    /* NO display:none aquí */
 }
-
-
-.section-arco:last-of-type {
-    margin-bottom: 200px;
-}
-
 
 /* =============================== */
 /* ANIMACIONES DE ENTRADA GLOBAL  */
 /* =============================== */
-/* ---- Desde abajo ---- */
 .reveal {
     opacity: 0;
     transition: opacity .9s ease, transform .9s ease;
@@ -921,7 +1076,6 @@ body.content-ready footer {
     transform: translateX(0);
 }
 
-/* ---- Zoom ---- */
 .reveal-zoom {
     opacity: 0;
     transform: scale(0.92);
@@ -933,7 +1087,6 @@ body.content-ready footer {
     transform: scale(1);
 }
 
-
 .reveal,
 .reveal-left,
 .reveal-right,
@@ -941,6 +1094,301 @@ body.content-ready footer {
     will-change: opacity, transform;
     backface-visibility: hidden;
     transform-origin: center;
+}
+/* ============================= */
+/* RSVP SECTION (FINAL)          */
+/* ============================= */
+
+/* --- Contenedor interno --- */
+.rsvp-container {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* --- Texto principal --- */
+.rsvp-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin: 1.2rem 0 2rem;
+}
+
+.rsvp-text,
+#rsvp-final p {
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Opciones RSVP --- */
+.rsvp-options {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.rsvp-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.8rem;
+    border-radius: 30px;
+    border: 1px solid rgba(0,0,0,0.15);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    color: #333;
+}
+
+.rsvp-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(0,0,0,0.04);
+}
+
+.rsvp-btn.active {
+    background: #2f4f4f;
+    color: #fff;
+    border-color: #2f4f4f;
+}
+
+/* --- Detalles (solo si asisten) --- */
+.rsvp-details {
+    max-width: 420px;
+    margin: 0 auto;
+    display: none;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.rsvp-details.show {
+    display: flex;
+}
+
+.rsvp-note {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.rsvp-details input,
+.rsvp-details textarea {
+    font-family: 'Montserrat', sans-serif;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.15);
+    font-size: 0.9rem;
+    resize: none;
+}
+
+.rsvp-details textarea {
+    min-height: 90px;
+}
+
+/* --- Botón confirmar --- */
+.rsvp-confirm {
+    margin-top: 1rem;
+    align-self: center;
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    background: #3b5d50;
+    color: #fff;
+    transition: all 0.35s ease;
+}
+
+.rsvp-confirm:hover {
+    background: #2f4f4f;
+    transform: translateY(-2px);
+}
+
+/* ============================= */
+/* ARCO RSVP (COMPORTAMIENTO)    */
+/* ============================= */
+
+#rsvp {
+    padding-left: 6vw;
+    padding-right: 6vw;
+}
+
+/* Estado inicial (compacto) */
+#rsvp .arco-base {
+    margin: 0 auto;
+    max-width: 820px;
+    padding: 4rem 3.5rem;
+    box-sizing: border-box;
+    max-height: 560px;
+    overflow: hidden;
+    transition: 
+        max-height 0.9s cubic-bezier(.4,0,.2,1),
+        padding 0.6s ease;
+}
+
+/* Estado expandido */
+#rsvp.expanded .arco-base {
+    max-height: 1100px;
+    padding-bottom: 5rem;
+}
+
+/* Estado final (calma) */
+#rsvp.completed .arco-base {
+    max-height: 700px;
+    padding-bottom: 3.5rem;
+}
+
+/* ============================= */
+/* CONTENIDO DINÁMICO            */
+/* ============================= */
+
+#rsvp-final {
+    display: none;
+    text-align: center;
+}
+
+.rsvp-details,
+#rsvp-final {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#rsvp.expanded .rsvp-details,
+#rsvp.completed #rsvp-final {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Texto final --- */
+#rsvp-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+#rsvp-final p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.rsvp-sign {
+    margin-top: 1.5rem;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: #2f4f4f;
+    opacity: 0.9;
+}
+
+/* ============================= */
+/* ANIMACIONES BASE              */
+/* ============================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: all 0.4s ease;
+}
+
+/* ============================= */
+/* RESPONSIVE                    */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    #rsvp {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    #rsvp .arco-base {
+        padding: 3rem 2rem;
+        max-height: none;
+    }
+
+    .rsvp-container {
+        max-width: 100%;
+    }
+
+    .rsvp-options {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .rsvp-btn {
+        width: 100%;
+    }
+}
+
+/* ====================================== */
+/* ICONOS TIPO SLIDE (SOLO 3 SECCIONES)   */
+/* ====================================== */
+
+/* PROGRAMA */
+#programa .icon {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity 0.6s cubic-bezier(.4,0,.2,1),
+        transform 0.6s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+}
+
+/* VESTIMENTA */
+#vestimenta .vestimenta-icon {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity 0.6s cubic-bezier(.4,0,.2,1),
+        transform 0.6s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+}
+
+/* REGALOS */
+#regalos .icon {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity 0.6s cubic-bezier(.4,0,.2,1),
+        transform 0.6s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+}
+
+/* PROGRAMA */
+#programa.reveal.visible .icon {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.45s; 
+}
+
+/* VESTIMENTA */
+#vestimenta.reveal.visible .vestimenta-icon {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.45s;
+}
+
+/* REGALOS */
+#regalos.reveal.visible .icon {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.45s;
 }
 
 /* ========================================================= */

@@ -143,6 +143,7 @@ renderUbicacion();
             timeline.appendChild(div);
         });
     }
+document.dispatchEvent(new Event("timeline:ready"));
 
 
     /* ============================================================
