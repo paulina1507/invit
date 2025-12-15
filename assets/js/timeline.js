@@ -6,33 +6,48 @@ document.addEventListener("timeline:ready", () => {
   const items = [...timeline.querySelectorAll(".item")];
   if (!items.length) return;
 
-  const timelineTop = timeline.offsetTop;
-  const timelineHeight = timeline.offsetHeight;
+  const section = document.getElementById("programa");
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-
-      const item = entry.target;
-      item.classList.add("active");
-    });
-  }, {
-    threshold: 0.3
-  });
+  /* === ACTIVACIÓN DE ITEMS === */
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
 
   items.forEach(item => observer.observe(item));
 
-  /* 🎯 PROGRESO REAL BASADO EN SCROLL */
-  window.addEventListener("scroll", () => {
+  /* === PROGRESO REAL Y VISIBLE === */
+  function updateTimelineProgress() {
+    const rect = section.getBoundingClientRect();
+    const vh = window.innerHeight;
 
-    const scrollY = window.scrollY + window.innerHeight * 0.4;
-    const distance = scrollY - timelineTop;
-    const progress = Math.min(
-      Math.max((distance / timelineHeight) * 100, 0),
-      100
+    /* cuando empieza y termina el avance */
+    const start = vh * 0.35;
+    const end = rect.height - vh * 0.35;
+
+    /* cuánto se ha recorrido */
+    const scrolled = Math.min(
+      Math.max(start - rect.top, 0),
+      end
     );
 
-    timeline.style.setProperty("--progress", `${progress}%`);
-  });
+    const percent = (scrolled / end) * 100;
 
+    timeline.style.setProperty(
+      "--progress",
+      `${Math.min(Math.max(percent, 0), 100)}%`
+    );
+  }
+
+  window.addEventListener("scroll", updateTimelineProgress);
+  window.addEventListener("resize", updateTimelineProgress);
+
+  /* primer cálculo */
+  updateTimelineProgress();
 });

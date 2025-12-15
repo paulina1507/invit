@@ -100,7 +100,7 @@ fetch("./assets/js/evento.json")
       document.getElementById("label-padrinos").textContent     = p.labels?.padrinos || "";
 
       /* 🔧 SELECTOR CORREGIDO */
-      const imgPresentacion = document.querySelector(".arco-img");
+      const imgPresentacion = document.querySelector(".arco-img img");
       if (imgPresentacion && p.imagen) {
         imgPresentacion.src = `assets/img/${p.imagen}`;
       }

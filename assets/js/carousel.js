@@ -1,26 +1,49 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let index = 0;
 
-    const track  = document.querySelector(".carousel-track");
-    const slides = document.querySelectorAll(".carousel-img");
-    const btnLeft  = document.querySelector(".carousel-btn.left");
-    const btnRight = document.querySelector(".carousel-btn.right");
+  let index = 0;
 
-    if (!track || slides.length === 0) return;
+  const track = document.querySelector(".carousel-track");
+  const btnLeft = document.querySelector(".carousel-btn.left");
+  const btnRight = document.querySelector(".carousel-btn.right");
 
-    const total = slides.length;
+  if (!track || !btnLeft || !btnRight) return;
 
-    if (btnRight) {
-        btnRight.addEventListener("click", () => {
-            index = (index + 1) % total;
-            track.style.transform = `translateX(-${index * 100}%)`;
-        });
+  function getSlides() {
+    return track.querySelectorAll(".carousel-img");
+  }
+
+  function updateCarousel() {
+    const slides = getSlides();
+    if (!slides.length) return;
+
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  btnRight.addEventListener("click", () => {
+    const slides = getSlides();
+    if (!slides.length) return;
+
+    index = (index + 1) % slides.length;
+    updateCarousel();
+  });
+
+  btnLeft.addEventListener("click", () => {
+    const slides = getSlides();
+    if (!slides.length) return;
+
+    index = (index - 1 + slides.length) % slides.length;
+    updateCarousel();
+  });
+
+  /* 🔁 Esperar a que el JSON cargue las imágenes */
+  const observer = new MutationObserver(() => {
+    const slides = getSlides();
+    if (slides.length) {
+      index = 0;
+      updateCarousel();
+      observer.disconnect();
     }
+  });
 
-    if (btnLeft) {
-        btnLeft.addEventListener("click", () => {
-            index = (index - 1 + total) % total;
-            track.style.transform = `translateX(-${index * 100}%)`;
-        });
-    }
+  observer.observe(track, { childList: true });
 });

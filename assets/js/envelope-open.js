@@ -1,51 +1,57 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* ============================= */
+  /* REFERENCIAS                   */
+  /* ============================= */
+
   const body = document.body;
   const overlay = document.getElementById("envelopeOverlay");
   const seal = document.getElementById("sealButton");
   const envelope = document.querySelector(".envelope");
+  const letter = document.querySelector(".letter");
 
-  const bgSong = document.getElementById("bgSong");
   const musicBtn = document.getElementById("musicToggle");
   const musicIcon = document.getElementById("musicIcon");
+  const bgSong = document.getElementById("bgSong");
 
+  let opened = false;
   let musicPlaying = false;
 
-  /* Estado inicial seguro */
-  body.classList.remove("lock-scroll");
-  body.classList.add("content-ready");
+  /* ============================= */
+  /* ESTADO INICIAL                */
+  /* ============================= */
 
-  musicBtn.style.opacity = "0";
-  musicBtn.style.pointerEvents = "none";
+  body.classList.add("lock-scroll");
+  body.classList.remove("content-ready");
 
-  if (!overlay || !seal || !envelope) {
-    overlay?.remove();
+  if (musicBtn) {
+    musicBtn.style.opacity = "0";
+    musicBtn.style.pointerEvents = "none";
+  }
+
+  if (!overlay || !seal || !envelope || !letter) {
+    console.warn("Envelope structure incomplete");
     return;
   }
 
-  seal.classList.add("idle-pulse");
-
-  function revealContent() {
-    body.classList.add("content-ready");
-    body.classList.remove("lock-scroll");
-
-    overlay.classList.add("fade-out");
-    setTimeout(() => overlay.remove(), 1200);
-
-    musicBtn.style.opacity = "1";
-    musicBtn.style.pointerEvents = "auto";
-
-    document.dispatchEvent(new Event("reveal:init"));
-    document.dispatchEvent(new Event("timeline:ready"));
-  }
+  /* ============================= */
+  /* CLICK EN SELLO                */
+  /* ============================= */
 
   seal.addEventListener("click", () => {
+    if (opened) return;
+    opened = true;
 
-    seal.classList.remove("idle-pulse");
-    seal.classList.add("shake");
+    /* hunde sello */
     seal.style.pointerEvents = "none";
+    seal.classList.add("press");
 
-    if (bgSong) {
+    setTimeout(() => {
+      seal.classList.add("fade-out");
+    }, 180);
+
+    /* 🎵 música */
+    if (bgSong && musicIcon) {
       bgSong.volume = 0;
       bgSong.play().catch(() => {});
       musicPlaying = true;
@@ -59,33 +65,52 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 80);
     }
 
+    /* ✉️ abre sobre */
     setTimeout(() => {
       envelope.classList.add("open");
-    }, 300);
+    }, 420);
 
+    /* 📄 carta → fullscreen (CLAVE) */
     setTimeout(() => {
-      revealContent();
-    }, 1600);
+      letter.classList.add("hero");
+    }, 1100);
+
+    /* 🌿 revela sitio */
+    setTimeout(() => {
+
+      body.classList.add("content-ready");
+      body.classList.remove("lock-scroll");
+
+      if (musicBtn) {
+        musicBtn.style.opacity = "1";
+        musicBtn.style.pointerEvents = "auto";
+      }
+
+      /* 🔥 activar animaciones */
+      document.dispatchEvent(new Event("reveal:init"));
+      document.dispatchEvent(new Event("timeline:ready"));
+
+      overlay.classList.add("fade-out");
+      setTimeout(() => overlay.remove(), 1200);
+
+    }, 1400);
   });
 
-  musicBtn.addEventListener("click", () => {
-    if (!bgSong) return;
+  /* ============================= */
+  /* BOTÓN DE MÚSICA               */
+  /* ============================= */
 
-    if (musicPlaying) {
-      bgSong.pause();
-      musicIcon.src = "assets/img/play.svg";
-    } else {
-      bgSong.play().catch(() => {});
-      musicIcon.src = "assets/img/pause.svg";
-    }
-    musicPlaying = !musicPlaying;
-  });
-
-  /* Fallback automático por si nadie hace click */
-  setTimeout(() => {
-    if (!body.classList.contains("content-ready")) {
-      revealContent();
-    }
-  }, 3500);
+  if (musicBtn && bgSong && musicIcon) {
+    musicBtn.addEventListener("click", () => {
+      if (musicPlaying) {
+        bgSong.pause();
+        musicIcon.src = "assets/img/play.svg";
+      } else {
+        bgSong.play().catch(() => {});
+        musicIcon.src = "assets/img/pause.svg";
+      }
+      musicPlaying = !musicPlaying;
+    });
+  }
 
 });

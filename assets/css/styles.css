@@ -12,6 +12,7 @@
     --verde-olivo: #6F7469;
     --verde-gris: #A2AF9C;
     --shadow: 0 18px 38px rgba(0,0,0,0.18);
+    --envelope-color: #e6edd7; 
 }
 
 * {
@@ -232,9 +233,6 @@ body.content-ready footer {
     }
 }
 
-.envelope.drop-exit {
-    animation: envelopeDrop 1.2s ease forwards;
-}
 /* ========================================================= */
 /* ANTI-FLORES: BLOQUEA CUALQUIER ACUARELA EN EL HERO        */
 /* ========================================================= */
@@ -646,99 +644,106 @@ body.content-ready footer {
 }
 
 /* ========================================================= */
-/* PROGRAMA – TIMELINE (FIX DEFINITIVO)                       */
+/* PROGRAMA – TIMELINE (PC + MÓVIL | FIX DEFINITIVO)         */
 /* ========================================================= */
 
 .timeline-programa {
+  --progress: 0%;
   position: relative;
-  min-height: 400px;
-  padding: 4rem 0;
-  overflow: visible;
+  padding: 4rem 0 6rem;
+  min-height: 420px;
 }
 
-/* ============================= */
-/* LÍNEAS                        */
-/* ============================= */
-/* Línea base gris */
+/* ========================================================= */
+/* LÍNEA ÚNICA (GRIS → DORADO SEGÚN SCROLL)                  */
+/* ========================================================= */
+
 .timeline-programa::before {
   content: "";
   position: absolute;
-  left: 50%;
   top: 0;
-  width: 2px;
+  left: 50%;
+  width: 3px;
   height: 100%;
-  background: var(--verde-gris);
   transform: translateX(-50%);
   z-index: 0;
-}
 
-/* Línea dorada progresiva */
-.timeline-programa::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 3px;
-  height: var(--progress, 0%);
-  transform: translateX(-50%);
-  background: linear-gradient(
+  /* gris base */
+  background-color: var(--verde-gris);
+
+  /* dorado progresivo */
+  background-image: linear-gradient(
     to bottom,
     #f3d28c,
     #d4a663,
     #b8924a
   );
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 100% var(--progress);
+
   box-shadow:
-    0 0 6px rgba(212,166,99,0.6),
-    0 0 12px rgba(212,166,99,0.35);
-  transition: height 0.25s linear;
-  z-index: 1;
+    0 0 6px rgba(212,166,99,0.45),
+    0 0 12px rgba(212,166,99,0.25);
 }
 
-
-/* 🔧 PROGRESO CORRECTO (LEE data-progress) */
-.timeline-programa[data-progress="25"]::after { height: 25%; }
-.timeline-programa[data-progress="50"]::after { height: 50%; }
-.timeline-programa[data-progress="75"]::after { height: 75%; }
-.timeline-programa[data-progress="100"]::after { height: 100%; }
-
-/* ============================= */
-/* ITEMS                         */
-/* ============================= */
+/* ========================================================= */
+/* ITEMS                                                     */
+/* ========================================================= */
 
 .timeline-programa .item {
   position: relative;
-  margin: 2.5rem 0;
+  margin: 3.5rem 0;
   z-index: 2;
+
+  opacity: 0.35;
+  transform: translateY(22px);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
 }
 
-/* punto */
+.timeline-programa .item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================================= */
+/* PUNTO (LATENTE → ACTIVO)                                  */
+/* ========================================================= */
+
 .timeline-programa .item::before {
   content: "";
+  position: absolute;
+  top: 26px;
+  left: 50%;
   width: 12px;
   height: 12px;
-  background: #d4a663;
-  position: absolute;
-  left: 50%;
-  top: 22px;
-  transform: translateX(-50%) scale(0.8);
+  background: var(--verde-gris);
   border-radius: 50%;
-  opacity: 0;
+  transform: translateX(-50%) scale(0.85);
+  opacity: 0.5;
+
   transition:
-    transform 0.4s ease,
-    opacity 0.4s ease,
-    box-shadow 0.4s ease;
+    background 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    opacity 0.35s ease;
+
   z-index: 3;
 }
 
 .timeline-programa .item.active::before {
+  background: #d4a663;
   opacity: 1;
   transform: translateX(-50%) scale(1.25);
   box-shadow: 0 0 10px rgba(212,166,99,0.6);
 }
 
-/* ============================= */
-/* ICONOS                        */
-/* ============================= */
+/* ========================================================= */
+/* ICONOS                                                    */
+/* ========================================================= */
 
 .timeline-programa .icon {
   width: 70px;
@@ -753,9 +758,7 @@ body.content-ready footer {
   transition:
     opacity 0.45s cubic-bezier(.4,0,.2,1),
     transform 0.45s cubic-bezier(.4,0,.2,1),
-    filter 0.4s ease;
-
-  transition-delay: 0.35s;
+    filter 0.35s ease;
 }
 
 .timeline-programa .item.active .icon {
@@ -770,13 +773,13 @@ body.content-ready footer {
   }
 }
 
-/* ============================= */
-/* POSICIONES                    */
-/* ============================= */
+/* ========================================================= */
+/* POSICIONES DESKTOP                                        */
+/* ========================================================= */
 
 .timeline-programa .item.left {
   text-align: right;
-  padding-right: 20px;
+  padding-right: 22px;
 }
 
 .timeline-programa .item.left .icon {
@@ -785,16 +788,12 @@ body.content-ready footer {
 
 .timeline-programa .item.right {
   text-align: left;
-  padding-left: 20px;
+  padding-left: 22px;
 }
 
 .timeline-programa .item.right .icon {
   margin-right: auto;
 }
-
-/* ============================= */
-/* TEXTOS                        */
-/* ============================= */
 
 .timeline-programa .hora {
   font-size: 15px;
@@ -805,37 +804,81 @@ body.content-ready footer {
   font-size: 14px;
   color: #5c5c55;
 }
-
-/* ============================= */
-/* MOBILE                         */
-/* ============================= */
-
-@media (max-width: 480px) {
+@media (max-width: 768px) {
 
   .timeline-programa {
-    max-width: 260px;
-    margin: 0 auto;
+    padding: 3.5rem 0 5.5rem;
   }
 
   .timeline-programa .item {
-    text-align: center !important;
-    padding: 22px 0;
+    margin: 3.2rem 0;
+  }
+
+  .timeline-programa .item.left {
+    padding-right: 18px;
+    text-align: right;
+  }
+
+  .timeline-programa .item.right {
+    padding-left: 18px;
+    text-align: left;
   }
 
   .timeline-programa .icon {
-    margin-left: auto;
-    margin-right: auto;
+    width: 60px;
+    height: 60px;
   }
 
-  .timeline-programa .item.left,
-  .timeline-programa .item.right {
-    padding-left: 0;
-    padding-right: 0;
+  .timeline-programa .hora {
+    font-size: 14px;
   }
 
-  .timeline-programa .hora { font-size: 13px; }
-  .timeline-programa .texto { font-size: 12.5px; }
+  .timeline-programa .texto {
+    font-size: 13px;
+  }
 }
+
+@media (max-width: 480px) {
+
+  /* CONTENEDOR DE ITEM */
+  .timeline-programa .item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* CONTENIDO IZQUIERDA */
+  .timeline-programa .item.left {
+    align-items: flex-end;
+  }
+
+  .timeline-programa .item.left .hora,
+  .timeline-programa .item.left .texto,
+  .timeline-programa .item.left .icon {
+    max-width: 44%;
+    padding-right: 10px;
+    box-sizing: border-box;
+  }
+
+  /* CONTENIDO DERECHA */
+  .timeline-programa .item.right {
+    align-items: flex-start;
+  }
+
+  .timeline-programa .item.right .hora,
+  .timeline-programa .item.right .texto,
+  .timeline-programa .item.right .icon {
+    max-width: 44%;
+    padding-left: 10px;
+    box-sizing: border-box;
+  }
+
+  /* EVITA CORTES RAROS */
+  .timeline-programa .texto {
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+}
+
 
 /* ========================================================= */
 /* VESTIMENTA                     */
@@ -1019,19 +1062,35 @@ body.content-ready footer {
 }
 
 .carousel-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 22px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    transition: transform .25s ease, background .25s ease;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255,255,255,0.7);
-    border: none;
-    font-size: 32px;
-    padding: 6px 14px;
-    cursor: pointer;
-    border-radius: 50%;
 }
 
-.carousel-btn.left { left: -20px; }
-.carousel-btn.right { right: -20px; }
+.carousel-btn:hover {
+    transform: scale(1.12);
+    background: rgba(255,255,255,0.95);
+}
+
+.carousel-btn.left {
+    left: 8px;
+}
+
+.carousel-btn.right {
+    right: 8px;
+}
 /* ========================================================= */
 /* FOOTER */
 
@@ -1084,9 +1143,10 @@ body.content-ready footer {
     backdrop-filter: blur(6px);
 }
 
-/* =============================== */
-/* ANIMACIONES DE ENTRADA GLOBAL  */
-/* =============================== */
+.envelope.drop-exit {
+    animation: envelopeDrop 1.2s ease forwards;
+}
+
 .reveal {
     opacity: 0;
     transition: opacity .9s ease, transform .9s ease;
@@ -1138,52 +1198,80 @@ body.content-ready footer {
     backface-visibility: hidden;
     transform-origin: center;
 }
-/* ============================= */
-/* RSVP SECTION (FINAL)          */
-/* ============================= */
 
-/* --- Contenedor interno --- */
-.rsvp-container {
-    text-align: center;
-    max-width: 560px;
-    margin: 0 auto;
-    padding: 0;
+/* ========================================================= */
+/* RSVP – INTEGRADO AL SISTEMA GLOBAL                        */
+/* ========================================================= */
+
+#rsvp {
+    padding-left: 6vw;
+    padding-right: 6vw;
 }
 
-/* --- Texto principal --- */
+/* ========================================================= */
+/* ARCO RSVP (MISMAS REGLAS QUE LOS DEMÁS ARCOS)             */
+/* ========================================================= */
+
+#rsvp .arco-base {
+    width: 430px;
+    min-height: 680px;
+    margin: 0 auto;
+
+    /* 🔑 AIRE SUPERIOR PARA RESPETAR FLOR */
+    padding: 120px 48px 90px;
+
+    background: var(--fondo-arco);
+    border-radius: 260px 260px 0 0;
+    box-shadow: var(--shadow);
+
+    text-align: center;
+    position: relative;
+
+    /* ❌ NO FLEX, ❌ NO CENTRADO VERTICAL */
+    display: block;
+}
+
+/* ========================================================= */
+/* CONTENIDO RSVP                                            */
+/* ========================================================= */
+
+.rsvp-container {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Texto principal */
 .rsvp-text {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     line-height: 1.7;
     color: #555;
-    margin: 1.2rem 0 2rem;
-}
-
-.rsvp-text,
-#rsvp-final p {
+    margin: 1.6rem auto 2.4rem;
     max-width: 460px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-/* --- Opciones RSVP --- */
+/* ========================================================= */
+/* OPCIONES                                                  */
+/* ========================================================= */
+
 .rsvp-options {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    gap: 1.6rem;
+    margin-bottom: 2.6rem;
     flex-wrap: wrap;
 }
 
 .rsvp-btn {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
-    padding: 0.75rem 1.8rem;
+    font-size: 1rem;
+    padding: 0.85rem 2.2rem;
     border-radius: 30px;
     border: 1px solid rgba(0,0,0,0.15);
     background: transparent;
     cursor: pointer;
-    transition: all 0.35s ease;
+    transition: all 0.3s ease;
     color: #333;
 }
 
@@ -1198,9 +1286,12 @@ body.content-ready footer {
     border-color: #2f4f4f;
 }
 
-/* --- Detalles (solo si asisten) --- */
+/* ========================================================= */
+/* DETALLES (SI ASISTEN)                                     */
+/* ========================================================= */
+
 .rsvp-details {
-    max-width: 420px;
+    max-width: 480px;
     margin: 0 auto;
     display: none;
     flex-direction: column;
@@ -1214,35 +1305,33 @@ body.content-ready footer {
 .rsvp-note {
     font-size: 0.9rem;
     color: #666;
-    margin-bottom: 0.5rem;
 }
 
 .rsvp-details input,
 .rsvp-details textarea {
     font-family: 'Montserrat', sans-serif;
-    padding: 0.7rem 1rem;
+    padding: 0.75rem 1rem;
     border-radius: 10px;
     border: 1px solid rgba(0,0,0,0.15);
     font-size: 0.9rem;
-    resize: none;
 }
 
 .rsvp-details textarea {
     min-height: 90px;
 }
 
-/* --- Botón confirmar --- */
+/* Botón confirmar */
 .rsvp-confirm {
-    margin-top: 1rem;
+    margin-top: 1.4rem;
     align-self: center;
-    padding: 0.8rem 2rem;
-    font-size: 0.9rem;
+    padding: 0.9rem 2.4rem;
+    font-size: 0.95rem;
     border-radius: 30px;
     border: none;
     cursor: pointer;
     background: #3b5d50;
     color: #fff;
-    transition: all 0.35s ease;
+    transition: all 0.3s ease;
 }
 
 .rsvp-confirm:hover {
@@ -1250,48 +1339,41 @@ body.content-ready footer {
     transform: translateY(-2px);
 }
 
-/* ============================= */
-/* ARCO RSVP (COMPORTAMIENTO)    */
-/* ============================= */
-
-#rsvp {
-    padding-left: 6vw;
-    padding-right: 6vw;
-}
-
-/* Estado inicial (compacto) */
-#rsvp .arco-base {
-    margin: 0 auto;
-    max-width: 820px;
-    padding: 4rem 3.5rem;
-    box-sizing: border-box;
-    max-height: 560px;
-    overflow: hidden;
-    transition: 
-        max-height 0.9s cubic-bezier(.4,0,.2,1),
-        padding 0.6s ease;
-}
-
-/* Estado expandido */
-#rsvp.expanded .arco-base {
-    max-height: 1100px;
-    padding-bottom: 5rem;
-}
-
-/* Estado final (calma) */
-#rsvp.completed .arco-base {
-    max-height: 700px;
-    padding-bottom: 3.5rem;
-}
-
-/* ============================= */
-/* CONTENIDO DINÁMICO            */
-/* ============================= */
+/* ========================================================= */
+/* CONTENIDO FINAL                                           */
+/* ========================================================= */
 
 #rsvp-final {
     display: none;
     text-align: center;
 }
+
+#rsvp-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+}
+
+#rsvp-final p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+.rsvp-sign {
+    margin-top: 1.6rem;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.9rem;
+    color: #2f4f4f;
+    opacity: 0.9;
+}
+
+/* ========================================================= */
+/* ANIMACIONES                                               */
+/* ========================================================= */
 
 .rsvp-details,
 #rsvp-final {
@@ -1306,27 +1388,37 @@ body.content-ready footer {
     transform: translateY(0);
 }
 
-/* --- Texto final --- */
-#rsvp-final h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
+/* ========================================================= */
+/* MOBILE – MISMA LÓGICA, ESCALADO                            */
+/* ========================================================= */
+
+@media (max-width: 480px) {
+
+    #rsvp .arco-base {
+        width: 86%;
+        max-width: 320px;
+        min-height: 580px;
+
+        /* mantiene proporción con la flor */
+        padding: 100px 28px 70px;
+        border-radius: 200px 200px 0 0;
+    }
+
+    .rsvp-text,
+    #rsvp-final p {
+        max-width: 100%;
+    }
+
+    .rsvp-options {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .rsvp-btn {
+        width: 100%;
+    }
 }
 
-#rsvp-final p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #555;
-}
-
-.rsvp-sign {
-    margin-top: 1.5rem;
-    font-family: 'Great Vibes', cursive;
-    font-size: 1.8rem;
-    color: #2f4f4f;
-    opacity: 0.9;
-}
 
 /* ============================= */
 /* ANIMACIONES BASE              */
@@ -1433,108 +1525,164 @@ body.content-ready footer {
     transform: translateY(0);
     transition-delay: 0.45s;
 }
-
 /* ========================================================= */
-/* SOBRE                                            */
+/* SOBRE – DEFINITIVO, COLOR CORRECTO Y ESCALABLE            */
 /* ========================================================= */
 
 .envelope {
-    width: 420px;
-    height: 560px;
+  width: 420px;
+  height: 235px;
+  position: relative;
+  background: var(--envelope-color);
+  perspective: 900px;
+  overflow: hidden;
 
-    position: relative;
-    border-radius: 12px;
-    background: #e6edd7;
-
-    perspective: 1500px;
-    perspective-origin: 50% 40%;
-
-    box-shadow: 0 10px 26px rgba(0,0,0,0.18);
-
-    /* textura papel antiguo */
-    background-image:
-        radial-gradient(rgba(255,255,255,0.4), transparent 70%),
-        url("data:image/svg+xml;utf8,\
-            <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>\
-                <filter id='n'>\
-                    <feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/>\
-                </filter>\
-                <rect width='100%' height='100%' filter='url(%23n)' opacity='0.13'/>\
-            </svg>");
+  box-shadow:
+    0 0 1px rgba(0,0,0,.18),
+    0 14px 34px rgba(0,0,0,.22);
 }
 
 /* ========================================================= */
-/* SOLAPAS (4 pliegues)                                   */
+/* LÍNEAS EN X (SUAVES)                                      */
 /* ========================================================= */
 
-.fold {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #e6edd7;
-    z-index: 2;
-
-    box-shadow:
-        inset 0 0 90px rgba(0,0,0,0.22),
-        inset 0 0 40px rgba(0,0,0,0.18),
-        inset 0 0 14px rgba(0,0,0,0.25);
-}
-
-.fold::before {
-    content: "";
-    inset: 0;
-    position: absolute;
-    background: linear-gradient(135deg, rgba(255,255,255,.25), rgba(0,0,0,.12));
-    opacity: .55;
-    mix-blend-mode: soft-light;
-}
-
-/* izquierda */
-.fold-left {
-    clip-path: polygon(0 0, 55% 50%, 0 100%);
-    transform-origin: left;
-    opacity: 0;            /* oculta hasta abrir */
-    pointer-events: none;
-}
-
-/* derecha */
-.fold-right {
-    clip-path: polygon(100% 0, 100% 100%, 45% 50%);
-    transform-origin: right;
-}
-
-/* arriba */
-.fold-top {
-    clip-path: polygon(0 0, 100% 0, 50% 45%);
-}
-
-/* abajo */
-.fold-bottom {
-    clip-path: polygon(0 100%, 100% 100%, 50% 55%);
-    z-index: 1;
+.envelope::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(45deg,
+      transparent 49.6%,
+      rgba(0,0,0,0.10) 50%,
+      transparent 50.4%),
+    linear-gradient(-45deg,
+      transparent 49.6%,
+      rgba(0,0,0,0.10) 50%,
+      transparent 50.4%);
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* ========================================================= */
-/* ANIMACIONES DE APERTURA                                */
+/* SOLAPAS                                                   */
 /* ========================================================= */
 
-.fold-left,
-.fold-right {
-    backface-visibility: hidden;
-    transition: transform 1.7s cubic-bezier(.33, 1, .55, 1.3);
+.flap {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
 }
 
-.fold-right { transition-delay: .10s; }
-.fold-left  { transition-delay: .20s; }
-
-.envelope.open .fold-right {
-    transform: rotateY(95deg);
+/* INFERIOR */
+.flap.front {
+  border-width: 118px 210px;
+  border-left-color: var(--envelope-color);
+  border-right-color: var(--envelope-color);
+  border-bottom-color: var(--envelope-color);
+  border-top-color: transparent;
+  z-index: 3;
+  filter: brightness(0.96);
 }
 
-.envelope.open .fold-left {
-    opacity: 1;
-    transform: rotateY(-95deg);
+.flap.front::after {
+  content: "";
+  position: absolute;
+  left: -210px;
+  bottom: -118px;
+  border-width: 116px 210px;
+  border-style: solid;
+  border-bottom-color: var(--envelope-color);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: transparent;
 }
+
+/* SUPERIOR */
+.flap.top {
+  border-width: 125px 210px;
+  border-top-color: var(--envelope-color);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  z-index: 4;
+  filter: brightness(1.03);
+}
+
+/* ========================================================= */
+/* CARTA (CONTENEDOR DEL SITIO)                              */
+/* ========================================================= */
+
+.letter {
+  position: absolute;
+  width: 405px;
+  height: 215px;
+  top: 10px;
+  left: 7px;
+  background: #fff;
+  border-radius: 8px;
+  z-index: 1;
+  overflow: hidden;
+
+  transition:
+    width 1.2s cubic-bezier(.4,0,.2,1),
+    height 1.2s cubic-bezier(.4,0,.2,1),
+    top 1.2s cubic-bezier(.4,0,.2,1),
+    left 1.2s cubic-bezier(.4,0,.2,1),
+    border-radius 1.2s ease;
+}
+
+/* ========================================================= */
+/* CARTA → SITIO COMPLETO                                   */
+/* ========================================================= */
+
+.letter.hero {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  z-index: 10000; /* 🔑 SOBRE TODO */
+  background: #fff;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.letter.hero .letter-content {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========================================================= */
+/* ANIMACIÓN SOLAPA                                         */
+/* ========================================================= */
+
+@keyframes flip {
+  to {
+    transform: rotateX(180deg);
+  }
+}
+
+.envelope.open .flap.top {
+  animation: flip 1s forwards;
+}
+
+/* ========================================================= */
+/* RESPONSIVE                                                */
+/* ========================================================= */
+
+@media (max-width: 480px) {
+  .envelope {
+    transform: scale(0.72);
+    transform-origin: center;
+  }
+}
+
+
+
 
 /* ========================================================= */
 /* SELLO                                                   */
@@ -1542,49 +1690,93 @@ body.content-ready footer {
 
 .seal {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 115px;
-    height: 115px;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     z-index: 10;
-    animation: sealIdle 2.2s ease-in-out infinite;
+
+    /* nunca se transforma el contenedor */
+    transform: none !important;
 }
 
-@keyframes sealIdle {
-    0%   { transform: translate(-50%, -50%) scale(1); }
-    30%  { transform: translate(-50%, -50%) scale(1.12) rotate(1deg); }
-    55%  { transform: translate(-50%, -50%) scale(1.04) rotate(-1deg); }
-    80%  { transform: translate(-50%, -50%) scale(1.10) rotate(1deg); }
-    100% { transform: translate(-50%, -50%) scale(1); }
-}
-
-
-.seal.idle-pulse {
-    animation: sealIdle 2.8s ease-in-out infinite;
-}
-
+/* IMAGEN DEL SELLO */
 .seal img {
-    width: 100%;
-    height: 100%;
+    width: 115px;
+    height: 115px;
     object-fit: contain;
-    transition: transform .2s ease;
+
+    animation: sealIdle 2.6s ease-in-out infinite;
+    filter: drop-shadow(0 8px 14px rgba(0,0,0,.18));
+    transition:
+        transform .35s cubic-bezier(.4,0,.2,1),
+        opacity .35s ease,
+        filter .35s ease;
 }
 
-.seal:active img { transform: scale(0.86); }
-
-/* vibración al hacer click */
-@keyframes seal-shake {
-    0% { transform: translate(-50%, -50%) rotate(0); }
-    20% { transform: translate(calc(-50% - 2px), -50%) rotate(-3deg); }
-    40% { transform: translate(calc(-50% + 2px), -50%) rotate(3deg); }
-    60% { transform: translate(calc(-50% - 1px), -50%) rotate(-2deg); }
-    80% { transform: translate(calc(-50% + 1px), -50%) rotate(2deg); }
-    100% { transform: translate(-50%, -50%) rotate(0); }
+.seal.settled img {
+  transform: scale(1);
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,.22));
 }
 
-.seal.shake { animation: seal-shake .35s ease-in-out; }
+/* LATIDO SUAVE */
+@keyframes sealIdle {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.06); }
+  55%  { transform: scale(1.01); }
+  100% { transform: scale(1); }
+}
+
+
+/* CLICK – SE HUNDE */
+.seal.press img {
+  transform: scale(0.82) translateY(4px);
+  filter: blur(0.6px) drop-shadow(0 2px 6px rgba(0,0,0,.25));
+}
+
+/* DESAPARECER */
+.seal.fade-out img {
+    opacity: 0;
+    transform: scale(0.65);
+}
+
+@media (max-width: 480px) {
+
+  .seal {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+
+    width: 80px;   /* contenedor más chico */
+    height: 80px;
+
+    transform: none;
+  }
+
+  /* 👇 SELLO MÁS CHICO REALMENTE */
+  .seal img {
+    width: 80px;
+    height: 80px;
+    animation: sealIdleMobile 2.8s ease-in-out infinite;
+    filter: drop-shadow(0 5px 8px rgba(0,0,0,.16));
+  }
+
+  /* latido más delicado para móvil */
+  @keyframes sealIdleMobile {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.06); }
+    70%  { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+
+  /* click más sutil */
+  .seal.press img {
+    transform: scale(0.85);
+    filter: blur(0.4px);
+  }
+
+}
 
 /* ========================================================= */
 /* BOTÓN DE MÚSICA                                         */
@@ -1641,20 +1833,4 @@ body.content-ready .music-btn {
 
 .music-playing {
     animation: music-pulse 1.8s ease-in-out infinite;
-}
-
-/* ========================================================= */
-/* RESPONSIVE DEL SOBRE                                   */
-/* ========================================================= */
-
-@media (max-width: 480px) {
-    .envelope {
-        width: 330px;
-        height: 460px;
-    }
-
-    .seal {
-        width: 90px;
-        height: 90px;
-    }
 }
