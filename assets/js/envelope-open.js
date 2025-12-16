@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
+
   const overlay = document.getElementById("envelopeOverlay");
   const envelope = document.querySelector(".envelope");
   const letter = document.querySelector(".letter");
@@ -20,16 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
   body.classList.add("lock-scroll");
   body.classList.remove("content-ready");
 
-  if (heroNames) {
-    heroNames.style.opacity = "0";
-    heroNames.style.transform = "translateY(16px)";
-  }
-
-  if (heroCount) {
-    heroCount.style.opacity = "0";
-    heroCount.style.transform = "translateY(16px)";
-  }
-
   if (musicBtn) {
     musicBtn.style.opacity = "0";
     musicBtn.style.pointerEvents = "none";
@@ -37,74 +28,95 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!overlay || !envelope || !letter || !seal) return;
 
-  /* ================= APERTURA SOBRE ================= */
+  /* ================= APERTURA DEL SOBRE ================= */
 
   seal.addEventListener("click", () => {
     if (opened) return;
     opened = true;
 
-    /* feedback sello */
+    /* feedback visual del sello */
     seal.classList.add("press");
     setTimeout(() => seal.classList.add("fade-out"), 160);
 
-    /* abre sobre */
+    /* abrir sobre */
     envelope.classList.add("open");
 
-    /* música */
+    /* ================= AUDIO ================= */
     if (bgSong && musicIcon) {
-      bgSong.volume = 0;
-      bgSong.play().catch(() => {});
-      musicPlaying = true;
-      musicIcon.src = "assets/img/pause.svg";
+      const tryPlay = () => {
+        bgSong.volume = 0;
+        bgSong
+          .play()
+          .then(() => {
+            musicPlaying = true;
+            musicIcon.src = "assets/img/pause.svg";
 
-      let vol = 0;
-      const fade = setInterval(() => {
-        vol += 0.05;
-        bgSong.volume = Math.min(vol, 1);
-        if (vol >= 1) clearInterval(fade);
-      }, 80);
+            let vol = 0;
+            const fade = setInterval(() => {
+              vol += 0.05;
+              bgSong.volume = Math.min(vol, 1);
+              if (vol >= 1) clearInterval(fade);
+            }, 80);
+          })
+          .catch(() => {});
+      };
+
+      if (bgSong.readyState >= 2) {
+        tryPlay();
+      } else {
+        bgSong.addEventListener("canplay", tryPlay, { once: true });
+      }
     }
 
-    /* carta fullscreen */
+    /* ================= CARTA FULLSCREEN ================= */
+
     setTimeout(() => {
       letter.classList.add("hero");
-    }, 480);
+      letter.classList.add("unfolded");
+    }, 450);
 
-    /* aparecen nombres */
+    /* ================= HERO ================= */
+
     setTimeout(() => {
       if (heroNames) {
         heroNames.style.opacity = "1";
         heroNames.style.transform = "translateY(0)";
       }
 
-      /* liberar scroll */
       body.classList.remove("lock-scroll");
-    }, 820);
+    }, 850);
 
-    /* aparece contador */
     setTimeout(() => {
       if (heroCount) {
         heroCount.style.opacity = "1";
         heroCount.style.transform = "translateY(0)";
       }
-    }, 1080);
+    }, 1100);
 
-    /* overlay se va */
+    /* ================= OVERLAY ================= */
+
     overlay.classList.add("fade-out");
-    setTimeout(() => overlay.remove(), 1200);
+    setTimeout(() => overlay.remove(), 1250);
 
-    /* UI global */
+    /* ================= UI GLOBAL (CLAVE) ================= */
+
     setTimeout(() => {
       body.classList.add("content-ready");
+
+      // fuerza recálculo real de fixed / observers
+      requestAnimationFrame(() => {
+        window.dispatchEvent(new Event("scroll"));
+        window.dispatchEvent(new Event("resize"));
+      });
 
       if (musicBtn) {
         musicBtn.style.opacity = "1";
         musicBtn.style.pointerEvents = "auto";
       }
-    }, 900);
+    }, 1350);
   });
 
-  /* ================= BOTÓN MÚSICA ================= */
+  /* ================= BOTÓN DE MÚSICA ================= */
 
   if (musicBtn && bgSong && musicIcon) {
     musicBtn.addEventListener("click", () => {

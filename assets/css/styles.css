@@ -48,11 +48,24 @@ body {
   overflow-x: hidden !important;
 }
 
+body.content-ready .navbar,
+body.content-ready footer {
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: auto !important;
+}
+
+
 .site-root {
-  width: 100%;
-  min-height: 100%;
+  position: relative;   
+  inset: auto;
+  min-height: 100vh;
+}
+
+
+body.content-ready .site-root {
   opacity: 1;
-  transition: opacity 0.8s ease;
+  transform: scale(1);
 }
 
 /* ========================================================= */
@@ -65,7 +78,7 @@ body {
   width: 100%;
   background: var(--oliva);
   padding: 12px 0;
-  z-index: 100;
+  z-index: 1000;
   opacity: 0;
   transform: translateY(-12px);
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -508,165 +521,140 @@ body.content-ready footer {
 }
 
 /* ========================================================= */
-/* UBICACIÓN  */
+/* UBICACIÓN – CONTENEDOR REAL                               */
 /* ========================================================= */
-.ubicacion-bloque {
-  margin-bottom: 55px;
-  text-align: center;
-  padding: 10px 20px;
-  opacity: 0;
-  transform: translateY(25px);
-  animation: fadeUpSmooth 0.8s ease forwards;
-}
 
-@keyframes fadeUpSmooth {
-  0% {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.ubicacion-subtitle {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.ubicacion-lugar {
-  font-size: 21px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.ubicacion-direccion {
-  font-size: 15px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.btn-ubicacion {
-  margin-top: 22px;
-  padding: 12px 30px;
-  border-radius: 28px;
-  font-size: 16px;
-  background: var(--oliva);
-  color: var(--blanco);
-  text-decoration: none;
-}
-
-.ubicacion-premium {
-  position: relative;
-  padding-top: 70px;
-}
-
-.ubicacion-fecha-general {
-  text-align: center;
-  margin: 12px auto 35px;
-  z-index: 10;
-}
-
-.ubicacion-fecha-general .fecha-num {
-  font-family: "Playfair Display";
-  font-size: 64px;
-  line-height: 1;
-  font-weight: 700;
-  color: var(--verde-olivo);
-}
-
-.ubicacion-fecha-general .fecha-mes {
-  font-family: "Montserrat";
-  font-size: 18px;
-  letter-spacing: 2px;
-  color: var(--verde-olivo);
-  margin-top: -8px;
-}
-
-/* Cards de eventos */
-.ubicacion-lista {
+#ubicacion-lista {
   display: flex;
   flex-direction: column;
-  gap: 45px;
+  gap: 130px; /* ← AQUÍ se controla el espacio entre tarjetas */
   position: relative;
   z-index: 5;
 }
 
+/* ========================================================= */
+/* TARJETAS DE UBICACIÓN                                     */
+/* ========================================================= */
+
 .ubicacion-card {
-  background: rgba(255, 255, 255, 0.65);
-  padding: 28px 32px;
-  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 36px 32px;
+  border-radius: 26px;
   backdrop-filter: blur(6px);
-  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.08);
   text-align: center;
-  animation: fadeUpSmooth 0.8s ease forwards;
-  opacity: 0;
 }
 
-/* Título del evento */
-.ubicacion-subtitle {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-
-/* Hora */
-.ubicacion-hora {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: #6c6c6c;
-}
-
-/* Lugar */
-.ubicacion-lugar {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-/* Dirección */
-.ubicacion-direccion {
-  font-size: 15px;
-  opacity: 0.9;
-  line-height: 1.6;
-  margin-bottom: 18px;
-}
-
-/* Divisor suave entre eventos */
+/* Divisor elegante entre tarjetas */
 .ubicacion-card:not(:last-child)::after {
   content: "";
   display: block;
-  width: 60%;
+  width: 58%;
   height: 1.5px;
-  background: rgba(0, 0, 0, 0.1);
-  margin: 35px auto 0;
+  background: rgba(0, 0, 0, 0.12);
+  margin: 80px auto 0;
 }
 
-/* Animación */
-@keyframes fadeUpSmooth {
-  0% {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ========================================================= */
+/* CONTENIDO INTERNO                                         */
+/* ========================================================= */
 
-.fecha-minimal {
-  font-family: "Playfair Display";
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--verde-olivo);
+.ubicacion-subtitle {
+  font-family: "Montserrat";
+  font-size: 13px;
+  font-weight: 500;
   letter-spacing: 3px;
-  text-align: center;
-  margin-bottom: 28px;
+  text-transform: uppercase;
+  color: var(--verde-olivo);
+  margin-bottom: 14px;
 }
+
+.ubicacion-hora {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a8a8a;
+  margin-bottom: 22px;
+}
+
+.ubicacion-lugar {
+  font-family: "Playfair Display";
+  font-size: 22px;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin-bottom: 14px;
+}
+
+.ubicacion-direccion {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.btn-ubicacion {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 32px;
+  border-radius: 999px;
+  background: var(--oliva);
+  color: var(--blanco);
+  letter-spacing: 0.5px;
+}
+/* ========================================================= */
+/* RESPONSIVE                                                */
+/* ========================================================= */
+
+@media (max-width: 480px) {
+  /* Espacio entre tarjetas */
+  #ubicacion-lista {
+    gap: 70px; /* antes 80px */
+  }
+
+  /* Tarjeta */
+  .ubicacion-card {
+    padding: 28px 22px; /* más ligera */
+    border-radius: 22px;
+  }
+
+  /* Tipo de evento */
+  .ubicacion-subtitle {
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    margin-bottom: 12px;
+  }
+
+  /* Hora */
+  .ubicacion-hora {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  /* Lugar */
+  .ubicacion-lugar {
+    font-size: 19px;
+    margin-bottom: 12px;
+  }
+
+  /* Dirección */
+  .ubicacion-direccion {
+    font-size: 13px;
+    line-height: 1.65;
+    margin-bottom: 26px;
+  }
+
+  /* Botón */
+  .btn-ubicacion {
+    font-size: 13px;
+    padding: 11px 28px;
+  }
+
+  /* Divisor */
+  .ubicacion-card:not(:last-child)::after {
+    width: 65%;
+    margin: 50px auto 0;
+  }
+}
+
 
 /* ========================================================= */
 /* PROGRAMA – TIMELINE (PC + MÓVIL | FIX DEFINITIVO)          */
@@ -1125,7 +1113,7 @@ footer {
   text-align: center;
   background: var(--oliva);
   color: var(--blanco);
-  z-index: 50;
+  z-index: 1000;
 
   /* estados iniciales */
   opacity: 0;
@@ -1151,7 +1139,7 @@ body.content-ready footer {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-
+  perspective: 1400px;
   opacity: 1;
   backdrop-filter: blur(0px);
   transition: opacity 1.6s ease, backdrop-filter 1.6s ease;
@@ -1633,45 +1621,77 @@ body.content-ready footer {
   height: 215px;
   top: 10px;
   left: 7px;
-  background: #fff;
+  background: var(--fondo-arco);
   border-radius: 8px;
   z-index: 1;
   overflow: hidden;
   display: block;
-  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1),
-    height 1.2s cubic-bezier(0.4, 0, 0.2, 1),
-    top 1.2s cubic-bezier(0.4, 0, 0.2, 1),
-    left 1.2s cubic-bezier(0.4, 0, 0.2, 1), border-radius 1.2s ease;
+  transform-origin: top center;
+  transform: rotateX(-88deg) translateY(-40px);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* contenido oculto mientras se desdobla */
+.letter-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* aparece SOLO cuando termina la apertura */
+.letter.hero.unfolded .letter-content {
+  opacity: 1;
+}
+
+.letter.unfolded {
+  animation: letterUnfold 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes letterUnfold {
+  0% {
+    transform: rotateX(-88deg) translateY(-20px);
+    opacity: 1;
+  }
+
+  25% {
+    transform: rotateX(-70deg) translateY(-28px);
+  }
+
+  55% {
+    transform: rotateX(-30deg) translateY(6px);
+  }
+
+  85% {
+    transform: rotateX(4deg) translateY(-2px);
+  }
+
+  100% {
+    transform: rotateX(0deg) translateY(0);
+  }
 }
 
 /* ========================================================= */
 /* CARTA → SITIO COMPLETO                                   */
 /* ========================================================= */
-
 .letter.hero {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 10000;
-  background: var(--blanco);
-
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: block;
-  opacity: 1;
-  transform: none !important;
-}
-
-/* El contenido SIEMPRE ocupa la carta */
-.letter-content {
+  position: relative;     
   width: 100%;
-  min-height: 100%;
+  height: auto;
+  min-height: 100vh;
+  overflow-y: visible;    
+  overflow-x: hidden;
+  transform: none;
+  border-radius: 0;
+  background: transparent;
+  z-index: 1; 
 }
 
-/* Cuando la carta es fullscreen */
 .letter.hero .letter-content {
+  height: auto;
   min-height: 100vh;
+  overflow: visible;
 }
 
 /* ========================================================= */

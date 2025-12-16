@@ -1,38 +1,65 @@
 {
   "meta": {
     "title": "Nuestra Boda | Elena & Julián",
-    "description": "Acompáñanos a celebrar nuestra boda"
+    "description": "Acompáñanos a celebrar nuestra boda",
+    "lang": "es",
+    "favicon": "favicon.ico"
   },
 
-  "logo": "Nuestra Boda",
+  "logo": {
+    "type": "text",
+    "value": "Nuestra Boda"
+  },
 
   "audio": {
+    "enabled": true,
     "src": "cancion.mp3",
     "autoplay_on_open": true,
     "loop": true,
+    "volume": 1,
+    "fade_in": true,
     "icons": {
       "play": "play.svg",
       "pause": "pause.svg"
     }
   },
 
-  "footer": {
-    "text": "Diseñado con amor por Shiny Maker Events"
+  "opening": {
+    "enabled": true,
+    "phrase": {
+      "enabled": true,
+      "text": "Con mucha ilusión…",
+      "duration": 1400
+    },
+    "particles": {
+      "enabled": true,
+      "type": "leaves",
+      "count": 12
+    },
+    "scroll_hint": {
+      "enabled": true,
+      "text": "Desliza para continuar"
+    }
   },
 
   "navbar": {
+    "enabled": true,
+    "logo": {
+      "use_global": true
+    },
     "items": [
-      { "label": "Inicio", "href": "#inicio" },
-      { "label": "Lugar", "href": "#ubicacion" },
-      { "label": "Programa", "href": "#programa" },
-      { "label": "Regalos", "href": "#regalos" },
-      { "label": "Vestimenta", "href": "#vestimenta" },
-      { "label": "Galería", "href": "#galeria" },
-      { "label": "Asistencia", "href": "#rsvp" }
+      { "id": "inicio", "label": "Inicio", "href": "#inicio" },
+      { "id": "ubicacion", "label": "Lugar", "href": "#ubicacion" },
+      { "id": "programa", "label": "Programa", "href": "#programa" },
+      { "id": "regalos", "label": "Regalos", "href": "#regalos" },
+      { "id": "vestimenta", "label": "Vestimenta", "href": "#vestimenta" },
+      { "id": "galeria", "label": "Galería", "href": "#galeria" },
+      { "id": "rsvp", "label": "Asistencia", "href": "#rsvp" }
     ]
   },
 
   "hero": {
+    "enabled": true,
     "background": "novios.png",
     "names": {
       "novia": "Elena",
@@ -48,6 +75,7 @@
   },
 
   "presentacion": {
+    "enabled": true,
     "titulo": "Tenemos el honor de invitarte a nuestra boda",
     "nombres": "ELENA & JULIÁN",
     "frase": "Con la bendición de Dios y en compañía de:",
@@ -66,16 +94,23 @@
   },
 
   "ubicacion": {
+    "enabled": true,
     "titulo": "Ubicación",
     "lugares": [
       {
+        "enabled": true,
         "tipo": "Ceremonia Religiosa",
         "hora": "17:30 HRS",
         "lugar": "Parroquia San José",
-        "direccion": ["Av. Principal 123", "Centro Histórico", "C.P. 62000"],
+        "direccion": [
+          "Av. Principal 123",
+          "Centro Histórico",
+          "C.P. 62000"
+        ],
         "mapa": "https://maps.google.com"
       },
       {
+        "enabled": true,
         "tipo": "Recepción",
         "hora": "20:00 HRS",
         "lugar": "Finca La Concordia",
@@ -90,6 +125,7 @@
   },
 
   "programa": {
+    "enabled": true,
     "titulo": "Programa del Evento",
     "progress_steps": [25, 50, 75, 100],
     "items": [
@@ -121,6 +157,7 @@
   },
 
   "vestimenta": {
+    "enabled": true,
     "titulo": "Código de Vestimenta",
     "icono": "9.svg",
     "formal": "FORMAL",
@@ -133,6 +170,7 @@
   },
 
   "regalos": {
+    "enabled": true,
     "titulo": "Sugerencia de Regalos",
     "descripcion": "Lo más importante para nosotros es compartir este día contigo.<br>Si deseas hacernos un obsequio, habrá una mesa de regalos en la fiesta.",
     "items": [
@@ -142,6 +180,7 @@
   },
 
   "galeria": {
+    "enabled": true,
     "titulo": "Galería",
     "imagenes": [
       "gallery1.png",
@@ -166,5 +205,10 @@
       "texto": "Nos llena de alegría saber que compartirán este día con nosotros.",
       "firma": "Elena & Julián"
     }
+  },
+
+  "footer": {
+    "enabled": true,
+    "text": "Diseñado con amor por Shiny Maker Events"
   }
 }

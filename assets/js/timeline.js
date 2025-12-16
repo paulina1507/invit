@@ -62,9 +62,8 @@
       calculateOffsets();
       updateProgress();
 
-      const scroller = document.querySelector(".letter") || window;
+      window.addEventListener("scroll", updateProgress);
 
-      scroller.addEventListener("scroll", updateProgress);
       window.addEventListener("resize", () => {
         calculateOffsets();
         updateProgress();
