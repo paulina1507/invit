@@ -23,12 +23,12 @@
   "navbar": {
     "items": [
       { "label": "Inicio", "href": "#inicio" },
-      { "label": "Presentación", "href": "#presentacion" },
       { "label": "Lugar", "href": "#ubicacion" },
       { "label": "Programa", "href": "#programa" },
       { "label": "Regalos", "href": "#regalos" },
       { "label": "Vestimenta", "href": "#vestimenta" },
-      { "label": "Galería", "href": "#galeria" }
+      { "label": "Galería", "href": "#galeria" },
+      { "label": "Asistencia", "href": "#rsvp" }
     ]
   },
 
@@ -72,11 +72,7 @@
         "tipo": "Ceremonia Religiosa",
         "hora": "17:30 HRS",
         "lugar": "Parroquia San José",
-        "direccion": [
-          "Av. Principal 123",
-          "Centro Histórico",
-          "C.P. 62000"
-        ],
+        "direccion": ["Av. Principal 123", "Centro Histórico", "C.P. 62000"],
         "mapa": "https://maps.google.com"
       },
       {
@@ -97,10 +93,30 @@
     "titulo": "Programa del Evento",
     "progress_steps": [25, 50, 75, 100],
     "items": [
-      { "hora": "13:30 hrs", "texto": "Ceremonia Religiosa", "icono": "5.svg", "lado": "left" },
-      { "hora": "15:00 hrs", "texto": "Cóctel de bienvenida", "icono": "6.svg", "lado": "right" },
-      { "hora": "15:30 hrs", "texto": "Comida", "icono": "7.svg", "lado": "left" },
-      { "hora": "17:00 hrs", "texto": "Todos a la pista", "icono": "8.svg", "lado": "right" }
+      {
+        "hora": "13:30 hrs",
+        "texto": "Ceremonia Religiosa",
+        "icono": "5.svg",
+        "lado": "left"
+      },
+      {
+        "hora": "15:00 hrs",
+        "texto": "Cóctel de bienvenida",
+        "icono": "6.svg",
+        "lado": "right"
+      },
+      {
+        "hora": "15:30 hrs",
+        "texto": "Comida",
+        "icono": "7.svg",
+        "lado": "left"
+      },
+      {
+        "hora": "17:00 hrs",
+        "texto": "Todos a la pista",
+        "icono": "8.svg",
+        "lado": "right"
+      }
     ]
   },
 
@@ -138,7 +154,7 @@
 
   "rsvp": {
     "enabled": true,
-    "titulo": "Este pase es válido para dos personas",
+    "titulo": "Confirmar asistencia",
     "texto": "Nos encantaría saber si podrán acompañarnos en este día tan especial.<br>Gracias por tomarse un momento para responder.",
     "nota": "Este pase incluye a dos personas.<br>Si lo desean, pueden compartirnos los siguientes datos.",
     "botones": {

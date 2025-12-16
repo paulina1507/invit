@@ -1,53 +1,74 @@
-document.addEventListener("timeline:ready", () => {
+(function () {
+  let initialized = false;
 
-  const timeline = document.querySelector(".timeline-programa");
-  if (!timeline) return;
+  document.addEventListener("event:data:ready", () => {
+    if (initialized) return;
+    initialized = true;
 
-  const items = [...timeline.querySelectorAll(".item")];
-  if (!items.length) return;
+    const timeline = document.querySelector(".timeline-programa");
+    const section = document.getElementById("programa");
 
-  const section = document.getElementById("programa");
+    if (!timeline || !section) return;
 
-  /* === ACTIVACIÓN DE ITEMS === */
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
+    let items = [];
+    let itemOffsets = [];
+
+    function collectItems() {
+      items = [...timeline.querySelectorAll(".item")];
+    }
+
+    function calculateOffsets() {
+      const sectionTop = section.offsetTop;
+
+      itemOffsets = items.map((item) => ({
+        el: item,
+        offset: item.offsetTop,
+      }));
+    }
+
+    function updateProgress() {
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      if (rect.bottom <= 0 || rect.top >= vh) return;
+
+      const usableHeight = Math.max(section.scrollHeight - vh * 0.4, 1);
+
+      const scrolled = Math.min(Math.max(vh * 0.4 - rect.top, 0), usableHeight);
+
+      const percent = (scrolled / usableHeight) * 100;
+
+      timeline.style.setProperty(
+        "--progress",
+        `${Math.min(Math.max(percent, 0), 100)}%`
+      );
+
+      const progressPx = (percent / 100) * section.scrollHeight;
+
+      itemOffsets.forEach(({ el, offset }) => {
+        if (progressPx >= offset) {
+          el.classList.add("lit", "active");
+        } else {
+          el.classList.remove("lit");
         }
       });
-    },
-    { threshold: 0.35 }
-  );
+    }
 
-  items.forEach(item => observer.observe(item));
+    /* esperar layout estable */
+    setTimeout(() => {
+      collectItems();
+      if (!items.length) return;
 
-  /* === PROGRESO REAL Y VISIBLE === */
-  function updateTimelineProgress() {
-    const rect = section.getBoundingClientRect();
-    const vh = window.innerHeight;
+      calculateOffsets();
+      updateProgress();
 
-    /* cuando empieza y termina el avance */
-    const start = vh * 0.35;
-    const end = rect.height - vh * 0.35;
+      const scroller = document.querySelector(".letter") || window;
 
-    /* cuánto se ha recorrido */
-    const scrolled = Math.min(
-      Math.max(start - rect.top, 0),
-      end
-    );
-
-    const percent = (scrolled / end) * 100;
-
-    timeline.style.setProperty(
-      "--progress",
-      `${Math.min(Math.max(percent, 0), 100)}%`
-    );
-  }
-
-  window.addEventListener("scroll", updateTimelineProgress);
-  window.addEventListener("resize", updateTimelineProgress);
-
-  /* primer cálculo */
-  updateTimelineProgress();
-});
+      scroller.addEventListener("scroll", updateProgress);
+      window.addEventListener("resize", () => {
+        calculateOffsets();
+        updateProgress();
+      });
+    }, 100);
+  });
+})();

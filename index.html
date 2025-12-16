@@ -1,192 +1,310 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shiny Maker Events</title>
 
-  <title>Shiny Maker Events</title>
+    <!-- Fuentes -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
 
-  <!-- Estilos -->
-  <link rel="stylesheet" href="./assets/css/styles.css">
-</head>
+  <body>
+    <!-- AUDIO -->
+    <audio id="bgSong" preload="auto" loop>
+      <source src="" type="audio/mp3" />
+    </audio>
 
-<body>
+    <!-- BOTÓN DE MÚSICA -->
+    <div id="musicToggle" class="music-btn">
+      <img id="musicIcon" src="" alt="music toggle" />
+    </div>
 
-<!-- ================= AUDIO ================= -->
-<audio id="bgSong" preload="auto" loop>
-  <source src="" type="audio/mp3">
-</audio>
-
-<!-- ================= BOTÓN DE MÚSICA ================= -->
-<div id="musicToggle" class="music-btn reveal-zoom">
-  <img id="musicIcon" src="" alt="music toggle">
-</div>
-
-<!-- ================= SOBRE + CARTA ================= -->
-<div id="envelopeOverlay" class="envelope-overlay">
-
-  <div class="envelope">
-
-    <!-- SOLAPAS -->
-    <div class="flap front"></div>
-    <div class="flap top"></div>
-
-    <!-- ================= CARTA ================= -->
-    <div class="letter">
-
-      <!-- 🔑 CONTENEDOR REAL DEL SITIO -->
-      <div class="letter-content">
-
-        <!-- ================= NAVBAR ================= -->
-        <nav class="navbar reveal">
-          <div class="nav-inner">
-            <div class="logo"></div>
-            <div class="nav-toggle" id="navToggle">☰</div>
-            <ul class="nav-menu" id="navMenu"></ul>
-          </div>
-        </nav>
-
-        <!-- ================= HERO ================= -->
-        <section class="hero-section" id="inicio">
-          <div class="hero-bg"></div>
-
-          <h1 class="hero-names reveal" id="hero-names"></h1>
-
-          <div class="hero-count reveal-zoom">
-            <div><span id="dias">00</span><small id="label-dias"></small></div>
-            <div class="sep">:</div>
-            <div><span id="horas">00</span><small id="label-horas"></small></div>
-            <div class="sep">:</div>
-            <div><span id="minutos">00</span><small id="label-minutos"></small></div>
-            <div class="sep">:</div>
-            <div><span id="segundos">00</span><small id="label-segundos"></small></div>
-          </div>
-        </section>
-
-        <!-- ================= PRESENTACIÓN ================= -->
-        <section id="presentacion" class="section-arco reveal">
-          <img src="./assets/img/flores-superior.svg" class="flor-top">
-          <img src="./assets/img/acuarela-verde.svg" class="acuarela-left">
-          <img src="./assets/img/acuarela-verde.svg" class="acuarela-right">
-
-          <div class="arco-base reveal-zoom">
-            <img src="./assets/img/acuarela-verde.svg" class="acuarela-interna-top">
-            <img src="./assets/img/acuarela-verde.svg" class="acuarela-interna-bottom">
-
-            <h2 id="titulo-presentacion" class="arco-title"></h2>
-            <h3 id="nombres-presentacion" class="arco-nombres"></h3>
-            <p id="frase-presentacion" class="arco-frase"></p>
-
-            <div class="arco-grupo">
-              <h4 id="label-padres-novia"></h4>
-              <p id="padres-novia"></p>
-            </div>
-
-            <div class="arco-grupo">
-              <h4 id="label-padres-novio"></h4>
-              <p id="padres-novio"></p>
-            </div>
-
-            <div class="arco-grupo">
-              <h4 id="label-padrinos"></h4>
-              <p id="padrinos"></p>
-            </div>
-
-            <div class="arco-img">
-              <img src="" alt="pareja">
-            </div>
-
-            <p id="texto-final-presentacion"></p>
-          </div>
-        </section>
-
-        <!-- ================= UBICACIÓN ================= -->
-        <section id="ubicacion" class="section-arco reveal">
-          <div class="arco-base ubicacion-premium reveal-zoom">
-            <h2 id="ubicacion-titulo" class="arco-title"></h2>
-            <div id="ubicacion-fecha-general"></div>
-            <div id="ubicacion-lista"></div>
-          </div>
-        </section>
-
-        <!-- ================= PROGRAMA ================= -->
-        <section id="programa" class="section-arco reveal">
-          <div class="arco-base reveal-zoom">
-            <h2 id="programa-titulo" class="arco-title"></h2>
-            <div id="timeline-programa"></div>
-          </div>
-        </section>
-
-        <!-- ================= VESTIMENTA ================= -->
-        <section id="vestimenta" class="section-arco reveal">
-          <div class="arco-base reveal-zoom">
-            <h2 id="vestimenta-titulo" class="arco-title"></h2>
-            <img id="vestimenta-icon" class="vestimenta-icon">
-            <h3 id="vestimenta-formal"></h3>
-            <p id="vestimenta-mujeres"></p>
-            <p id="vestimenta-hombres"></p>
-          </div>
-        </section>
-
-        <!-- ================= REGALOS ================= -->
-        <section id="regalos" class="section-arco reveal">
-          <div class="arco-base reveal-zoom">
-            <h2 id="regalos-titulo" class="arco-title"></h2>
-            <p class="regalos-desc"></p>
-            <div id="regalos-inner"></div>
-          </div>
-        </section>
-
-        <!-- ================= GALERÍA ================= -->
-        <section id="galeria" class="section-arco reveal">
-          <div class="arco-base reveal-zoom">
-            <h2 id="galeria-titulo" class="arco-title"></h2>
-
-            <div class="carousel">
-              <div class="carousel-track" id="carousel-track"></div>
-              <button class="carousel-btn left" id="carousel-left">&#10094;</button>
-              <button class="carousel-btn right" id="carousel-right">&#10095;</button>
-            </div>
-          </div>
-        </section>
-
-        <!-- ================= RSVP ================= -->
-        <section id="rsvp" class="section-arco reveal">
-          <div class="arco-base reveal-zoom">
-            <div id="rsvp-form"></div>
-            <div id="rsvp-final"></div>
-          </div>
-        </section>
-
-        <!-- ================= FOOTER ================= -->
-        <footer>
-          <small id="footer-text"></small>
-        </footer>
-
+    <!-- SOBRE -->
+    <div id="envelopeOverlay" class="envelope-overlay">
+      <div class="envelope">
+        <div class="flap front"></div>
+        <div class="flap top"></div>
+        <!-- SELLO -->
+        <div id="sealButton" class="seal">
+          <img src="assets/img/sello.svg" alt="Abrir" />
+        </div>
       </div>
     </div>
+    <!-- CARTA -->
+    <div class="letter">
+      <div class="letter-content">
+        <!-- SITIO -->
+        <div id="siteRoot" class="site-root">
+          <!-- ================= NAVBAR ================= -->
+          <nav class="navbar reveal">
+            <div class="nav-inner">
+              <div class="logo"></div>
+              <div class="nav-toggle" id="navToggle">☰</div>
+              <ul class="nav-menu" id="navMenu"></ul>
+            </div>
+          </nav>
 
-    <!-- ================= SELLO ================= -->
-    <div id="sealButton" class="seal">
-      <img src="assets/img/sello.svg" alt="Abrir">
+          <!-- ================= HERO ================= -->
+          <section class="hero-section" id="inicio">
+            <div class="hero-bg"></div>
+
+            <h1 class="hero-names reveal" id="hero-names"></h1>
+
+            <div class="hero-count reveal">
+              <div>
+                <span id="dias">00</span><small id="label-dias"></small>
+              </div>
+              <div class="sep">:</div>
+              <div>
+                <span id="horas">00</span><small id="label-horas"></small>
+              </div>
+              <div class="sep">:</div>
+              <div>
+                <span id="minutos">00</span><small id="label-minutos"></small>
+              </div>
+              <div class="sep">:</div>
+              <div>
+                <span id="segundos">00</span><small id="label-segundos"></small>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= PRESENTACIÓN ================= -->
+          <section id="presentacion" class="section-arco reveal">
+            <img src="./assets/img/flores-superior.svg" class="flor-top" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-left" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-right" />
+
+            <div class="arco-base">
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-top"
+              />
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-bottom"
+              />
+
+              <h2 id="titulo-presentacion" class="arco-title"></h2>
+              <h3 id="nombres-presentacion" class="arco-nombres"></h3>
+              <p id="frase-presentacion" class="arco-frase"></p>
+
+              <div class="arco-grupo">
+                <h4 id="label-padres-novia"></h4>
+                <p id="padres-novia"></p>
+              </div>
+
+              <div class="arco-grupo">
+                <h4 id="label-padres-novio"></h4>
+                <p id="padres-novio"></p>
+              </div>
+
+              <div class="arco-grupo">
+                <h4 id="label-padrinos"></h4>
+                <p id="padrinos"></p>
+              </div>
+
+              <div class="arco-img">
+                <img src="" alt="pareja" />
+              </div>
+
+              <p id="texto-final-presentacion"></p>
+            </div>
+          </section>
+
+          <!-- ================= UBICACIÓN ================= -->
+          <section id="ubicacion" class="section-arco reveal">
+            <img src="./assets/img/flores-superior.svg" class="flor-top" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-left" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-right" />
+
+            <div class="arco-base ubicacion-premium">
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-top"
+              />
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-bottom"
+              />
+
+              <h2 id="ubicacion-titulo" class="arco-title"></h2>
+              <div id="ubicacion-fecha-general"></div>
+              <div id="ubicacion-lista"></div>
+            </div>
+          </section>
+
+          <!-- ================= PROGRAMA ================= -->
+          <section id="programa" class="section-arco reveal">
+            <img src="./assets/img/flores-superior.svg" class="flor-top" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-left" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-right" />
+
+            <div class="arco-base">
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-top"
+              />
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-bottom"
+              />
+
+              <h2 id="programa-titulo" class="arco-title"></h2>
+
+              <!-- 🔑 ESTA ES LA CLAVE -->
+              <div id="timeline-programa" class="timeline-programa"></div>
+            </div>
+          </section>
+
+          <!-- ================= VESTIMENTA ================= -->
+          <section id="vestimenta" class="section-arco reveal">
+            <img src="./assets/img/flores-superior.svg" class="flor-top" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-left" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-right" />
+
+            <div class="arco-base">
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-top"
+              />
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-bottom"
+              />
+
+              <h2 id="vestimenta-titulo" class="arco-title"></h2>
+              <img id="vestimenta-icon" class="vestimenta-icon" />
+              <h3 id="vestimenta-formal"></h3>
+              <p id="vestimenta-mujeres"></p>
+              <p id="vestimenta-hombres"></p>
+            </div>
+          </section>
+
+          <!-- ================= REGALOS ================= -->
+          <section id="regalos" class="section-arco reveal">
+            <img src="./assets/img/flores-superior.svg" class="flor-top" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-left" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-right" />
+
+            <div class="arco-base">
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-top"
+              />
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-bottom"
+              />
+
+              <h2 id="regalos-titulo" class="arco-title"></h2>
+              <p class="regalos-desc"></p>
+              <div id="regalos-inner"></div>
+            </div>
+          </section>
+
+          <!-- ================= GALERÍA ================= -->
+          <section id="galeria" class="section-arco reveal">
+            <img src="./assets/img/flores-superior.svg" class="flor-top" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-left" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-right" />
+
+            <div class="arco-base">
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-top"
+              />
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-bottom"
+              />
+
+              <h2 id="galeria-titulo" class="arco-title"></h2>
+
+              <div class="carousel">
+                <div class="carousel-track" id="carousel-track"></div>
+                <button class="carousel-btn left" id="carousel-left">
+                  &#10094;
+                </button>
+                <button class="carousel-btn right" id="carousel-right">
+                  &#10095;
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= RSVP ================= -->
+          <section id="rsvp" class="section-arco reveal">
+            <!-- decoraciones externas -->
+            <img src="./assets/img/flores-superior.svg" class="flor-top" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-left" />
+            <img src="./assets/img/acuarela-verde.svg" class="acuarela-right" />
+
+            <!-- ================= ARCO (FORM + FINAL) ================= -->
+            <div class="arco-base">
+              <!-- acuarelas internas del arco -->
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-top"
+              />
+              <img
+                src="./assets/img/acuarela-verde.svg"
+                class="acuarela-interna-bottom"
+              />
+
+              <!-- ================= RSVP FORM ================= -->
+              <div id="rsvp-form" class="rsvp-container reveal-zoom">
+                <h2 class="arco-title"></h2>
+
+                <p class="rsvp-text"></p>
+
+                <div class="rsvp-options">
+                  <button class="rsvp-btn yes"></button>
+                  <button class="rsvp-btn no"></button>
+                </div>
+
+                <p class="rsvp-note"></p>
+              </div>
+
+              <!-- ================= RSVP FINAL (DENTRO DEL ARCO) ================= -->
+              <div id="rsvp-final">
+                <h2 id="rsvp-final-title"></h2>
+                <p id="rsvp-final-text"></p>
+                <div class="rsvp-sign" id="rsvp-names"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= FOOTER ================= -->
+          <footer>
+            <small id="footer-text"></small>
+          </footer>
+        </div>
+        <!-- siteRoot -->
+      </div>
+      <!-- letter-content -->
     </div>
+    <!-- letter -->
 
-  </div>
-</div>
-
-<!-- ================= SCRIPTS ================= -->
-<script src="./assets/js/scroll-animations.js"></script>
-<script src="./assets/js/timeline.js"></script>
-<script src="./assets/js/countdown.js"></script>
-<script src="./assets/js/envelope-open.js"></script>
-<script src="./assets/js/navbar.js"></script>
-<script src="./assets/js/event-data.js"></script>
-<script src="./assets/js/carousel.js"></script>
-<script src="./assets/js/rsvp.js"></script>
-
-</body>
+    <!-- SCRIPTS -->
+    <script src="./assets/js/envelope-open.js"></script>
+    <script src="./assets/js/navbar.js"></script>
+    <script src="./assets/js/scroll-animations.js"></script>
+    <script src="./assets/js/event-data.js"></script>
+    <script src="./assets/js/countdown.js"></script>
+    <script src="./assets/js/timeline.js"></script>
+    <script src="./assets/js/carousel.js"></script>
+    <script src="./assets/js/rsvp.js"></script>
+  </body>
 </html>

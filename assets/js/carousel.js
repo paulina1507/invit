@@ -1,49 +1,47 @@
-document.addEventListener("DOMContentLoaded", () => {
+(function () {
+  let initialized = false;
 
-  let index = 0;
+  document.addEventListener("event:data:ready", () => {
+    if (initialized) return;
+    initialized = true;
 
-  const track = document.querySelector(".carousel-track");
-  const btnLeft = document.querySelector(".carousel-btn.left");
-  const btnRight = document.querySelector(".carousel-btn.right");
+    let index = 0;
 
-  if (!track || !btnLeft || !btnRight) return;
+    const track = document.querySelector(".carousel-track");
+    const btnLeft = document.querySelector(".carousel-btn.left");
+    const btnRight = document.querySelector(".carousel-btn.right");
 
-  function getSlides() {
-    return track.querySelectorAll(".carousel-img");
-  }
+    if (!track || !btnLeft || !btnRight) return;
 
-  function updateCarousel() {
-    const slides = getSlides();
-    if (!slides.length) return;
-
-    track.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  btnRight.addEventListener("click", () => {
-    const slides = getSlides();
-    if (!slides.length) return;
-
-    index = (index + 1) % slides.length;
-    updateCarousel();
-  });
-
-  btnLeft.addEventListener("click", () => {
-    const slides = getSlides();
-    if (!slides.length) return;
-
-    index = (index - 1 + slides.length) % slides.length;
-    updateCarousel();
-  });
-
-  /* 🔁 Esperar a que el JSON cargue las imágenes */
-  const observer = new MutationObserver(() => {
-    const slides = getSlides();
-    if (slides.length) {
-      index = 0;
-      updateCarousel();
-      observer.disconnect();
+    function getSlides() {
+      return track.querySelectorAll(".carousel-img");
     }
-  });
 
-  observer.observe(track, { childList: true });
-});
+    function updateCarousel() {
+      const slides = getSlides();
+      if (!slides.length) return;
+
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    btnRight.addEventListener("click", () => {
+      const slides = getSlides();
+      if (!slides.length) return;
+
+      index = (index + 1) % slides.length;
+      updateCarousel();
+    });
+
+    btnLeft.addEventListener("click", () => {
+      const slides = getSlides();
+      if (!slides.length) return;
+
+      index = (index - 1 + slides.length) % slides.length;
+      updateCarousel();
+    });
+
+    /* estado inicial */
+    index = 0;
+    updateCarousel();
+  });
+})();

@@ -1,107 +1,46 @@
-document.addEventListener("DOMContentLoaded", () => {
+(function () {
+  let initialized = false;
 
-    const rsvpSection = document.getElementById("rsvp");
-    if (!rsvpSection) return;
+  function initRSVP() {
+    if (initialized) return;
+    initialized = true;
 
-    const optionButtons = rsvpSection.querySelectorAll(".rsvp-btn");
-    const detailsBox = rsvpSection.querySelector(".rsvp-details");
-    const confirmBtn = rsvpSection.querySelector(".rsvp-confirm");
+    const formBox = document.getElementById("rsvp-form");
+    const finalBox = document.getElementById("rsvp-final");
+    const section = document.getElementById("rsvp");
 
-    const formBox = rsvpSection.querySelector("#rsvp-form");
-    const finalBox = rsvpSection.querySelector("#rsvp-final");
+    if (!formBox || !finalBox || !section) return;
 
-    const finalTitle = rsvpSection.querySelector("#rsvp-final-title");
-    const finalText  = rsvpSection.querySelector("#rsvp-final-text");
+    const btnYes = formBox.querySelector(".rsvp-btn.yes");
+    const btnNo = formBox.querySelector(".rsvp-btn.no");
 
-    let selectedOption = null;
+    const titleEl = document.getElementById("rsvp-final-title");
+    const textEl = document.getElementById("rsvp-final-text");
+    const namesEl = document.getElementById("rsvp-names");
 
-    /* ============================
-       ESTADO INICIAL LIMPIO
-    ============================ */
+    const data = window.__EVENT_DATA__;
+    if (!data?.rsvp?.final) return;
 
-    function resetStates() {
-        rsvpSection.classList.remove("expanded", "completed");
+    function showFinal() {
+      formBox.classList.add("hidden");
+      section.classList.add("completed");
 
-        optionButtons.forEach(b => b.classList.remove("active"));
+      titleEl.textContent = data.rsvp.final.titulo || "";
+      textEl.innerHTML = data.rsvp.final.texto || "";
+      namesEl.textContent = data.rsvp.final.firma || "";
 
-        if (detailsBox) {
-            detailsBox.classList.remove("show");
-            detailsBox.style.display = "none";
-        }
-
-        formBox.style.display = "block";
-        finalBox.style.display = "none";
+      finalBox.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
-    // ⚠️ ESTO ES LO QUE FALTABA
-    resetStates();
+    btnYes?.addEventListener("click", showFinal);
+    btnNo?.addEventListener("click", showFinal);
+  }
 
-    /* ============================
-       Helpers de estado
-    ============================ */
+  // 1️⃣ Escuchar el evento normal
+  document.addEventListener("event:data:ready", initRSVP);
 
-    function expandRSVP() {
-        rsvpSection.classList.remove("completed");
-        rsvpSection.classList.add("expanded");
-    }
-
-    function completeRSVP() {
-        rsvpSection.classList.remove("expanded");
-        rsvpSection.classList.add("completed");
-
-        formBox.style.display = "none";
-        finalBox.style.display = "block";
-    }
-
-    /* ============================
-       Selección de opción
-    ============================ */
-
-    optionButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-
-            selectedOption = btn.dataset.response;
-
-            optionButtons.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-
-            expandRSVP();
-
-            if (selectedOption === "yes") {
-                detailsBox.style.display = "flex";
-                detailsBox.classList.add("show");
-            }
-
-            if (selectedOption === "no") {
-                setTimeout(() => {
-                    finalTitle.textContent = "Gracias por avisarnos";
-                    finalText.innerHTML = `
-                        Agradecemos mucho que se hayan tomado el tiempo de responder.<br>
-                        Los llevamos con nosotros en este día tan especial.
-                    `;
-                    completeRSVP();
-                }, 300);
-            }
-        });
-    });
-
-    /* ============================
-       Confirmación (sí asisten)
-    ============================ */
-
-    confirmBtn?.addEventListener("click", () => {
-
-        if (selectedOption !== "yes") return;
-
-        setTimeout(() => {
-            finalTitle.textContent = "¡Gracias por confirmar su asistencia!";
-            finalText.innerHTML = `
-                Hemos recibido su respuesta con mucho cariño.<br>
-                Nos hará muy felices compartir este día con ustedes.<br><br>
-                <strong>Pase confirmado para dos personas.</strong>
-            `;
-            completeRSVP();
-        }, 300);
-    });
-
-});
+  // 2️⃣ Fallback: si el evento ya ocurrió
+  if (window.__EVENT_DATA__) {
+    initRSVP();
+  }
+})();

@@ -1,56 +1,56 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* ============================= */
-  /* REFERENCIAS                   */
-  /* ============================= */
-
   const body = document.body;
   const overlay = document.getElementById("envelopeOverlay");
-  const seal = document.getElementById("sealButton");
   const envelope = document.querySelector(".envelope");
   const letter = document.querySelector(".letter");
+  const seal = document.getElementById("sealButton");
 
   const musicBtn = document.getElementById("musicToggle");
   const musicIcon = document.getElementById("musicIcon");
   const bgSong = document.getElementById("bgSong");
 
+  const heroNames = document.querySelector(".hero-names");
+  const heroCount = document.querySelector(".hero-count");
+
   let opened = false;
   let musicPlaying = false;
 
-  /* ============================= */
-  /* ESTADO INICIAL                */
-  /* ============================= */
+  /* ================= ESTADO INICIAL ================= */
 
   body.classList.add("lock-scroll");
   body.classList.remove("content-ready");
+
+  if (heroNames) {
+    heroNames.style.opacity = "0";
+    heroNames.style.transform = "translateY(16px)";
+  }
+
+  if (heroCount) {
+    heroCount.style.opacity = "0";
+    heroCount.style.transform = "translateY(16px)";
+  }
 
   if (musicBtn) {
     musicBtn.style.opacity = "0";
     musicBtn.style.pointerEvents = "none";
   }
 
-  if (!overlay || !seal || !envelope || !letter) {
-    console.warn("Envelope structure incomplete");
-    return;
-  }
+  if (!overlay || !envelope || !letter || !seal) return;
 
-  /* ============================= */
-  /* CLICK EN SELLO                */
-  /* ============================= */
+  /* ================= APERTURA SOBRE ================= */
 
   seal.addEventListener("click", () => {
     if (opened) return;
     opened = true;
 
-    /* hunde sello */
-    seal.style.pointerEvents = "none";
+    /* feedback sello */
     seal.classList.add("press");
+    setTimeout(() => seal.classList.add("fade-out"), 160);
 
-    setTimeout(() => {
-      seal.classList.add("fade-out");
-    }, 180);
+    /* abre sobre */
+    envelope.classList.add("open");
 
-    /* 🎵 música */
+    /* música */
     if (bgSong && musicIcon) {
       bgSong.volume = 0;
       bgSong.play().catch(() => {});
@@ -65,40 +65,46 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 80);
     }
 
-    /* ✉️ abre sobre */
-    setTimeout(() => {
-      envelope.classList.add("open");
-    }, 420);
-
-    /* 📄 carta → fullscreen (CLAVE) */
+    /* carta fullscreen */
     setTimeout(() => {
       letter.classList.add("hero");
-    }, 1100);
+    }, 480);
 
-    /* 🌿 revela sitio */
+    /* aparecen nombres */
     setTimeout(() => {
+      if (heroNames) {
+        heroNames.style.opacity = "1";
+        heroNames.style.transform = "translateY(0)";
+      }
 
-      body.classList.add("content-ready");
+      /* liberar scroll */
       body.classList.remove("lock-scroll");
+    }, 820);
+
+    /* aparece contador */
+    setTimeout(() => {
+      if (heroCount) {
+        heroCount.style.opacity = "1";
+        heroCount.style.transform = "translateY(0)";
+      }
+    }, 1080);
+
+    /* overlay se va */
+    overlay.classList.add("fade-out");
+    setTimeout(() => overlay.remove(), 1200);
+
+    /* UI global */
+    setTimeout(() => {
+      body.classList.add("content-ready");
 
       if (musicBtn) {
         musicBtn.style.opacity = "1";
         musicBtn.style.pointerEvents = "auto";
       }
-
-      /* 🔥 activar animaciones */
-      document.dispatchEvent(new Event("reveal:init"));
-      document.dispatchEvent(new Event("timeline:ready"));
-
-      overlay.classList.add("fade-out");
-      setTimeout(() => overlay.remove(), 1200);
-
-    }, 1400);
+    }, 900);
   });
 
-  /* ============================= */
-  /* BOTÓN DE MÚSICA               */
-  /* ============================= */
+  /* ================= BOTÓN MÚSICA ================= */
 
   if (musicBtn && bgSong && musicIcon) {
     musicBtn.addEventListener("click", () => {
@@ -112,5 +118,4 @@ document.addEventListener("DOMContentLoaded", () => {
       musicPlaying = !musicPlaying;
     });
   }
-
 });
