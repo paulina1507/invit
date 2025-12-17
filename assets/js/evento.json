@@ -102,11 +102,7 @@
         "tipo": "Ceremonia Religiosa",
         "hora": "17:30 HRS",
         "lugar": "Parroquia San José",
-        "direccion": [
-          "Av. Principal 123",
-          "Centro Histórico",
-          "C.P. 62000"
-        ],
+        "direccion": ["Av. Principal 123", "Centro Histórico", "C.P. 62000"],
         "mapa": "https://maps.google.com"
       },
       {
@@ -207,6 +203,40 @@
     }
   },
 
+  "editorial": {
+    "hero": {
+      "enabled": true,
+      "text": "Con mucha ilusión, queremos compartir este momento contigo"
+    },
+    "presentacion": {
+      "enabled": true,
+      "text": "Nada de esto sería posible sin ellos"
+    },
+    "ubicacion": {
+      "enabled": true,
+      "text": "El lugar donde comenzará todo"
+    },
+    "programa": {
+      "enabled": true,
+      "text": "Cada momento tiene su instante"
+    },
+    "vestimenta": {
+      "enabled": true,
+      "text": "Una celebración también se viste"
+    },
+    "regalos": {
+      "enabled": true,
+      "text": "Tu presencia es nuestro mejor regalo"
+    },
+    "galeria": {
+      "enabled": true,
+      "text": "Momentos que nos han traído hasta aquí"
+    },
+    "rsvp": {
+      "enabled": true,
+      "text": "Tu presencia es muy importante para nosotros"
+    }
+  },
   "footer": {
     "enabled": true,
     "text": "Diseñado con amor por Shiny Maker Events"

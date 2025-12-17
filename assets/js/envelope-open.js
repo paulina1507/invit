@@ -10,9 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const musicIcon = document.getElementById("musicIcon");
   const bgSong = document.getElementById("bgSong");
 
-  const heroNames = document.querySelector(".hero-names");
-  const heroCount = document.querySelector(".hero-count");
-
   let opened = false;
   let musicPlaying = false;
 
@@ -40,6 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* abrir sobre */
     envelope.classList.add("open");
+
+    /* ================= HERO ================= */
+    setTimeout(() => {
+      document.getElementById("siteRoot")?.classList.add("hero-ready");
+    }, 400);
+
+    /* ================= TEXTO INTRODUCTORIO ================= */
+    setTimeout(() => {
+      runHeroIntro(window.__EVENT_DATA__);
+    }, 1800);
 
     /* ================= AUDIO ================= */
     if (bgSong && musicIcon) {
@@ -75,32 +82,15 @@ document.addEventListener("DOMContentLoaded", () => {
       letter.classList.add("unfolded");
     }, 450);
 
-    /* ================= HERO ================= */
-
-    setTimeout(() => {
-      if (heroNames) {
-        heroNames.style.opacity = "1";
-        heroNames.style.transform = "translateY(0)";
-      }
-
-      body.classList.remove("lock-scroll");
-    }, 850);
-
-    setTimeout(() => {
-      if (heroCount) {
-        heroCount.style.opacity = "1";
-        heroCount.style.transform = "translateY(0)";
-      }
-    }, 1100);
-
     /* ================= OVERLAY ================= */
 
     overlay.classList.add("fade-out");
     setTimeout(() => overlay.remove(), 1250);
 
-    /* ================= UI GLOBAL (CLAVE) ================= */
+    /* ================= UI GLOBAL ================= */
 
     setTimeout(() => {
+      body.classList.remove("lock-scroll");
       body.classList.add("content-ready");
 
       // fuerza recálculo real de fixed / observers
@@ -131,3 +121,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/* ================= TEXTO EDITORIAL HERO ================= */
+
+function runHeroIntro(data) {
+  const phrase = document.getElementById("introPhrase");
+  if (!phrase) return;
+
+  phrase.textContent =
+    data?.opening?.phrase?.text ||
+    "Con mucha ilusión, queremos compartir este momento contigo";
+
+  phrase.style.animation = "introFade 3.2s ease forwards";
+}

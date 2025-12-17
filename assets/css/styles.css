@@ -68,6 +68,43 @@ body.content-ready .site-root {
   transform: scale(1);
 }
 
+.site-root.hero-ready .hero-bg {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.site-root.hero-ready .hero-names {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.site-root.hero-ready .hero-count {
+  opacity: 1;
+}
+
+.editorial-text {
+  max-width: 420px;
+  margin: 0 auto 36px;
+  text-align: center;
+
+  font-family: "Playfair Display", serif;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.6;
+
+  color: rgba(46, 46, 46, 0.75);
+
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.editorial-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ========================================================= */
 /*  NAVBAR                                                    */
 /* ========================================================= */
@@ -147,6 +184,45 @@ body.content-ready .navbar {
     font-size: 18px;
   }
 }
+
+.intro-phrase {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 320px;
+  text-align: center;
+
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.6;
+  color: rgba(46, 46, 46, 0.75);
+
+  opacity: 0;
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 90;
+}
+
+@keyframes introFade {
+  0% {
+    opacity: 0;
+    filter: blur(6px);
+  }
+  30% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
 /* ========================================================= */
 /* HERO */
 /* ========================================================= */
@@ -170,6 +246,9 @@ body.content-ready .navbar {
   background: url("../img/novios.png") center/cover no-repeat;
   filter: brightness(0.85);
   z-index: -1;
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 1.2s ease, filter 1.2s ease;
 }
 
 .hero-bg::after {
@@ -191,13 +270,16 @@ body.content-ready .navbar {
   letter-spacing: 2px;
   font-weight: 400;
   text-shadow: 0 8px 35px rgba(0, 0, 0, 0.45);
-  transform: translateY(20px);
+
+  opacity: 0;
+  transform: translateY(4px);
+  filter: blur(4px);
+  transition: all 0.9s ease;
 }
 
-.hero-names,
 .hero-count {
   opacity: 0;
-  transform: translateY(20px);
+  transition: opacity 0.8s ease;
 }
 
 .hero-names {
@@ -256,6 +338,24 @@ body.content-ready footer {
     transform: translateY(0);
   }
 }
+
+@keyframes iconReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(26px) scale(0.92);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 
 /* ANIMACIÓN DE CAÍDA SUAVE DEL SOBRE */
 @keyframes envelopeDrop {
@@ -782,8 +882,7 @@ body.content-ready footer {
 }
 
 .timeline-programa .item.active .icon {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+  animation: iconReveal 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 @media (hover: hover) {
@@ -929,8 +1028,7 @@ body.content-ready footer {
 }
 
 #vestimenta.reveal.visible .vestimenta-icon {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+  animation: iconReveal 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 @media (hover: hover) {
@@ -1520,9 +1618,7 @@ body.content-ready footer {
 
 /* REGALOS */
 #regalos.reveal.visible .icon {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.45s;
+  animation: iconReveal 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 /* ========================================================= */
 /* SOBRE – DEFINITIVO, COLOR CORRECTO Y ESCALABLE            */

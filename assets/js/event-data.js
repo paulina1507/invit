@@ -1,21 +1,20 @@
 fetch("./assets/js/evento.json")
   .then((res) => res.json())
   .then((data) => {
+
     /* ================= 🔧 HELPERS ================= */
 
-    const isSectionEnabled = (id) => {
-      return data[id]?.enabled !== false;
+    const isEnabled = (obj) => obj?.enabled !== false;
+
+    const removeSection = (id) => {
+      const el = document.getElementById(id);
+      if (el) el.remove();
     };
 
     /* ================= META ================= */
 
-    if (data.meta?.title) {
-      document.title = data.meta.title;
-    }
-
-    if (data.meta?.lang) {
-      document.documentElement.lang = data.meta.lang;
-    }
+    if (data.meta?.title) document.title = data.meta.title;
+    if (data.meta?.lang) document.documentElement.lang = data.meta.lang;
 
     if (data.meta?.favicon) {
       let link =
@@ -39,7 +38,7 @@ fetch("./assets/js/evento.json")
     const musicToggle = document.getElementById("musicToggle");
     const musicIcon = document.getElementById("musicIcon");
 
-    if (audio && data.audio?.enabled) {
+    if (audio && isEnabled(data.audio)) {
       audio.src = `assets/audio/${data.audio.src}`;
       audio.loop = data.audio.loop ?? true;
       audio.volume = data.audio.volume ?? 1;
@@ -48,27 +47,10 @@ fetch("./assets/js/evento.json")
         musicIcon.src = `assets/img/${data.audio.icons.play}`;
       }
 
-      if (data.audio.autoplay_on_open) {
-        document.addEventListener("envelope:opened", () => {
-          if (data.audio.fade_in) {
-            audio.volume = 0;
-            audio.play();
-            let v = 0;
-            const fade = setInterval(() => {
-              v += 0.05;
-              audio.volume = Math.min(v, data.audio.volume);
-              if (v >= data.audio.volume) clearInterval(fade);
-            }, 100);
-          } else {
-            audio.play();
-          }
-        });
-      }
-
       if (musicToggle && musicIcon) {
         musicToggle.addEventListener("click", () => {
           if (audio.paused) {
-            audio.play();
+            audio.play().catch(() => {});
             musicIcon.src = `assets/img/${data.audio.icons.pause}`;
           } else {
             audio.pause();
@@ -78,43 +60,19 @@ fetch("./assets/js/evento.json")
       }
     }
 
-    /* ================= OPENING ================= */
-
-    if (data.opening?.enabled) {
-      const phraseEl = document.getElementById("openingPhrase");
-      const scrollHintEl = document.getElementById("scrollHint");
-
-      if (phraseEl && data.opening.phrase?.enabled) {
-        phraseEl.textContent = data.opening.phrase.text;
-        phraseEl.style.display = "block";
-
-        setTimeout(() => {
-          phraseEl.classList.add("hide");
-        }, data.opening.phrase.duration || 1400);
-      }
-
-      if (scrollHintEl && data.opening.scroll_hint?.enabled) {
-        scrollHintEl.textContent = data.opening.scroll_hint.text;
-        scrollHintEl.style.display = "block";
-
-        window.addEventListener(
-          "scroll",
-          () => {
-            scrollHintEl.classList.add("hide");
-          },
-          { once: true }
-        );
-      }
-    }
-
     /* ================= NAVBAR ================= */
 
     const navMenu = document.getElementById("navMenu");
-    if (navMenu && data.navbar?.enabled) {
+
+    if (navMenu && isEnabled(data.navbar)) {
       navMenu.innerHTML = "";
 
       data.navbar.items.forEach((item) => {
-        if (!isSectionEnabled(item.id)) return;
+        if (!item.href || !item.label) return;
+
+        // si la sección no existe o está deshabilitada, no se pinta
+        const targetId = item.href.replace("#", "");
+        if (data[targetId]?.enabled === false) return;
 
         navMenu.insertAdjacentHTML(
           "beforeend",
@@ -125,62 +83,61 @@ fetch("./assets/js/evento.json")
 
     /* ================= HERO ================= */
 
-    if (isSectionEnabled("hero")) {
+    if (isEnabled(data.hero)) {
       const hero = data.hero;
-      if (hero) {
-        document.getElementById(
-          "hero-names"
-        ).textContent = `${hero.names.novia} & ${hero.names.novio}`;
 
-        document.querySelector(
-          ".hero-bg"
-        ).style.backgroundImage = `url('assets/img/${hero.background}')`;
+      document.getElementById("hero-names").textContent =
+        `${hero.names.novia} & ${hero.names.novio}`;
 
-        const labels = hero.countdown_labels;
-        if (labels) {
-          document.getElementById("label-dias").textContent = labels.dias;
-          document.getElementById("label-horas").textContent = labels.horas;
-          document.getElementById("label-minutos").textContent = labels.minutos;
-          document.getElementById("label-segundos").textContent =
-            labels.segundos;
-        }
+      document.querySelector(".hero-bg").style.backgroundImage =
+        `url('assets/img/${hero.background}')`;
+
+      const labels = hero.countdown_labels;
+      if (labels) {
+        document.getElementById("label-dias").textContent = labels.dias;
+        document.getElementById("label-horas").textContent = labels.horas;
+        document.getElementById("label-minutos").textContent = labels.minutos;
+        document.getElementById("label-segundos").textContent = labels.segundos;
       }
+    } else {
+      removeSection("inicio");
     }
 
     /* ================= PRESENTACIÓN ================= */
 
-    if (isSectionEnabled("presentacion")) {
+    if (isEnabled(data.presentacion)) {
       const p = data.presentacion;
-      if (p) {
-        document.getElementById("titulo-presentacion").textContent = p.titulo;
-        document.getElementById("nombres-presentacion").textContent = p.nombres;
-        document.getElementById("frase-presentacion").textContent = p.frase;
 
-        document.getElementById("padres-novia").innerHTML =
-          p.padres?.novia?.join("<br>") || "";
-        document.getElementById("padres-novio").innerHTML =
-          p.padres?.novio?.join("<br>") || "";
-        document.getElementById("padrinos").innerHTML =
-          p.padrinos?.join("<br>") || "";
+      document.getElementById("titulo-presentacion").textContent = p.titulo;
+      document.getElementById("nombres-presentacion").textContent = p.nombres;
+      document.getElementById("frase-presentacion").textContent = p.frase;
 
-        document.getElementById("label-padres-novia").textContent =
-          p.labels?.padres_novia || "";
-        document.getElementById("label-padres-novio").textContent =
-          p.labels?.padres_novio || "";
-        document.getElementById("label-padrinos").textContent =
-          p.labels?.padrinos || "";
+      document.getElementById("padres-novia").innerHTML =
+        p.padres?.novia?.join("<br>") || "";
+      document.getElementById("padres-novio").innerHTML =
+        p.padres?.novio?.join("<br>") || "";
+      document.getElementById("padrinos").innerHTML =
+        p.padrinos?.join("<br>") || "";
 
-        document.getElementById("texto-final-presentacion").textContent =
-          p.texto_final || "";
+      document.getElementById("label-padres-novia").textContent =
+        p.labels?.padres_novia || "";
+      document.getElementById("label-padres-novio").textContent =
+        p.labels?.padres_novio || "";
+      document.getElementById("label-padrinos").textContent =
+        p.labels?.padrinos || "";
 
-        const img = document.querySelector(".arco-img img");
-        if (img && p.imagen) img.src = `assets/img/${p.imagen}`;
-      }
+      document.getElementById("texto-final-presentacion").textContent =
+        p.texto_final || "";
+
+      const img = document.querySelector(".arco-img img");
+      if (img && p.imagen) img.src = `assets/img/${p.imagen}`;
+    } else {
+      removeSection("presentacion");
     }
 
     /* ================= UBICACIÓN ================= */
 
-    if (isSectionEnabled("ubicacion")) {
+    if (isEnabled(data.ubicacion)) {
       const u = data.ubicacion;
       document.getElementById("ubicacion-titulo").textContent = u.titulo;
 
@@ -188,9 +145,7 @@ fetch("./assets/js/evento.json")
       lista.innerHTML = "";
 
       u.lugares
-        .filter(
-          (l) => l?.enabled !== false && l.lugar && l.hora
-        )
+        .filter(l => isEnabled(l) && l.lugar && l.hora)
         .forEach((lugar) => {
           lista.insertAdjacentHTML(
             "beforeend",
@@ -201,9 +156,7 @@ fetch("./assets/js/evento.json")
               <div class="ubicacion-lugar">${lugar.lugar}</div>
               ${
                 lugar.direccion?.length
-                  ? `<div class="ubicacion-direccion">${lugar.direccion.join(
-                      "<br>"
-                    )}</div>`
+                  ? `<div class="ubicacion-direccion">${lugar.direccion.join("<br>")}</div>`
                   : ""
               }
               ${
@@ -215,11 +168,13 @@ fetch("./assets/js/evento.json")
           `
           );
         });
+    } else {
+      removeSection("ubicacion");
     }
 
     /* ================= PROGRAMA ================= */
 
-    if (isSectionEnabled("programa")) {
+    if (isEnabled(data.programa)) {
       const programa = data.programa;
       document.getElementById("programa-titulo").textContent = programa.titulo;
 
@@ -238,24 +193,26 @@ fetch("./assets/js/evento.json")
         `
         );
       });
+    } else {
+      removeSection("programa");
     }
 
     /* ================= VESTIMENTA ================= */
 
-    if (isSectionEnabled("vestimenta")) {
+    if (isEnabled(data.vestimenta)) {
       const v = data.vestimenta;
       document.getElementById("vestimenta-titulo").textContent = v.titulo;
-      document.getElementById(
-        "vestimenta-icon"
-      ).src = `assets/img/${v.icono}`;
+      document.getElementById("vestimenta-icon").src = `assets/img/${v.icono}`;
       document.getElementById("vestimenta-formal").textContent = v.formal;
       document.getElementById("vestimenta-mujeres").innerHTML = v.mujeres;
       document.getElementById("vestimenta-hombres").innerHTML = v.hombres;
+    } else {
+      removeSection("vestimenta");
     }
 
     /* ================= REGALOS ================= */
 
-    if (isSectionEnabled("regalos")) {
+    if (isEnabled(data.regalos)) {
       const r = data.regalos;
       document.getElementById("regalos-titulo").textContent = r.titulo;
       document.querySelector(".regalos-desc").innerHTML = r.descripcion;
@@ -274,11 +231,13 @@ fetch("./assets/js/evento.json")
         `
         );
       });
+    } else {
+      removeSection("regalos");
     }
 
     /* ================= GALERÍA ================= */
 
-    if (isSectionEnabled("galeria")) {
+    if (isEnabled(data.galeria)) {
       const g = data.galeria;
       document.getElementById("galeria-titulo").textContent = g.titulo;
 
@@ -291,34 +250,39 @@ fetch("./assets/js/evento.json")
           `<img src="assets/img/${img}" class="carousel-img">`
         );
       });
+    } else {
+      removeSection("galeria");
     }
 
     /* ================= RSVP ================= */
 
-    if (isSectionEnabled("rsvp")) {
+    if (isEnabled(data.rsvp)) {
       const rsvp = data.rsvp;
-      const rsvpForm = document.getElementById("rsvp-form");
+      const form = document.getElementById("rsvp-form");
 
-      if (rsvp?.enabled && rsvpForm) {
-        rsvpForm.querySelector(".arco-title").textContent = rsvp.titulo || "";
-        rsvpForm.querySelector(".rsvp-text").innerHTML = rsvp.texto || "";
-        rsvpForm.querySelector(".rsvp-note").innerHTML = rsvp.nota || "";
-
-        rsvpForm.querySelector(".rsvp-btn.yes").textContent =
-          rsvp.botones?.si || "Sí";
-        rsvpForm.querySelector(".rsvp-btn.no").textContent =
-          rsvp.botones?.no || "No";
+      if (form) {
+        form.querySelector(".arco-title").textContent = rsvp.titulo;
+        form.querySelector(".rsvp-text").innerHTML = rsvp.texto;
+        form.querySelector(".rsvp-note").innerHTML = rsvp.nota;
+        form.querySelector(".rsvp-btn.yes").textContent = rsvp.botones.si;
+        form.querySelector(".rsvp-btn.no").textContent = rsvp.botones.no;
       }
+    } else {
+      removeSection("rsvp");
     }
 
     /* ================= FOOTER ================= */
 
-    if (data.footer?.enabled) {
+    if (data.footer?.text) {
       const footer = document.getElementById("footer-text");
       if (footer) footer.innerHTML = data.footer.text;
     }
 
-    /* ================= 🔐 GLOBAL ================= */
+    /* ================= EDITORIAL TEXTS ================= */
+
+    applyEditorialTexts(data.editorial);
+
+    /* ================= GLOBAL ================= */
 
     window.__EVENT_DATA__ = data;
     document.dispatchEvent(new Event("event:data:ready"));
@@ -326,3 +290,33 @@ fetch("./assets/js/evento.json")
   .catch((err) => {
     console.error("Error cargando evento.json:", err);
   });
+
+/* ================= EDITORIAL ENGINE ================= */
+
+function applyEditorialTexts(editorial) {
+  if (!editorial) return;
+
+  document.querySelectorAll("[data-editorial]").forEach((el) => {
+    const key = el.dataset.editorial;
+    const cfg = editorial[key];
+
+    if (!cfg || !cfg.enabled || !cfg.text) {
+      el.remove();
+      return;
+    }
+
+    el.textContent = cfg.text;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.6 }
+    );
+
+    observer.observe(el);
+  });
+}
