@@ -100,7 +100,7 @@
       {
         "enabled": true,
         "tipo": "Ceremonia Religiosa",
-        "hora": "17:30 HRS",
+        "hora": "16:00 HRS",
         "lugar": "Parroquia San José",
         "direccion": ["Av. Principal 123", "Centro Histórico", "C.P. 62000"],
         "mapa": "https://maps.google.com"
@@ -108,7 +108,7 @@
       {
         "enabled": true,
         "tipo": "Recepción",
-        "hora": "20:00 HRS",
+        "hora": "18:00 HRS",
         "lugar": "Finca La Concordia",
         "direccion": [
           "Avenida Paseo de las Fuentes 46",
@@ -126,25 +126,25 @@
     "progress_steps": [25, 50, 75, 100],
     "items": [
       {
-        "hora": "13:30 hrs",
+        "hora": "16:00 hrs",
         "texto": "Ceremonia Religiosa",
         "icono": "5.svg",
         "lado": "left"
       },
       {
-        "hora": "15:00 hrs",
-        "texto": "Cóctel de bienvenida",
+        "hora": "18:00 hrs",
+        "texto": "Recepción",
         "icono": "6.svg",
         "lado": "right"
       },
       {
-        "hora": "15:30 hrs",
+        "hora": "18:30 hrs",
         "texto": "Comida",
         "icono": "7.svg",
         "lado": "left"
       },
       {
-        "hora": "17:00 hrs",
+        "hora": "20:00 hrs",
         "texto": "Todos a la pista",
         "icono": "8.svg",
         "lado": "right"
