@@ -25,6 +25,10 @@
       formBox.classList.add("hidden");
       section.classList.add("completed");
 
+      // 🔹 mostrar pase y mesa SOLO al confirmar
+      const passInfo = section.querySelector(".rsvp-pass-info");
+      if (passInfo) passInfo.classList.remove("hidden");
+
       titleEl.textContent = data.rsvp.final.titulo || "";
       textEl.innerHTML = data.rsvp.final.texto || "";
       namesEl.textContent = data.rsvp.final.firma || "";

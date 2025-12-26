@@ -191,7 +191,17 @@
     "enabled": true,
     "titulo": "Confirmar asistencia",
     "texto": "Nos encantaría saber si podrán acompañarnos en este día tan especial.<br>Gracias por tomarse un momento para responder.",
-    "nota": "Este pase incluye a dos personas.<br>Si lo desean, pueden compartirnos los siguientes datos.",
+    "nota": "Les agradeceremos confirmar su asistencia para acompañarnos en este día tan especial.",
+
+    "pase": {
+      "cantidad": 2,
+      "label": "Pase para"
+    },
+    "mesa": {
+      "numero": 5,
+      "label": "Mesa asignada"
+    },
+
     "botones": {
       "si": "Sí, asistiremos",
       "no": "No podremos asistir"

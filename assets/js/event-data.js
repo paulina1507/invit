@@ -70,7 +70,6 @@ fetch("./assets/js/evento.json")
       data.navbar.items.forEach((item) => {
         if (!item.href || !item.label) return;
 
-        // si la sección no existe o está deshabilitada, no se pinta
         const targetId = item.href.replace("#", "");
         if (data[targetId]?.enabled === false) return;
 
@@ -261,11 +260,26 @@ fetch("./assets/js/evento.json")
       const form = document.getElementById("rsvp-form");
 
       if (form) {
-        form.querySelector(".arco-title").textContent = rsvp.titulo;
-        form.querySelector(".rsvp-text").innerHTML = rsvp.texto;
-        form.querySelector(".rsvp-note").innerHTML = rsvp.nota;
-        form.querySelector(".rsvp-btn.yes").textContent = rsvp.botones.si;
-        form.querySelector(".rsvp-btn.no").textContent = rsvp.botones.no;
+        form.querySelector(".arco-title").textContent = rsvp.titulo || "";
+        form.querySelector(".rsvp-text").innerHTML = rsvp.texto || "";
+        form.querySelector(".rsvp-note").innerHTML = rsvp.nota || "";
+        form.querySelector(".rsvp-btn.yes").textContent = rsvp.botones?.si || "";
+        form.querySelector(".rsvp-btn.no").textContent = rsvp.botones?.no || "";
+      }
+
+      const passLabel = document.getElementById("rsvpPassLabel");
+      const passValue = document.getElementById("rsvpPassValue");
+      const tableLabel = document.getElementById("rsvpTableLabel");
+      const tableValue = document.getElementById("rsvpTableValue");
+
+      if (rsvp.pase && passLabel && passValue) {
+        passLabel.textContent = rsvp.pase.label || "Pase para";
+        passValue.textContent = `${rsvp.pase.cantidad} personas`;
+      }
+
+      if (rsvp.mesa && tableLabel && tableValue) {
+        tableLabel.textContent = rsvp.mesa.label || "Mesa asignada";
+        tableValue.textContent = `Mesa ${rsvp.mesa.numero}`;
       }
     } else {
       removeSection("rsvp");
@@ -273,9 +287,11 @@ fetch("./assets/js/evento.json")
 
     /* ================= FOOTER ================= */
 
-    if (data.footer?.text) {
+    if (data.footer?.enabled !== false) {
       const footer = document.getElementById("footer-text");
-      if (footer) footer.innerHTML = data.footer.text;
+      if (footer && data.footer?.text) {
+        footer.innerHTML = data.footer.text;
+      }
     }
 
     /* ================= EDITORIAL TEXTS ================= */

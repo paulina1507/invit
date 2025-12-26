@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const overlay = document.getElementById("envelopeOverlay");
   const envelope = document.querySelector(".envelope");
-  const letter = document.querySelector(".letter");
+  const letter = document.querySelector("#envelopeOverlay .letter");
   const seal = document.getElementById("sealButton");
 
   const musicBtn = document.getElementById("musicToggle");
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   body.classList.add("lock-scroll");
   body.classList.remove("content-ready");
+  body.classList.remove("footer-ready");
 
   if (musicBtn) {
     musicBtn.style.opacity = "0";
@@ -45,7 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ================= TEXTO INTRODUCTORIO ================= */
     setTimeout(() => {
-      runHeroIntro(window.__EVENT_DATA__);
+      if (window.__EVENT_DATA__) {
+        runHeroIntro(window.__EVENT_DATA__);
+      }
     }, 1800);
 
     /* ================= AUDIO ================= */
@@ -76,34 +79,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ================= CARTA FULLSCREEN ================= */
-
     setTimeout(() => {
       letter.classList.add("hero");
       letter.classList.add("unfolded");
     }, 450);
 
     /* ================= OVERLAY ================= */
-
     overlay.classList.add("fade-out");
     setTimeout(() => overlay.remove(), 1250);
 
     /* ================= UI GLOBAL ================= */
-
     setTimeout(() => {
       body.classList.remove("lock-scroll");
-      body.classList.add("content-ready");
 
-      // fuerza recálculo real de fixed / observers
+      document.documentElement.style.height = "auto";
+      document.body.style.height = "auto";
+
       requestAnimationFrame(() => {
-        window.dispatchEvent(new Event("scroll"));
-        window.dispatchEvent(new Event("resize"));
-      });
+        body.classList.add("content-ready");
+        body.classList.add("footer-ready");
 
-      if (musicBtn) {
-        musicBtn.style.opacity = "1";
-        musicBtn.style.pointerEvents = "auto";
-      }
-    }, 1350);
+        requestAnimationFrame(() => {
+          window.dispatchEvent(new Event("resize"));
+        });
+      });
+    }, 1400);
   });
 
   /* ================= BOTÓN DE MÚSICA ================= */
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ================= TEXTO EDITORIAL HERO ================= */
 
 function runHeroIntro(data) {
-  const phrase = document.getElementById("introPhrase");
+  const phrase = document.getElementById("openingPhrase");
   if (!phrase) return;
 
   phrase.textContent =

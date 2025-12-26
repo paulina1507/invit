@@ -3,7 +3,7 @@
 
   function initReveals() {
     const reveals = document.querySelectorAll(
-      ".reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-fx"
+      ".reveal, .reveal-left, .reveal-right, .reveal-title, .reveal-zoom, .reveal-fx"
     );
 
     if (!reveals.length) return;
@@ -12,7 +12,8 @@
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add("visible");
+
+          entry.target.classList.add("visible", "is-visible");
           observer.unobserve(entry.target);
         });
       },
@@ -25,7 +26,6 @@
   document.addEventListener("event:data:ready", () => {
     if (initialized) return;
     initialized = true;
-
     initReveals();
   });
 })();

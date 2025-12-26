@@ -48,24 +48,25 @@ body {
   overflow-x: hidden !important;
 }
 
-body.content-ready .navbar,
-body.content-ready footer {
+body.content-ready .navbar {
   opacity: 1 !important;
   transform: none !important;
   pointer-events: auto !important;
 }
 
-
 .site-root {
-  position: relative;   
+  position: relative;
   inset: auto;
   min-height: 100vh;
 }
 
-
 body.content-ready .site-root {
   opacity: 1;
   transform: scale(1);
+}
+
+.hidden {
+  display: none;
 }
 
 .site-root.hero-ready .hero-bg {
@@ -291,12 +292,6 @@ body.content-ready .navbar {
   animation-delay: 0.25s;
 }
 
-body.content-ready footer {
-  opacity: 1;
-  pointer-events: auto;
-  transition-delay: 0.35s;
-}
-
 /* Contador */
 .hero-count {
   display: flex;
@@ -355,7 +350,6 @@ body.content-ready footer {
     transform: translateY(0) scale(1);
   }
 }
-
 
 /* ANIMACIÓN DE CAÍDA SUAVE DEL SOBRE */
 @keyframes envelopeDrop {
@@ -755,7 +749,6 @@ body.content-ready footer {
   }
 }
 
-
 /* ========================================================= */
 /* PROGRAMA – TIMELINE (PC + MÓVIL | FIX DEFINITIVO)          */
 /* ========================================================= */
@@ -952,7 +945,6 @@ body.content-ready footer {
 }
 
 @media (max-width: 480px) {
-
   /* mover la línea un poco a la izquierda */
   .timeline-programa::before {
     left: 50%;
@@ -1202,7 +1194,7 @@ body.content-ready footer {
 /* ========================================================= */
 /* FOOTER */
 
-footer {
+footer.site-footer {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -1211,17 +1203,21 @@ footer {
   text-align: center;
   background: var(--oliva);
   color: var(--blanco);
-  z-index: 1000;
+  z-index: 99999;
 
-  /* estados iniciales */
   opacity: 0;
+  transform: translateY(40px);
   pointer-events: none;
-  transition: opacity 0.8s ease;
+
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.site-footer small {
+  opacity: 0.9;
 }
 
-/* se muestra solo cuando el sobre está abierto */
-body.content-ready footer {
+body.footer-ready footer.site-footer {
   opacity: 1;
+  transform: translateY(0);
   pointer-events: auto;
 }
 
@@ -1447,11 +1443,14 @@ body.content-ready footer {
 }
 
 .rsvp-sign {
-  margin-top: 1.6rem;
+  margin-top: 36px;
   font-family: "Great Vibes", cursive;
-  font-size: 1.9rem;
-  color: #2f4f4f;
+  font-size: 32px;
+  color: #5e7c6f;
   opacity: 0.9;
+}
+.rsvp-sign {
+  transform: rotate(-1deg);
 }
 
 /* ========================================================= */
@@ -1520,7 +1519,6 @@ body.content-ready footer {
   }
 }
 
-
 /* ============================= */
 /* ANIMACIONES BASE              */
 /* ============================= */
@@ -1570,6 +1568,62 @@ body.content-ready footer {
     width: 100%;
   }
 }
+
+/* ================= RSVP – PASE Y MESA ================= */
+
+.rsvp-pass-info {
+  margin: 1.8rem 0 1.2rem;
+  padding: 1.2rem 1.6rem;
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(6px);
+
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+  text-align: center;
+
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.rsvp-pass-item {
+  margin-bottom: 0.8rem;
+}
+
+.rsvp-pass-item:last-child {
+  margin-bottom: 0;
+}
+
+.rsvp-pass-item .label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7c8f84;
+  margin-bottom: 4px;
+}
+
+.rsvp-pass-item strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  color: #2f3e35;
+}
+
+#rsvp-final {
+  animation: fadeUp 0.8s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* ====================================== */
 /* ICONOS TIPO SLIDE (SOLO 3 SECCIONES)   */
@@ -1730,15 +1784,15 @@ body.content-ready footer {
 
 /* contenido oculto mientras se desdobla */
 .letter-content {
-  opacity: 0;
+  opacity: 1; /* 👈 visible por defecto */
   transition: opacity 0.5s ease;
   width: 100%;
   min-height: 100%;
 }
 
-/* aparece SOLO cuando termina la apertura */
-.letter.hero.unfolded .letter-content {
-  opacity: 1;
+#siteRoot {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .letter.unfolded {
@@ -1772,16 +1826,17 @@ body.content-ready footer {
 /* CARTA → SITIO COMPLETO                                   */
 /* ========================================================= */
 .letter.hero {
-  position: relative;     
+  position: relative;
   width: 100%;
   height: auto;
   min-height: 100vh;
-  overflow-y: visible;    
+  overflow-y: visible;
   overflow-x: hidden;
   transform: none;
   border-radius: 0;
   background: transparent;
-  z-index: 1; 
+  z-index: 1;
+  padding-bottom: 90px;
 }
 
 .letter.hero .letter-content {
@@ -1988,4 +2043,56 @@ body.content-ready .music-btn {
 
 .music-playing {
   animation: music-pulse 1.8s ease-in-out infinite;
+}
+
+/* ================= ESTADO INICIAL ================= */
+
+.reveal-title {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* ================= ESTADO VISIBLE ================= */
+
+.visible,
+.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (min-width: 768px) {
+  .reveal-left {
+    transform: translateX(-80px);
+  }
+
+  .reveal-right {
+    transform: translateX(80px);
+  }
+
+  .reveal-left.visible,
+  .reveal-right.visible,
+  .reveal-left.is-visible,
+  .reveal-right.is-visible {
+    transform: translateX(0);
+  }
+}
+
+/* === FIX VIDA AL SITIO === */
+.site-root {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
 }
