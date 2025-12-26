@@ -32,6 +32,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (opened) return;
     opened = true;
 
+    /* ================= AUDIO (ARRANQUE INMEDIATO) ================= */
+    if (bgSong && musicIcon) {
+      bgSong.volume = 0;
+      bgSong.play().then(() => {
+        musicPlaying = true;
+        musicIcon.src = "assets/img/pause.svg";
+
+        // fade in suave
+        let vol = 0;
+        const fade = setInterval(() => {
+          vol += 0.05;
+          bgSong.volume = Math.min(vol, 1);
+          if (vol >= 1) clearInterval(fade);
+        }, 80);
+      }).catch(() => {});
+    }
+
     /* feedback visual del sello */
     seal.classList.add("press");
     setTimeout(() => seal.classList.add("fade-out"), 160);
@@ -50,33 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
         runHeroIntro(window.__EVENT_DATA__);
       }
     }, 1800);
-
-    /* ================= AUDIO ================= */
-    if (bgSong && musicIcon) {
-      const tryPlay = () => {
-        bgSong.volume = 0;
-        bgSong
-          .play()
-          .then(() => {
-            musicPlaying = true;
-            musicIcon.src = "assets/img/pause.svg";
-
-            let vol = 0;
-            const fade = setInterval(() => {
-              vol += 0.05;
-              bgSong.volume = Math.min(vol, 1);
-              if (vol >= 1) clearInterval(fade);
-            }, 80);
-          })
-          .catch(() => {});
-      };
-
-      if (bgSong.readyState >= 2) {
-        tryPlay();
-      } else {
-        bgSong.addEventListener("canplay", tryPlay, { once: true });
-      }
-    }
 
     /* ================= CARTA FULLSCREEN ================= */
     setTimeout(() => {
