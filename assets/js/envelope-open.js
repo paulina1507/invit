@@ -99,6 +99,11 @@ document.addEventListener("DOMContentLoaded", () => {
         body.classList.add("content-ready");
         body.classList.add("footer-ready");
 
+        if (musicBtn) {
+          musicBtn.style.opacity = "1";
+          musicBtn.style.pointerEvents = "auto";
+        }
+
         requestAnimationFrame(() => {
           window.dispatchEvent(new Event("resize"));
         });
