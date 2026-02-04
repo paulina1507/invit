@@ -1,7 +1,6 @@
 fetch("./assets/js/evento.json")
   .then((res) => res.json())
   .then((data) => {
-
     /* ================= 🔧 HELPERS ================= */
 
     const isEnabled = (obj) => obj?.enabled !== false;
@@ -85,11 +84,13 @@ fetch("./assets/js/evento.json")
     if (isEnabled(data.hero)) {
       const hero = data.hero;
 
-      document.getElementById("hero-names").textContent =
-        `${hero.names.novia} & ${hero.names.novio}`;
+      document.getElementById(
+        "hero-names"
+      ).textContent = `${hero.names.novia} & ${hero.names.novio}`;
 
-      document.querySelector(".hero-bg").style.backgroundImage =
-        `url('assets/img/${hero.background}')`;
+      document.querySelector(
+        ".hero-bg"
+      ).style.backgroundImage = `url('assets/img/${hero.background}')`;
 
       const labels = hero.countdown_labels;
       if (labels) {
@@ -144,7 +145,7 @@ fetch("./assets/js/evento.json")
       lista.innerHTML = "";
 
       u.lugares
-        .filter(l => isEnabled(l) && l.lugar && l.hora)
+        .filter((l) => isEnabled(l) && l.lugar && l.hora)
         .forEach((lugar) => {
           lista.insertAdjacentHTML(
             "beforeend",
@@ -155,7 +156,9 @@ fetch("./assets/js/evento.json")
               <div class="ubicacion-lugar">${lugar.lugar}</div>
               ${
                 lugar.direccion?.length
-                  ? `<div class="ubicacion-direccion">${lugar.direccion.join("<br>")}</div>`
+                  ? `<div class="ubicacion-direccion">${lugar.direccion.join(
+                      "<br>"
+                    )}</div>`
                   : ""
               }
               ${
@@ -263,7 +266,8 @@ fetch("./assets/js/evento.json")
         form.querySelector(".arco-title").textContent = rsvp.titulo || "";
         form.querySelector(".rsvp-text").innerHTML = rsvp.texto || "";
         form.querySelector(".rsvp-note").innerHTML = rsvp.nota || "";
-        form.querySelector(".rsvp-btn.yes").textContent = rsvp.botones?.si || "";
+        form.querySelector(".rsvp-btn.yes").textContent =
+          rsvp.botones?.si || "";
         form.querySelector(".rsvp-btn.no").textContent = rsvp.botones?.no || "";
       }
 
@@ -272,14 +276,26 @@ fetch("./assets/js/evento.json")
       const tableLabel = document.getElementById("rsvpTableLabel");
       const tableValue = document.getElementById("rsvpTableValue");
 
-      if (rsvp.pase && passLabel && passValue) {
+      /* ===== PASE ===== */
+      if (rsvp.pase?.enabled !== false && passLabel && passValue) {
         passLabel.textContent = rsvp.pase.label || "Pase para";
         passValue.textContent = `${rsvp.pase.cantidad} personas`;
+      } else {
+        passLabel?.closest(".rsvp-pass-item")?.remove();
       }
 
-      if (rsvp.mesa && tableLabel && tableValue) {
+      /* ===== MESA ===== */
+      if (rsvp.mesa?.enabled !== false && tableLabel && tableValue) {
         tableLabel.textContent = rsvp.mesa.label || "Mesa asignada";
         tableValue.textContent = `Mesa ${rsvp.mesa.numero}`;
+      } else {
+        tableLabel?.closest(".rsvp-pass-item")?.remove();
+      }
+      /* ===== LIMPIAR CONTENEDOR VACÍO ===== */
+      const passInfo = document.querySelector(".rsvp-pass-info");
+
+      if (passInfo && !rsvp.pase?.enabled && !rsvp.mesa?.enabled) {
+        passInfo.remove();
       }
     } else {
       removeSection("rsvp");

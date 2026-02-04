@@ -194,25 +194,28 @@
     "nota": "Les agradeceremos confirmar su asistencia para acompañarnos en este día tan especial.",
 
     "pase": {
-      "cantidad": 2,
-      "label": "Pase para"
+      "enabled": false,
+      "cantidad": null,
+      "label": ""
     },
+
     "mesa": {
-      "numero": 5,
-      "label": "Mesa asignada"
+      "enabled": false,
+      "numero": null,
+      "label": ""
     },
 
     "botones": {
       "si": "Sí, asistiremos",
       "no": "No podremos asistir"
     },
+
     "final": {
       "titulo": "¡Gracias por confirmar!",
       "texto": "Nos llena de alegría saber que compartirán este día con nosotros.",
       "firma": "Elena & Julián"
     }
   },
-
   "editorial": {
     "hero": {
       "enabled": true,
