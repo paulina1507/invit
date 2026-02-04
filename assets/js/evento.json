@@ -194,14 +194,14 @@
     "nota": "Les agradeceremos confirmar su asistencia para acompañarnos en este día tan especial.",
 
     "pase": {
-      "enabled": false,
-      "cantidad": null,
+      "enabled": true,
+      "cantidad": 2,
       "label": ""
     },
 
     "mesa": {
-      "enabled": false,
-      "numero": null,
+      "enabled": true,
+      "numero": 4,
       "label": ""
     },
 
