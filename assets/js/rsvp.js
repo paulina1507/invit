@@ -18,17 +18,44 @@
     const textEl = document.getElementById("rsvp-final-text");
     const namesEl = document.getElementById("rsvp-names");
 
+    const passInfo = section.querySelector(".rsvp-pass-info");
+    const passLabel = section.querySelector("#rsvpPassLabel");
+    const passValue = section.querySelector("#rsvpPassValue");
+    const tableLabel = section.querySelector("#rsvpTableLabel");
+    const tableValue = section.querySelector("#rsvpTableValue");
+
     const data = window.__EVENT_DATA__;
     if (!data?.rsvp?.final) return;
 
     function showFinal() {
+      // Ocultar formulario
       formBox.classList.add("hidden");
       section.classList.add("completed");
 
-      // 🔹 mostrar pase y mesa SOLO al confirmar
-      const passInfo = section.querySelector(".rsvp-pass-info");
+      // Mostrar bloque pase / mesa
       if (passInfo) passInfo.classList.remove("hidden");
 
+      // 🟢 PASE
+      if (
+        data.rsvp.pase?.cantidad &&
+        passLabel &&
+        passValue
+      ) {
+        passLabel.textContent = data.rsvp.pase.label || "Pase para";
+        passValue.textContent = `${data.rsvp.pase.cantidad} personas`;
+      }
+
+      // 🟢 MESA
+      if (
+        data.rsvp.mesa?.numero &&
+        tableLabel &&
+        tableValue
+      ) {
+        tableLabel.textContent = data.rsvp.mesa.label || "Mesa asignada";
+        tableValue.textContent = `Mesa ${data.rsvp.mesa.numero}`;
+      }
+
+      // Texto final
       titleEl.textContent = data.rsvp.final.titulo || "";
       textEl.innerHTML = data.rsvp.final.texto || "";
       namesEl.textContent = data.rsvp.final.firma || "";
@@ -40,10 +67,10 @@
     btnNo?.addEventListener("click", showFinal);
   }
 
-  // 1️⃣ Escuchar el evento normal
+  // Evento principal
   document.addEventListener("event:data:ready", initRSVP);
 
-  // 2️⃣ Fallback: si el evento ya ocurrió
+  // Fallback si los datos ya existen
   if (window.__EVENT_DATA__) {
     initRSVP();
   }
